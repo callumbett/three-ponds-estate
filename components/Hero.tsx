@@ -32,7 +32,7 @@ export default function Hero() {
         style={{ y: imgY, scale: imgScale }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2800&q=85"
+          src="/images/hero/Hero.jpg"
           alt="Wide Riverina country at first light, low golden sun across paddock"
           fill
           priority

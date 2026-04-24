@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import BookNow from "./BookNow";
 
@@ -32,13 +34,30 @@ export default function Nav() {
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-10">
-        <Link
-          href="/"
-          className="font-serif text-lg tracking-tight text-charcoal"
-          aria-label="Three Ponds Estate — home"
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          Three Ponds<span className="text-corten">.</span>
-        </Link>
+          <Link
+            href="/"
+            aria-label="Three Ponds Estate — home"
+            className="group flex items-center gap-3"
+          >
+            <Image
+              src="/images/logo/logo-black.png"
+              alt=""
+              width={506}
+              height={480}
+              priority
+              quality={90}
+              className="h-9 w-auto sm:h-10"
+            />
+            <span className="font-serif text-base tracking-[0.02em] text-charcoal sm:text-lg">
+              Three Ponds Estate
+            </span>
+          </Link>
+        </motion.div>
 
         <nav className="hidden items-center gap-10 md:flex">
           {links.map((l) => (
