@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ----------  Design tokens  ----------
+   Palette:
+     parchment  #F9F7F2  background
+     charcoal   #2D2D2D  text
+     corten     #B7410E  primary  (Corten Rust)
+     earth      #9E5332  accent   (NSW Earth)
+     dusk       #968DA1  accent   (Dusk Lavender)
+   Typography:
+     serif  → Fraunces (editorial display)
+     sans   → Inter    (body)
+*/
+
+@theme {
+  --color-parchment: #f9f7f2;
+  --color-parchment-deep: #f1ede4;
+  --color-charcoal: #2d2d2d;
+  --color-charcoal-soft: #4a4a4a;
+  --color-corten: #b7410e;
+  --color-corten-deep: #8f3209;
+  --color-earth: #9e5332;
+  --color-dusk: #968da1;
+  --color-line: #e6e1d6;
+
+  --font-serif: var(--font-fraunces), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --tracking-eyebrow: 0.18em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  background: var(--color-parchment);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Editorial serif by default for headings */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--color-charcoal);
+}
+
+/* Eyebrow utility */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-corten);
+}
+
+/* Subtle hairline */
+.hairline {
+  border-color: var(--color-line);
+}
+
+/* Reduced motion respect — motion.dev components also respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Selection */
+::selection {
+  background: var(--color-corten);
+  color: var(--color-parchment);
 }
