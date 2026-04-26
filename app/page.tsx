@@ -11,8 +11,8 @@ export default function Home() {
     <>
       <Hero />
       <StatsStrip />
-      <Story />
       <PodSection />
+      <Story />
       <Amenities />
       <Reviews />
       <CTA />

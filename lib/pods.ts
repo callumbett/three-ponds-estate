@@ -1,6 +1,6 @@
 // Single source of truth for the three pods.
-// Image URLs are curated Unsplash references — replace with the estate's own
-// photography by editing the `gallery` arrays below.
+// All image references point at the estate's own photography under
+// public/images/pods/<slug>/.
 
 export type Pod = {
   slug: "the-ophir" | "the-felix" | "the-uphaz";
@@ -18,9 +18,6 @@ export type Pod = {
   // Pricing is indicative until the Little Hotelier feed is wired in.
   fromAud: number;
 };
-
-const UNSPLASH = (id: string, w = 2400) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=85`;
 
 export const pods: Pod[] = [
   {
@@ -52,25 +49,33 @@ export const pods: Pod[] = [
       "Access to communal fire pit & BBQ",
     ],
     cover: {
-      src: UNSPLASH("1505691938895-1758d7feb511"),
-      alt: "Sun rising over a soft minimalist interior with timber floors",
+      src: "/images/pods/the-ophir/DSC01766.jpg",
+      alt: "The Ophir — establishing view of the pod and its setting",
     },
     gallery: [
       {
-        src: UNSPLASH("1505691938895-1758d7feb511"),
-        alt: "Pale interior bathed in morning light",
+        src: "/images/pods/the-ophir/DSC01522.jpg",
+        alt: "The Ophir interior",
       },
       {
-        src: UNSPLASH("1556909114-f6e7ad7d3136"),
-        alt: "Linen-draped queen bed in a quiet bedroom",
+        src: "/images/pods/the-ophir/DSC01534.jpg",
+        alt: "The Ophir interior",
       },
       {
-        src: UNSPLASH("1600585154340-be6161a56a0c"),
-        alt: "Open-plan kitchen with stone island and timber cabinetry",
+        src: "/images/pods/the-ophir/DSC01541.jpg",
+        alt: "The Ophir interior",
       },
       {
-        src: UNSPLASH("1554995207-c18c203602cb"),
-        alt: "Soft pendant lighting above a small dining table",
+        src: "/images/pods/the-ophir/DSC01503.jpg",
+        alt: "The Ophir interior",
+      },
+      {
+        src: "/images/pods/the-ophir/DSC01510.jpg",
+        alt: "The Ophir interior",
+      },
+      {
+        src: "/images/pods/the-ophir/DSC01827.jpg",
+        alt: "The Ophir — wider view",
       },
     ],
     fromAud: 234,
@@ -104,25 +109,33 @@ export const pods: Pod[] = [
       "Access to communal fire pit & BBQ",
     ],
     cover: {
-      src: UNSPLASH("1600585154526-990dced4db0d"),
-      alt: "Modern Scandinavian barn-style interior with vaulted ceiling",
+      src: "/images/pods/the-felix/DSC01805.jpg",
+      alt: "The Felix — establishing view of the pod and its setting",
     },
     gallery: [
       {
-        src: UNSPLASH("1600585154526-990dced4db0d"),
-        alt: "Vaulted living room in pale timber and white linen",
+        src: "/images/pods/the-felix/DSC01658.jpg",
+        alt: "The Felix interior",
       },
       {
-        src: UNSPLASH("1522708323590-d24dbb6b0267"),
-        alt: "Quiet queen bedroom with soft natural light",
+        src: "/images/pods/the-felix/DSC01671.jpg",
+        alt: "The Felix interior",
       },
       {
-        src: UNSPLASH("1558211583-d26f610c1eb1"),
-        alt: "Stone-topped kitchen island with Scandinavian stools",
+        src: "/images/pods/the-felix/DSC01643.jpg",
+        alt: "The Felix interior",
       },
       {
-        src: UNSPLASH("1591088398332-8a7791972843"),
-        alt: "Timber deck under a wide country sky",
+        src: "/images/pods/the-felix/DSC01631.jpg",
+        alt: "The Felix interior",
+      },
+      {
+        src: "/images/pods/the-felix/DSC01625.jpg",
+        alt: "The Felix interior",
+      },
+      {
+        src: "/images/pods/the-felix/DSC01867.jpg",
+        alt: "The Felix — wider view",
       },
     ],
     fromAud: 289,
@@ -156,25 +169,33 @@ export const pods: Pod[] = [
       "Access to communal fire pit & BBQ",
     ],
     cover: {
-      src: UNSPLASH("1564013799919-ab600027ffc6"),
-      alt: "Modern barn pod under a golden sunset sky",
+      src: "/images/pods/the-uphaz/DSC01832.jpg",
+      alt: "The Uphaz — establishing view of the pod and its setting",
     },
     gallery: [
       {
-        src: UNSPLASH("1564013799919-ab600027ffc6"),
-        alt: "Pod silhouette against a golden western sky",
+        src: "/images/pods/the-uphaz/DSC01739.jpg",
+        alt: "The Uphaz interior",
       },
       {
-        src: UNSPLASH("1505693416388-ac5ce068fe85"),
-        alt: "Calm bedroom with soft late-afternoon light",
+        src: "/images/pods/the-uphaz/DSC01754.jpg",
+        alt: "The Uphaz interior",
       },
       {
-        src: UNSPLASH("1600121848594-d8644e57abab"),
-        alt: "Open kitchen and dining with view to deck",
+        src: "/images/pods/the-uphaz/DSC01702.jpg",
+        alt: "The Uphaz interior",
       },
       {
-        src: UNSPLASH("1493809842364-78817add7ffb"),
-        alt: "Fire pit at dusk in open country",
+        src: "/images/pods/the-uphaz/DSC01715.jpg",
+        alt: "The Uphaz interior",
+      },
+      {
+        src: "/images/pods/the-uphaz/DSC01708.jpg",
+        alt: "The Uphaz interior",
+      },
+      {
+        src: "/images/pods/the-uphaz/DSC01692.jpg",
+        alt: "The Uphaz interior",
       },
     ],
     fromAud: 289,

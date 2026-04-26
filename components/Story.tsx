@@ -8,10 +8,15 @@ export default function Story() {
     <section className="bg-parchment-deep py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 sm:px-10 md:grid-cols-12 md:gap-12">
         <MotionReveal className="md:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+          {/*
+           * Circular vignette — `aspect-square` + `rounded-full` clips
+           * the photograph to a true circle (an ellipse would result if
+           * the aspect ratio were anything other than 1:1).
+           */}
+          <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full md:max-w-none">
             <Image
-              src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=2000&q=85"
-              alt="A fire pit at dusk, with open paddock beyond"
+              src="/images/story/Bett77.jpg"
+              alt="Three Ponds Estate at the close of day"
               fill
               sizes="(min-width: 768px) 40vw, 100vw"
               quality={85}

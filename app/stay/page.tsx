@@ -15,7 +15,7 @@ export default function StayPage() {
   return (
     <>
       {/* Page intro */}
-      <section className="bg-parchment pt-40 pb-16 sm:pt-48 sm:pb-24">
+      <section className="bg-parchment pt-48 pb-16 sm:pt-60 sm:pb-24">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
           <MotionReveal className="max-w-3xl">
             <SectionEyebrow>The Pods</SectionEyebrow>

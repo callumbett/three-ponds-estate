@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { Booking } from "@/components/booking";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -45,9 +46,12 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-parchment text-charcoal">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <Booking.Provider>
+          <Nav />
+          <main className="relative flex-1">{children}</main>
+          <Footer />
+          <Booking.Modal />
+        </Booking.Provider>
       </body>
     </html>
   );

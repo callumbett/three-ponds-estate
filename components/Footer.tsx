@@ -30,12 +30,31 @@ export default function Footer() {
         <div>
           <p className="eyebrow">Find us</p>
           <address className="mt-3 not-italic text-sm leading-relaxed text-charcoal-soft">
-            Opposite the Temora Aviation Museum
+            79 Airport Street
             <br />
             Temora, NSW 2666
             <br />
-            Australia
+            (opposite the Aviation Museum)
           </address>
+          <p className="eyebrow mt-6">Get in touch</p>
+          <ul className="mt-3 space-y-2 text-sm text-charcoal-soft">
+            <li>
+              <a
+                href="mailto:info@threepondsestate.com"
+                className="hover:text-corten"
+              >
+                info@threepondsestate.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+61403433300"
+                className="hover:text-corten"
+              >
+                0403 433 300
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BookNow from "@/components/BookNow";
+import { Booking } from "@/components/booking";
 import EnquiryForm from "@/components/EnquiryForm";
 import MotionReveal from "@/components/MotionReveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-parchment pt-40 pb-16 sm:pt-48 sm:pb-20">
+      <section className="bg-parchment pt-48 pb-16 sm:pt-60 sm:pb-20">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
           <MotionReveal>
             <SectionEyebrow>Contact &amp; Book</SectionEyebrow>
@@ -43,25 +43,36 @@ export default function ContactPage() {
                 Best-rate guarantee versus third-party channels.
               </p>
               <div className="mt-8">
-                <BookNow variant="solid" label="Open booking" />
+                <Booking.PrimaryTrigger label="Open booking" />
               </div>
 
-              <div className="mt-10 space-y-4 border-t border-line pt-8 text-sm text-charcoal-soft">
+              <div className="mt-10 space-y-5 border-t border-line pt-8 text-sm text-charcoal-soft">
                 <div>
                   <p className="eyebrow">Address</p>
                   <p className="mt-2">
-                    Opposite the Temora Aviation Museum
+                    79 Airport Street
                     <br />
-                    Temora, NSW 2666 · Australia
+                    Temora, NSW 2666
+                    <br />
+                    (opposite the Aviation Museum)
                   </p>
                 </div>
                 <div>
                   <p className="eyebrow">Email</p>
                   <a
-                    href="mailto:hello@threepondsestate.com.au"
+                    href="mailto:info@threepondsestate.com"
                     className="mt-2 block text-charcoal hover:text-corten"
                   >
-                    hello@threepondsestate.com.au
+                    info@threepondsestate.com
+                  </a>
+                </div>
+                <div>
+                  <p className="eyebrow">Phone</p>
+                  <a
+                    href="tel:+61403433300"
+                    className="mt-2 block text-charcoal hover:text-corten"
+                  >
+                    0403 433 300
                   </a>
                 </div>
                 <div>

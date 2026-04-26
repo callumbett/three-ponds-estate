@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { pods } from "@/lib/pods";
+import ImageCrossfader from "./ImageCrossfader";
 import SectionEyebrow from "./SectionEyebrow";
 
 const containerVariants = {
@@ -47,44 +47,73 @@ export default function PodSection() {
           whileInView={reduce ? undefined : "visible"}
           viewport={{ once: true, amount: 0.15 }}
         >
-          {pods.map((pod) => (
-            <motion.article
-              key={pod.slug}
-              variants={reduce ? undefined : cardVariants}
-              className="group flex flex-col"
-            >
-              <Link href={`/stay/${pod.slug}`} className="block">
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-parchment-deep">
-                  <Image
-                    src={pod.cover.src}
-                    alt={pod.cover.alt}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    quality={85}
-                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
-                </div>
+          {pods.map((pod, idx) => {
+            // Cycle the cover + every gallery shot for each card. Stagger
+            // the start delays so the three cards don't all switch at once
+            // — gives the row a more relaxed, breathing rhythm.
+            const slideshowImages = [pod.cover, ...pod.gallery];
+            const startDelayMs = idx * 1300;
 
-                <div className="mt-6 flex items-baseline justify-between gap-4">
-                  <h3 className="font-serif text-2xl text-charcoal">{pod.name}</h3>
-                  <span className="text-xs uppercase tracking-[0.18em] text-charcoal-soft">
-                    From AU${pod.fromAud}
+            return (
+              <motion.article
+                key={pod.slug}
+                variants={reduce ? undefined : cardVariants}
+                className="group flex flex-col"
+              >
+                <Link href={`/stay/${pod.slug}`} className="block">
+                  {/*
+                   * Archway shape — top corners use a 50% radius so they
+                   * curve to meet at the apex (Romanesque arch); the
+                   * bottom is flat. Crossfading images live inside.
+                   */}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full rounded-b-none bg-parchment-deep">
+                    <div className="absolute inset-0 transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105">
+                      <ImageCrossfader
+                        images={slideshowImages}
+                        intervalMs={4500}
+                        startDelayMs={startDelayMs}
+                        fadeDurationMs={800}
+                        priority={idx === 0}
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        showControls
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mt-6 flex items-baseline justify-between gap-4">
+                    <h3 className="font-serif text-2xl text-charcoal">
+                      {pod.name}
+                    </h3>
+                    <span className="text-xs uppercase tracking-[0.18em] text-charcoal-soft">
+                      From AU${pod.fromAud}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm text-charcoal-soft">{pod.tagline}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-charcoal-soft/90">
+                    {pod.intro}
+                  </p>
+
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-corten transition-all group-hover:gap-3">
+                    Discover {pod.name.replace("The ", "")}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path
+                        d="M5 12h14M13 6l6 6-6 6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </span>
-                </div>
-                <p className="mt-2 text-sm text-charcoal-soft">{pod.tagline}</p>
-                <p className="mt-4 text-sm leading-relaxed text-charcoal-soft/90">
-                  {pod.intro}
-                </p>
-
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-corten transition-all group-hover:gap-3">
-                  Discover {pod.name.replace("The ", "")}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-              </Link>
-            </motion.article>
-          ))}
+                </Link>
+              </motion.article>
+            );
+          })}
         </motion.div>
       </div>
     </section>

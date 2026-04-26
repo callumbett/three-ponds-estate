@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import BookNow from "@/components/BookNow";
+import { Booking } from "@/components/booking";
 import MotionReveal from "@/components/MotionReveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import { podBySlug, pods } from "@/lib/pods";
@@ -75,7 +75,7 @@ export default async function PodDetailPage({
               {pod.detail}
             </p>
             <div className="mt-10">
-              <BookNow variant="solid" label={`Book ${pod.name}`} />
+              <Booking.PrimaryTrigger label={`Book ${pod.name}`} />
             </div>
           </MotionReveal>
 

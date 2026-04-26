@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BookNow from "./BookNow";
+import { Booking } from "./booking";
 import MotionReveal from "./MotionReveal";
 
 export default function CTA() {
@@ -8,12 +8,12 @@ export default function CTA() {
       {/* Soft accent: image floats in from right */}
       <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
         <Image
-          src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=85"
+          src="/images/cta/DSC01776.jpg"
           alt=""
           fill
           sizes="50vw"
           quality={85}
-          className="object-cover opacity-90"
+          className="object-cover opacity-95"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-parchment via-parchment/40 to-transparent" />
       </div>
@@ -30,7 +30,7 @@ export default function CTA() {
             Same-day enquiries answered, usually within the hour.
           </p>
           <div className="mt-10">
-            <BookNow variant="solid" label="Book your stay" />
+            <Booking.PrimaryTrigger label="Book your stay" />
           </div>
         </MotionReveal>
       </div>

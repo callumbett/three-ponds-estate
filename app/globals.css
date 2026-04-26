@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 /* ----------  Design tokens  ----------
-   Palette:
-     parchment  #F9F7F2  background
-     charcoal   #2D2D2D  text
-     corten     #B7410E  primary  (Corten Rust)
-     earth      #9E5332  accent   (NSW Earth)
-     dusk       #968DA1  accent   (Dusk Lavender)
+   Riverina-anchored palette. Wheat + ironbark + iron-rust.
+     parchment       #F6F2E8   wheat — slightly cooled, less butter-cream
+     parchment-deep  #EFE7D8   wheat at golden hour
+     charcoal        #2D2D2D   ironbark / structural frame
+     charcoal-soft   #4A4A4A   secondary text
+     corten          #B7410E   primary ACTION + brand accent
+     corten-deep     #8F3209   pressed action
+     line            #E8E1D0   hairline rule
    Typography:
      serif  → Fraunces (editorial display)
      sans   → Inter    (body)
 */
 
 @theme {
-  --color-parchment: #f9f7f2;
-  --color-parchment-deep: #f1ede4;
+  --color-parchment: #f6f2e8;
+  --color-parchment-deep: #efe7d8;
   --color-charcoal: #2d2d2d;
   --color-charcoal-soft: #4a4a4a;
   --color-corten: #b7410e;
   --color-corten-deep: #8f3209;
-  --color-earth: #9e5332;
-  --color-dusk: #968da1;
-  --color-line: #e6e1d6;
+  --color-line: #e8e1d0;
 
   --font-serif: var(--font-fraunces), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
@@ -30,40 +30,102 @@
   --tracking-eyebrow: 0.18em;
 }
 
-html,
-body {
-  background: var(--color-parchment);
-  color: var(--color-charcoal);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  html,
+  body {
+    background: var(--color-parchment);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+   * Headlines (H1 / H2 / H3) — Fraunces with TIGHT leading for the
+   * "masthead" appearance. Slight optical letter-spacing tightening
+   * on display sizes only.
+   *
+   * Only typography is set here — colour is left to Tailwind text-*
+   * utilities so per-page treatments can win the cascade.
+   */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+  h1,
+  h2 {
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  h3 {
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  h4,
+  h5 {
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
 }
 
-/* Editorial serif by default for headings */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  color: var(--color-charcoal);
-}
+@layer components {
+  /*
+   * Type utilities — three explicit roles. Apply directly to elements
+   * via className so the cascade is predictable.
+   *
+   *  .eyebrow   — corten label, the "this is a section" mark.
+   *  .kicker    — small-caps Inter, refined section / chapter title.
+   *  .metadata  — tracked-out Inter, charcoal-soft, for chips and
+   *               supporting details (dateline, location, status).
+   *  .prose-body — Inter at generous line-height for long-form reads.
+   */
 
-/* Eyebrow utility */
-.eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--color-corten);
-}
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-corten);
+  }
 
-/* Subtle hairline */
-.hairline {
-  border-color: var(--color-line);
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    /* True OpenType small-caps from Inter — cleaner than CSS uppercase. */
+    font-feature-settings: "smcp" on, "c2sc" on;
+    letter-spacing: 0.12em;
+    color: var(--color-charcoal-soft);
+  }
+
+  .metadata {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--color-charcoal-soft);
+  }
+
+  .prose-body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem; /* 17px — slightly larger than UI body for comfort */
+    line-height: 1.8;
+    color: var(--color-charcoal);
+  }
+  .prose-body p + p {
+    margin-top: 1.25em;
+  }
+
+  /* Subtle hairline */
+  .hairline {
+    border-color: var(--color-line);
+  }
 }
 
 /* Reduced motion respect — motion.dev components also respect prefers-reduced-motion */
@@ -76,6 +138,7 @@ h5 {
     transition-duration: 0.001ms !important;
   }
 }
+
 
 /* Selection */
 ::selection {

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function StoryPage() {
   return (
     <>
-      <section className="bg-parchment pt-40 pb-16 sm:pt-48 sm:pb-24">
+      <section className="bg-parchment pt-48 pb-16 sm:pt-60 sm:pb-24">
         <div className="mx-auto max-w-4xl px-6 text-center sm:px-10">
           <MotionReveal>
             <SectionEyebrow className="justify-center">Our Story</SectionEyebrow>
@@ -29,8 +29,8 @@ export default function StoryPage() {
           <MotionReveal>
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm">
               <Image
-                src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=2800&q=85"
-                alt="Open Riverina paddock at golden hour, with a long, low horizon"
+                src="/images/story/Bett77.jpg"
+                alt="Three Ponds Estate at the close of day"
                 fill
                 sizes="100vw"
                 quality={85}
