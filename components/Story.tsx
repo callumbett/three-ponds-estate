@@ -31,7 +31,7 @@ export default function Story() {
             A quiet act of stewardship,<br className="hidden sm:block" />
             shaped over years of hosting.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
+          <p className="prose-body mt-6">
             Mark and Gillian had hosted friends and family on this land for years
             before the spring of 2020 made the next step obvious. The three pods
             that followed were built with one quiet ambition — to leave the

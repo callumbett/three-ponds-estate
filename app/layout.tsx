@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s · Three Ponds Estate",
   },
   description:
-    "Three Scandi-barn pods set against the open Riverina country, opposite the Temora Aviation Museum. A quiet, considered stay shaped by Mark and Gillian.",
+    "Three Scandi-barn pods set against the open Riverina country, 500 m from the Temora Aviation Museum and three minutes from town. A quiet, considered stay shaped by Mark and Gillian.",
   openGraph: {
     title: "Three Ponds Estate",
     description:

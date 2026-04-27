@@ -46,7 +46,7 @@ export default function StoryPage() {
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
           <MotionReveal>
             <p className="eyebrow">Mark &amp; Gillian</p>
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-charcoal sm:text-xl">
+            <div className="prose-body mt-8">
               <p>
                 For years, Mark and Gillian shared this land with friends and
                 family — the kind of unhurried hosting that doesn&apos;t need a
@@ -61,10 +61,9 @@ export default function StoryPage() {
               </p>
               <p>
                 The three pods that followed share an architectural language —
-                pale timber, soft linen, restrained line — but each is sited
-                for its own moment. The Ophir faces east for sunrise; the Uphaz
-                opens west for the evening; the Felix sits between them, the
-                quiet middle of the day.
+                pale timber, soft linen, restrained line. Each opens east to
+                hold the sunrise; The Felix and Uphaz add a second, north-facing
+                deck so the long late-afternoon light closes the day too.
               </p>
               <p>
                 The brief was simple: leave the country exactly as you found it,

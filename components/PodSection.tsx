@@ -84,7 +84,7 @@ export default function PodSection() {
                     <h3 className="font-serif text-2xl text-charcoal">
                       {pod.name}
                     </h3>
-                    <span className="text-xs uppercase tracking-[0.18em] text-charcoal-soft">
+                    <span className="metadata">
                       From AU${pod.fromAud}
                     </span>
                   </div>

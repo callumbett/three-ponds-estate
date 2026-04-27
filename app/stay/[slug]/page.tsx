@@ -71,7 +71,7 @@ export default async function PodDetailPage({
             <h2 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
               {pod.intro}
             </h2>
-            <p className="mt-8 text-base leading-relaxed text-charcoal-soft">
+            <p className="prose-body mt-8">
               {pod.detail}
             </p>
             <div className="mt-10">
@@ -86,7 +86,7 @@ export default async function PodDetailPage({
                   key={s.label}
                   className="grid grid-cols-3 gap-4 border-b border-line py-4"
                 >
-                  <dt className="col-span-1 text-xs uppercase tracking-[0.18em] text-charcoal-soft">
+                  <dt className="metadata col-span-1">
                     {s.label}
                   </dt>
                   <dd className="col-span-2 text-sm text-charcoal">{s.value}</dd>
@@ -141,6 +141,82 @@ export default async function PodDetailPage({
               </MotionReveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Where we are — text on the left, square map on the right */}
+      <section className="bg-parchment py-24 sm:py-32">
+        <div className="mx-auto grid max-w-7xl items-start gap-12 px-6 sm:px-10 md:grid-cols-12 md:gap-16">
+          <MotionReveal className="md:col-span-5">
+            <SectionEyebrow>Where we are</SectionEyebrow>
+            <h2 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
+              79 Airport Street, Temora.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-charcoal-soft">
+              500 m from the Temora Aviation Museum and three minutes by car
+              from the heart of town.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm">
+              <a
+                href="https://www.google.com/maps/place/Three+Ponds+Estate/@-34.4240369,147.5172122,17z/data=!4m9!3m8!1s0x6b190f1eb6a813fb:0x684a709a0169c2cb!5m2!4m1!1i2!8m2!3d-34.4240369!4d147.5197925!16s%2Fg%2F11kjg1t5lz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-corten transition-all hover:gap-3"
+              >
+                Open in Google Maps
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+              <span className="text-charcoal-soft/70" aria-hidden="true">·</span>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=79+Airport+Street+Temora+NSW+2666"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-corten transition-all hover:gap-3"
+              >
+                Get directions
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </MotionReveal>
+
+          <MotionReveal delay={0.1} className="md:col-span-7">
+            <div className="relative aspect-square w-full overflow-hidden rounded-sm border border-line">
+              <iframe
+                title="Map of Three Ponds Estate, 79 Airport Street, Temora NSW"
+                src="https://maps.google.com/maps?q=79+Airport+Street+Temora+NSW+2666&z=15&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+          </MotionReveal>
         </div>
       </section>
 

@@ -9,9 +9,18 @@ export const metadata: Metadata = {
     "What's on the doorstep at Three Ponds Estate: the Temora Aviation Museum, Lake Centenary, the Bundawarrah Centre, the Canola Trail and Temora town.",
 };
 
-const places = [
+type Place = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  bodyLink?: { href: string; label: string };
+  image: string;
+  alt: string;
+};
+
+const places: Place[] = [
   {
-    eyebrow: "Across the road",
+    eyebrow: "500 m away",
     title: "Temora Aviation Museum",
     body: "One of the world's finest collections of flying warbirds — two of Australia's flying Spitfires, the only flying Lockheed Hudson, the oldest flying Tiger Moth in the country. Three full-motion simulators (Spitfire, Mustang, Kittyhawk) and the Guardhouse Café for breakfast and lunch.",
     image: "/images/explore/aviation-museum.JPG",
@@ -20,7 +29,12 @@ const places = [
   {
     eyebrow: "1.8 km north",
     title: "Lake Centenary",
-    body: "A 2.7 km lake loop walking track, swimming, fishing, picnic lawns, and — for one weekend a year — the V8 Superboat Championships. The dedicated Canola Walk starts here.",
+    body:
+      "A 2.7 km lake loop walking track, swimming, fishing, picnic lawns, and — across multiple weekends each year — the V8 Superboat Championships. The dedicated Canola Walk starts here.",
+    bodyLink: {
+      href: "https://www.v8superboats.com.au/calendar/",
+      label: "See the V8 Superboats calendar",
+    },
     image: "/images/explore/lake-centenary.jpg",
     alt: "Lake Centenary, Temora",
   },
@@ -39,7 +53,7 @@ const places = [
     alt: "Temora Pool",
   },
   {
-    eyebrow: "3.1 km south",
+    eyebrow: "3 minutes by car",
     title: "Temora town",
     body: "Heritage main street, country pubs, a few good cafés, and what locals call the friendliest town in the state. The Guardhouse Café at the museum stays open daily.",
     image: "/images/explore/temora-1.webp",
@@ -103,6 +117,30 @@ export default function ExplorePage() {
                     <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
                       {place.body}
                     </p>
+                    {place.bodyLink ? (
+                      <a
+                        href={place.bodyLink.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-corten transition-all hover:gap-3"
+                      >
+                        {place.bodyLink.label}
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        >
+                          <path
+                            d="M5 12h14M13 6l6 6-6 6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    ) : null}
                   </div>
                 </article>
               </MotionReveal>

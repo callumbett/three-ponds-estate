@@ -39,7 +39,7 @@ export default function ContactPage() {
                 Live availability for all three pods.
               </h2>
               <p className="mt-5 text-sm leading-relaxed text-charcoal-soft">
-                Direct rates from AU$234 / night. Two-night minimum on weekends.
+                Direct rates from AU$230 / night. No check-out on Saturdays.
                 Best-rate guarantee versus third-party channels.
               </p>
               <div className="mt-8">
@@ -76,8 +76,11 @@ export default function ContactPage() {
                   </a>
                 </div>
                 <div>
-                  <p className="eyebrow">Check-in</p>
-                  <p className="mt-2">Private check-in from 3pm. Check-out by 10am.</p>
+                  <p className="eyebrow">Check-in &amp; check-out</p>
+                  <p className="mt-2">
+                    Private check-in from 2pm. Check-out by 10am.
+                    No check-outs on Saturdays.
+                  </p>
                 </div>
               </div>
             </div>

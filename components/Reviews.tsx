@@ -1,44 +1,57 @@
+import Image from "next/image";
 import MotionReveal from "./MotionReveal";
 import SectionEyebrow from "./SectionEyebrow";
 
 /**
  * Aggregated trust indicators — one card per channel.
  *
- * To keep this in sync with reality, just update the values in the
- * `platforms` array below as new reviews come in. Each card links to
- * the actual review page on that channel so visitors can verify.
+ * Update `platforms` below as new reviews come in. Each card links to
+ * the actual review page so visitors can verify.
  *
- * Notes on the rating field:
- *   - Use a string ("5.0", "4.97", "9.6") so trailing zeros render.
- *   - `scale` shows the denominator ("/ 5", "/ 10") in muted text.
- *
- * Set `href` to a real URL (e.g. the property's Google Maps listing,
- * the Airbnb listing, the Booking.com property page). The placeholder
- * `#` URLs render gracefully but should be replaced before launch.
+ * Optional `logoSrc` lets each card show the platform's official logo
+ * above the rating. Drop logos into public/images/reviews/ and set the
+ * path here. Cards without a logo render the platform name in text
+ * (the existing fallback).
  */
-const platforms = [
+type Platform = {
+  name: string;
+  rating: string;
+  scale: string;
+  reviewCount: number | null;
+  href: string;
+  logoSrc?: string;
+  logoAlt?: string;
+};
+
+const platforms: Platform[] = [
   {
     name: "Google",
     rating: "5.0",
     scale: "/ 5",
     reviewCount: 113,
-    href: "#", // TODO — Google Maps listing URL
+    href: "https://www.google.com/maps/place/Three+Ponds+Estate/@-34.4240369,147.5172122,17z/data=!4m9!3m8!1s0x6b190f1eb6a813fb:0x684a709a0169c2cb!5m2!4m1!1i2!8m2!3d-34.4240369!4d147.5197925!16s%2Fg%2F11kjg1t5lz",
+    logoSrc: "/images/reviews/google-logo.png",
+    logoAlt: "Google",
   },
   {
     name: "Airbnb",
-    rating: "5.0",
+    rating: "4.97",
     scale: "/ 5",
-    reviewCount: null, // TODO — fill in your Airbnb review count
-    href: "#", // TODO — Airbnb listing URL
+    reviewCount: 140,
+    href: "https://www.airbnb.com.au/users/profile/1470287728197379560",
+    logoSrc: "/images/reviews/airbnb-2-logo-png-transparent.png",
+    logoAlt: "Airbnb",
   },
   {
     name: "Booking.com",
     rating: "9.6",
     scale: "/ 10",
-    reviewCount: null, // TODO — fill in your Booking.com review count
-    href: "#", // TODO — Booking.com property URL
+    reviewCount: 130,
+    href: "https://www.booking.com/hotel/au/three-ponds-estate-temora.en-gb.html",
+    logoSrc: "/images/reviews/booking.com-logo.png",
+    logoAlt: "Booking.com",
   },
-] as const;
+];
 
 const FilledStar = () => (
   <svg
@@ -73,27 +86,27 @@ const Arrow = ({ className = "" }: { className?: string }) => (
 
 export default function Reviews() {
   return (
-    <section className="bg-charcoal py-24 text-parchment sm:py-32">
+    <section className="bg-parchment py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-10">
         <div className="max-w-2xl">
-          <SectionEyebrow className="text-parchment/80">Reviews</SectionEyebrow>
-          <h2 className="mt-5 font-serif text-4xl leading-tight text-parchment sm:text-5xl">
-            113 five-star reviews,<br />
-            across every channel.
+          <SectionEyebrow>Reviews</SectionEyebrow>
+          <h2 className="mt-5 font-serif text-4xl leading-tight text-charcoal sm:text-5xl">
+            113 five-star reviews on Google,<br />
+            a consistent five everywhere else.
           </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-parchment/75">
-            A consistent record on Google, Airbnb, and Booking.com. Every
-            rating below is live — read them all.
+          <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-soft">
+            Quietly accumulated across Google, Airbnb, and Booking.com.
+            Every rating below is live — read them all.
           </p>
         </div>
 
         {/*
-         * Three-card panel. The 1px parchment hairlines between cards
-         * are produced by `gap-px` over a parchment/10 backdrop; each
-         * card paints its own charcoal background back over the gap so
-         * only the seams show as hairlines.
+         * Three-card panel. The 1px hairlines between cards are produced
+         * by `gap-px` over a line-coloured backdrop; each card paints its
+         * own parchment background back over the gap so only the seams
+         * show as hairlines.
          */}
-        <div className="mt-16 grid overflow-hidden rounded-sm bg-parchment/10 md:grid-cols-3 md:gap-px">
+        <div className="mt-16 grid overflow-hidden rounded-sm border border-line bg-line md:grid-cols-3 md:gap-px">
           {platforms.map((p, i) => {
             const isPlaceholder = p.href === "#";
             const Wrapper = isPlaceholder ? "div" : "a";
@@ -110,27 +123,40 @@ export default function Reviews() {
               <MotionReveal key={p.name} delay={i * 0.08}>
                 <Wrapper
                   {...wrapperProps}
-                  className="group relative flex h-full flex-col bg-charcoal p-10 transition-colors duration-200 ease-out hover:bg-charcoal/80 focus-visible:outline focus-visible:outline-1 focus-visible:outline-parchment focus-visible:-outline-offset-2"
+                  className="group relative flex h-full flex-col bg-parchment p-10 transition-colors duration-200 ease-out hover:bg-parchment-deep focus-visible:outline focus-visible:outline-1 focus-visible:outline-corten focus-visible:-outline-offset-2"
                 >
-                  <p className="metadata text-parchment/55">{p.name}</p>
+                  {/* Platform identity — logo if supplied, otherwise name */}
+                  {p.logoSrc ? (
+                    <div className="relative h-10 w-40">
+                      <Image
+                        src={p.logoSrc}
+                        alt={p.logoAlt ?? p.name}
+                        fill
+                        sizes="160px"
+                        className="object-contain object-left"
+                      />
+                    </div>
+                  ) : (
+                    <p className="metadata text-charcoal-soft">{p.name}</p>
+                  )}
 
-                  {/* Five filled parchment stars */}
-                  <div className="mt-6 flex items-center gap-1 text-parchment">
+                  {/* Five filled corten stars */}
+                  <div className="mt-6 flex items-center gap-1 text-corten">
                     {[0, 1, 2, 3, 4].map((s) => (
                       <FilledStar key={s} />
                     ))}
                   </div>
 
                   {/* Rating number — large serif */}
-                  <p className="mt-6 font-serif text-6xl leading-none text-parchment">
+                  <p className="mt-6 font-serif text-6xl leading-none text-charcoal">
                     {p.rating}
-                    <span className="ml-2 text-2xl text-parchment/45">
+                    <span className="ml-2 text-2xl text-charcoal-soft/55">
                       {p.scale}
                     </span>
                   </p>
 
                   {/* Review count */}
-                  <p className="mt-5 text-sm text-parchment/70">
+                  <p className="mt-5 text-sm text-charcoal-soft">
                     {p.reviewCount !== null
                       ? `${p.reviewCount} reviews`
                       : "Reviews counting…"}

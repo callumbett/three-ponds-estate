@@ -76,7 +76,7 @@ export default function StayPage() {
                           <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </Link>
-                      <span className="text-xs uppercase tracking-[0.18em] text-charcoal-soft">
+                      <span className="metadata">
                         From AU${pod.fromAud}
                       </span>
                     </div>
