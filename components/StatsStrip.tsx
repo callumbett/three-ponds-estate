@@ -3,8 +3,8 @@ import MotionReveal from "./MotionReveal";
 const stats = [
   { value: "3", label: "Pods on a quiet acreage" },
   { value: "1.8 km", label: "To Lake Centenary" },
-  { value: "0 m", label: "From the Aviation Museum" },
-  { value: "2 mins", label: "To Temora town centre by car" },
+  { value: "500 m", label: "From the Aviation Museum" },
+  { value: "3 mins", label: "To Temora town centre by car" },
 ];
 
 export default function StatsStrip() {
@@ -15,9 +15,7 @@ export default function StatsStrip() {
           <MotionReveal key={s.label} delay={i * 0.06}>
             <div>
               <p className="font-serif text-3xl text-corten sm:text-4xl">{s.value}</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.18em] text-charcoal-soft">
-                {s.label}
-              </p>
+              <p className="metadata mt-2">{s.label}</p>
             </div>
           </MotionReveal>
         ))}
