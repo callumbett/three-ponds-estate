@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Booking } from "@/components/booking";
 import MotionReveal from "@/components/MotionReveal";
+import PodGallery from "@/components/PodGallery";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import { podBySlug, pods } from "@/lib/pods";
 
@@ -97,30 +98,18 @@ export default async function PodDetailPage({
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Gallery — click any image for a full-screen lightbox */}
       <section className="bg-parchment-deep py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
           <MotionReveal>
             <SectionEyebrow>Gallery</SectionEyebrow>
             <h2 className="mt-5 font-serif text-3xl sm:text-4xl">A walk through.</h2>
+            <p className="mt-3 text-sm text-charcoal-soft">
+              Tap any frame to open it full-screen.
+            </p>
           </MotionReveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 md:gap-8">
-            {pod.gallery.map((img, i) => (
-              <MotionReveal key={img.src} delay={i * 0.08}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-parchment">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    quality={85}
-                    className="object-cover"
-                  />
-                </div>
-              </MotionReveal>
-            ))}
-          </div>
+          <PodGallery images={pod.gallery} />
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import StickyBookNow from "@/components/StickyBookNow";
 import { Booking } from "@/components/booking";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
           <Nav />
           <main className="relative flex-1">{children}</main>
           <Footer />
+          <StickyBookNow />
           <Booking.Modal />
         </Booking.Provider>
         <SpeedInsights />
