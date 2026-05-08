@@ -120,10 +120,12 @@ export default function Hero() {
           {/* 3 · Headline — Fraunces, fluid clamp size, tight leading */}
           <motion.h1
             variants={lineVariants}
-            className="text-parchment text-[clamp(2.75rem,6.5vw,5.5rem)] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]"
+            className="text-parchment text-[clamp(2.5rem,5.8vw,5rem)] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]"
           >
-            A quiet acreage,<br />
-            three considered pods.
+            Three Ponds Estate<br />
+            <span className="text-parchment/85">— a quiet acreage,</span>
+            <br />
+            <span className="text-parchment/85">three considered pods.</span>
           </motion.h1>
 
           {/* 4 · Italic standfirst — wider measure, Fraunces italic */}

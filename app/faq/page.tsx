@@ -175,7 +175,7 @@ export default function FAQPage() {
                   {group.items.map((item, i) => (
                     <details
                       key={i}
-                      className="group border-t border-line py-5 last:border-b"
+                      className="group border-t border-line py-7 last:border-b"
                     >
                       <summary className="flex cursor-pointer items-start justify-between gap-6 list-none [&::-webkit-details-marker]:hidden">
                         <h3 className="font-serif text-lg leading-snug text-charcoal transition-colors duration-150 group-hover:text-corten sm:text-xl">

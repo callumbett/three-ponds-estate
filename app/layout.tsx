@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import StickyBookNow from "@/components/StickyBookNow";
@@ -56,6 +57,16 @@ export default function RootLayout({
           <Booking.Modal />
         </Booking.Provider>
         <SpeedInsights />
+        {/*
+         * SiteMinder / TheBookingButton widget library. Loads after
+         * page interactivity so it doesn't block the LCP. It scans the
+         * DOM for any element with class="ibe" and replaces the
+         * placeholder div with the live booking engine.
+         */}
+        <Script
+          src="https://widget.siteminder.com/ibe.min.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

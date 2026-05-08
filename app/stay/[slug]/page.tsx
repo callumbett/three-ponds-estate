@@ -41,7 +41,7 @@ export default async function PodDetailPage({
 
   return (
     <>
-      {/* Hero — full-bleed cover image */}
+      {/* Hero — full-bleed cover image with editorial masthead overlay */}
       <section className="relative h-[80svh] min-h-[520px] w-full overflow-hidden bg-charcoal">
         <Image
           src={pod.cover.src}
@@ -52,13 +52,20 @@ export default async function PodDetailPage({
           quality={85}
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/10 to-charcoal/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/10 to-charcoal/75" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-16 sm:px-10 sm:pb-24">
-          <p className="eyebrow text-parchment/80">{pod.styleNote} · {pod.bedrooms} bedroom{pod.bedrooms > 1 ? "s" : ""}</p>
-          <h1 className="mt-4 font-serif text-5xl text-parchment sm:text-7xl">
+          <p className="metadata text-parchment/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">
+            {pod.styleNote} · {pod.bedrooms} bedroom
+            {pod.bedrooms > 1 ? "s" : ""} · sleeps {pod.sleeps}
+          </p>
+          <span
+            aria-hidden
+            className="mt-4 mb-5 block h-px w-12 bg-parchment/75 [box-shadow:0_1px_6px_rgba(0,0,0,0.4)]"
+          />
+          <h1 className="font-serif text-[clamp(3rem,7vw,6rem)] leading-[1.02] tracking-[-0.02em] text-parchment [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]">
             {pod.name}
           </h1>
-          <p className="mt-3 max-w-xl text-base text-parchment/85 sm:text-lg">
+          <p className="mt-4 max-w-xl font-serif italic text-lg leading-snug text-parchment [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] sm:text-xl">
             {pod.tagline}
           </p>
         </div>
@@ -69,31 +76,32 @@ export default async function PodDetailPage({
         <div className="mx-auto grid max-w-7xl gap-16 px-6 sm:px-10 md:grid-cols-12">
           <MotionReveal className="md:col-span-7">
             <SectionEyebrow>The room</SectionEyebrow>
-            <h2 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
+            <h2 className="mt-5 font-serif text-3xl leading-[1.1] tracking-[-0.015em] sm:text-4xl">
               {pod.intro}
             </h2>
-            <p className="prose-body mt-8">
-              {pod.detail}
-            </p>
-            <div className="mt-10">
+            <p className="prose-body mt-8">{pod.detail}</p>
+            <div className="mt-10 flex flex-wrap items-center gap-6">
               <Booking.PrimaryTrigger label={`Book ${pod.name}`} />
+              <p className="metadata">
+                From AU${pod.fromAud} <span className="text-charcoal-soft/70">/ night</span>
+              </p>
             </div>
           </MotionReveal>
 
           <MotionReveal delay={0.1} className="md:col-span-5">
-            <div className="border-t border-line">
+            <dl className="border-t border-line">
               {pod.spec.map((s) => (
                 <div
                   key={s.label}
-                  className="grid grid-cols-3 gap-4 border-b border-line py-4"
+                  className="grid grid-cols-3 gap-4 border-b border-line py-5"
                 >
-                  <dt className="metadata col-span-1">
-                    {s.label}
-                  </dt>
-                  <dd className="col-span-2 text-sm text-charcoal">{s.value}</dd>
+                  <dt className="metadata col-span-1">{s.label}</dt>
+                  <dd className="col-span-2 text-sm leading-relaxed text-charcoal">
+                    {s.value}
+                  </dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </MotionReveal>
         </div>
       </section>
@@ -113,19 +121,30 @@ export default async function PodDetailPage({
         </div>
       </section>
 
-      {/* Amenities list */}
+      {/* Amenities — editorial numbered list */}
       <section className="bg-parchment py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
-          <MotionReveal>
+          <MotionReveal className="max-w-2xl">
             <SectionEyebrow>Amenities</SectionEyebrow>
-            <h2 className="mt-5 font-serif text-3xl sm:text-4xl">Quietly equipped.</h2>
+            <h2 className="mt-5 font-serif text-3xl leading-[1.1] sm:text-4xl">
+              Quietly equipped.
+            </h2>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-charcoal-soft">
+              Everything you need, nothing in the way. Each pod is fitted to
+              the same standard.
+            </p>
           </MotionReveal>
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+          <ul className="mt-14 grid gap-x-12 gap-y-0 sm:grid-cols-2">
             {pod.amenities.map((a, i) => (
               <MotionReveal key={a} delay={i * 0.04}>
-                <li className="flex items-start gap-3 border-t border-line pt-4 text-sm text-charcoal-soft">
-                  <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-corten" />
-                  <span>{a}</span>
+                <li className="flex items-baseline gap-5 border-t border-line py-5">
+                  <span className="metadata shrink-0 text-corten">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-base leading-snug text-charcoal">
+                    {a}
+                  </span>
                 </li>
               </MotionReveal>
             ))}
@@ -209,24 +228,58 @@ export default async function PodDetailPage({
         </div>
       </section>
 
-      {/* Next pod */}
-      <section className="bg-charcoal py-20 text-parchment">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 sm:flex-row sm:items-center sm:px-10">
-          <div>
-            <p className="eyebrow text-parchment/80">Next pod</p>
-            <h3 className="mt-2 font-serif text-3xl text-parchment">{next.name}</h3>
-            <p className="mt-1 text-sm text-parchment/80">{next.tagline}</p>
+      {/* Next pod — editorial card with the next pod's cover image */}
+      <section className="relative overflow-hidden bg-charcoal text-parchment">
+        <Link
+          href={`/stay/${next.slug}`}
+          className="group relative block"
+          aria-label={`Continue to ${next.name}`}
+        >
+          <div className="relative h-[55vh] min-h-[400px] w-full overflow-hidden">
+            <Image
+              src={next.cover.src}
+              alt=""
+              fill
+              sizes="100vw"
+              quality={85}
+              className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-charcoal/85 via-charcoal/55 to-charcoal/35" />
+
+            <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-14 sm:px-10 sm:pb-20">
+              <p className="metadata text-parchment/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">
+                The next pod
+              </p>
+              <span
+                aria-hidden
+                className="mt-4 mb-5 block h-px w-12 bg-parchment/70"
+              />
+              <h2 className="font-serif text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.02] tracking-[-0.02em] text-parchment [text-shadow:0_2px_20px_rgba(0,0,0,0.55)]">
+                {next.name}
+              </h2>
+              <p className="mt-3 max-w-xl font-serif italic text-base leading-snug text-parchment/90 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)] sm:text-lg">
+                {next.tagline}
+              </p>
+              <span className="mt-8 inline-flex items-center gap-2 text-sm tracking-wide text-parchment transition-all group-hover:gap-3 [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]">
+                See {next.name}
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    d="M5 12h14M13 6l6 6-6 6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
           </div>
-          <Link
-            href={`/stay/${next.slug}`}
-            className="inline-flex items-center gap-2 rounded-full border border-parchment/40 px-6 py-2.5 text-sm tracking-wide text-parchment transition-colors hover:border-corten hover:text-corten"
-          >
-            See {next.name}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
+        </Link>
       </section>
     </>
   );

@@ -57,7 +57,7 @@ export default function NavBrand() {
           ].join(" ")}
         >
           <Image
-            src="/images/logo/logo-white.png"
+            src="/images/logo/beige-logo.png"
             alt=""
             fill
             priority
@@ -69,7 +69,7 @@ export default function NavBrand() {
             ].join(" ")}
           />
           <Image
-            src="/images/logo/logo-black.png"
+            src="/images/logo/black-logo.png"
             alt=""
             fill
             priority

@@ -17,7 +17,6 @@ const LINKS = [
   { href: "/stay", label: "Stay" },
   { href: "/story", label: "Story" },
   { href: "/explore", label: "Explore" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -60,7 +60,12 @@ export default function StickyBookNow() {
       }}
     >
       <div className={shown ? "pointer-events-auto" : ""}>
-        <Booking.NavTrigger />
+        {/*
+         * Same NavTrigger as the masthead, with a stronger shadow so the
+         * pill lifts visibly off parchment page content (the masthead has
+         * its own blur backdrop providing elevation; the sticky doesn't).
+         */}
+        <Booking.NavTrigger className="shadow-xl shadow-charcoal/35 ring-charcoal/10" />
       </div>
     </motion.div>
   );

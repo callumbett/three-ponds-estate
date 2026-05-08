@@ -10,7 +10,23 @@ import { createContext, use } from "react";
 export type BookingContextValue = {
   state: { open: boolean; primed: boolean };
   actions: { open: () => void; close: () => void };
-  meta: { url: string };
+  meta: {
+    /**
+     * Legacy iframe URL. Falls back to placeholder when neither
+     * iframe URL nor the SiteMinder channel code is configured.
+     */
+    url: string;
+    /**
+     * SiteMinder / TheBookingButton channel code, e.g. "THREEPONDS".
+     * When set, the modal renders the SiteMinder widget inline
+     * (not an iframe) using the engine's `embed` widget pattern.
+     */
+    channelcode: string;
+    /**
+     * SiteMinder region — "apac" or "emea". Defaults to "apac".
+     */
+    region: "apac" | "emea";
+  };
 };
 
 export const BookingContext = createContext<BookingContextValue | null>(null);
