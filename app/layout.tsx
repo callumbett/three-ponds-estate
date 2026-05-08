@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Booking } from "@/components/booking";
@@ -52,6 +53,7 @@ export default function RootLayout({
           <Footer />
           <Booking.Modal />
         </Booking.Provider>
+        <SpeedInsights />
       </body>
     </html>
   );
