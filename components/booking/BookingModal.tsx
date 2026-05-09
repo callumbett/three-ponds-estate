@@ -117,7 +117,9 @@ export default function BookingModal() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6"
+            // Outer wrapper: edge-to-edge on mobile so the dialog can
+            // claim the full viewport; centred + padded on sm+.
+            className="fixed inset-0 z-[60] flex items-stretch justify-center sm:items-center sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -131,12 +133,15 @@ export default function BookingModal() {
 
             <motion.div
               /*
-               * Bumped from max-w-4xl (896px) to max-w-6xl (1152px) so the
-               * SiteMinder embed clears the 1024px desktop-view threshold;
-               * below that it falls back to mobile-rendered booking flow.
+               * Mobile: fill the dynamic viewport (`100dvh` — handles
+               * iOS Safari's collapsing address bar) so the SiteMinder
+               * date picker has room to expand without running off
+               * the bottom edge.
+               *
+               * Desktop: keeps the rounded max-w-6xl card so the embed
+               * clears SiteMinder's 1024px desktop-view threshold.
                */
-              className="relative flex w-full max-w-6xl flex-col overflow-hidden rounded-2xl bg-parchment shadow-2xl"
-              style={{ maxHeight: "min(92vh, 880px)" }}
+              className="relative flex w-full flex-col overflow-hidden bg-parchment shadow-2xl h-[100dvh] sm:h-auto sm:max-h-[min(92vh,880px)] sm:max-w-6xl sm:rounded-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.98 }}
@@ -170,15 +175,16 @@ export default function BookingModal() {
                 </button>
               </header>
 
-              <div className="flex-1 overflow-auto bg-parchment">
+              <div className="flex flex-1 flex-col overflow-auto bg-parchment">
                 {useEmbed ? (
                   // Mode 1 · SiteMinder inline embed widget.
                   // The SiteMinder JS (loaded in app/layout.tsx) scans for
                   // class="ibe" and replaces this div with the live engine.
-                  // `data-use_parent` lets it size to our container.
+                  // `data-use_parent` lets the iframe size to our flex-1
+                  // container instead of demanding a fixed minimum height.
                   <div
                     key={`ibe-${open}`}
-                    className="ibe min-h-[640px]"
+                    className="ibe flex-1 min-h-[420px]"
                     data-region={region}
                     data-channelcode={channelcode}
                     data-widget="embed"
