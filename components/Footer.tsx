@@ -1,17 +1,21 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal text-parchment">
+    // Footer wants to stay an editorial "dark endpaper" in both light
+    // AND dark modes — so we override the natural token-flip with
+    // explicit dark: variants here.
+    <footer className="bg-charcoal text-parchment dark:bg-[#0a0807] dark:text-[#f4ecd8]">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:px-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <Link
             href="/"
-            className="font-serif text-2xl tracking-tight text-parchment"
+            className="font-serif text-2xl tracking-tight text-parchment dark:text-[#f4ecd8]"
           >
             Three Ponds Estate
           </Link>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-parchment/75">
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-parchment/75 dark:text-[#f4ecd8]/75">
             A boutique architectural sanctuary 500 m from the Temora Aviation
             Museum and three minutes from town, set against the open Riverina
             country of New South Wales.
@@ -19,8 +23,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="metadata text-parchment/60">Visit</p>
-          <ul className="mt-3 space-y-2 text-sm text-parchment/80">
+          <p className="metadata text-parchment/60 dark:text-[#f4ecd8]/55">Visit</p>
+          <ul className="mt-3 space-y-2 text-sm text-parchment/80 dark:text-[#f4ecd8]/80">
             <li>
               <Link href="/stay" className="transition-colors duration-150 hover:text-corten">
                 The Pods
@@ -50,8 +54,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="metadata text-parchment/60">Find us</p>
-          <address className="mt-3 not-italic text-sm leading-relaxed text-parchment/80">
+          <p className="metadata text-parchment/60 dark:text-[#f4ecd8]/55">Find us</p>
+          <address className="mt-3 not-italic text-sm leading-relaxed text-parchment/80 dark:text-[#f4ecd8]/80">
             79 Airport Street
             <br />
             Temora, NSW 2666
@@ -59,8 +63,8 @@ export default function Footer() {
             (500 m from the Aviation Museum)
           </address>
 
-          <p className="metadata mt-6 text-parchment/60">Get in touch</p>
-          <ul className="mt-3 space-y-2 text-sm text-parchment/80">
+          <p className="metadata mt-6 text-parchment/60 dark:text-[#f4ecd8]/55">Get in touch</p>
+          <ul className="mt-3 space-y-2 text-sm text-parchment/80 dark:text-[#f4ecd8]/80">
             <li>
               <a
                 href="mailto:info@threepondsestate.com"
@@ -81,35 +85,38 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-parchment/15">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-parchment/55 sm:flex-row sm:items-center sm:px-10">
+      <div className="border-t border-parchment/15 dark:border-[#f4ecd8]/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-parchment/55 dark:text-[#f4ecd8]/50 sm:flex-row sm:items-center sm:px-10">
           <p>© {new Date().getFullYear()} Three Ponds Estate. All rights reserved.</p>
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            <li>
-              <Link
-                href="/terms"
-                className="transition-colors duration-150 hover:text-corten"
-              >
-                Terms &amp; Conditions
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/privacy"
-                className="transition-colors duration-150 hover:text-corten"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/cookies"
-                className="transition-colors duration-150 hover:text-corten"
-              >
-                Cookie Policy
-              </Link>
-            </li>
-          </ul>
+          <div className="flex items-center gap-5">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
+              <li>
+                <Link
+                  href="/terms"
+                  className="transition-colors duration-150 hover:text-corten"
+                >
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="transition-colors duration-150 hover:text-corten"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookies"
+                  className="transition-colors duration-150 hover:text-corten"
+                >
+                  Cookie Policy
+                </Link>
+              </li>
+            </ul>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </footer>

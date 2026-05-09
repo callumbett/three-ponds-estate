@@ -48,7 +48,25 @@ export default function RootLayout({
     <html
       lang="en-AU"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/*
+         * Dark-mode FOUC prevention. Reads the saved preference from
+         * localStorage and adds the `.dark` class to <html> *before*
+         * React hydrates, so visitors who prefer dark mode never see
+         * a light-mode flash on page load.
+         *
+         * Uses a try/catch because some privacy modes throw on
+         * localStorage access; the fallback is light mode (matching
+         * `<body>`'s default classes).
+         */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('tpe-theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-parchment text-charcoal">
         <Booking.Provider>
           <Nav />

@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Enable class-based dark variants throughout the codebase. Adding the
+   `.dark` class to <html> activates `dark:foo` Tailwind classes; we
+   only use them in a few places where the default token-flip behaviour
+   isn't right (e.g. the Footer wants to *stay* dark in both modes
+   rather than invert). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ----------  Design tokens  ----------
    Riverina-anchored palette. Wheat + ironbark + iron-rust.
      parchment       #F6F2E8   wheat — slightly cooled, less butter-cream
@@ -22,6 +29,9 @@
   --color-corten: #b7410e;
   --color-corten-deep: #8f3209;
   --color-line: #e8e1d0;
+
+  /* Animation tokens used by the dark-mode curtain transition. */
+  --ease-editorial: cubic-bezier(0.76, 0, 0.24, 1);
 
   --font-serif: var(--font-fraunces), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
@@ -144,6 +154,33 @@
 ::selection {
   background: var(--color-corten);
   color: var(--color-parchment);
+}
+
+/* ----------  Dark mode  ----------
+   Add `.dark` to the <html> element to flip the entire palette.
+   Token names stay the same (parchment / charcoal / etc.) so every
+   `bg-parchment` and `text-charcoal` across the site updates without
+   any per-component dark: variants.
+
+   Riverina-anchored dark palette: a deep warm brown rather than pure
+   black, with cream/ivory text. Corten stays the same — works on both
+   modes and keeps brand continuity. */
+.dark {
+  --color-parchment: #14110d;       /* deep warm brown — page bg */
+  --color-parchment-deep: #1f1a13;  /* slightly raised surfaces (cards) */
+  --color-charcoal: #f4ecd8;        /* warm cream — primary text */
+  --color-charcoal-soft: #c2bca8;   /* muted text */
+  --color-line: #2a241b;            /* hairline rules / dividers */
+  /* corten + corten-deep unchanged — the rust accent reads on both. */
+}
+
+/* Smooth the page-wide colour swap so dark/light mode feels intentional
+   rather than abrupt (the curtain animation handles the dramatic part;
+   this handles all the surfaces underneath). */
+html,
+body {
+  transition: background-color 350ms var(--ease-editorial),
+              color 350ms var(--ease-editorial);
 }
 
 /* ----------  Branded scrollbar  ----------
