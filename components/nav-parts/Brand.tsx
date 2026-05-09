@@ -56,6 +56,19 @@ export default function NavBrand() {
             scrolled ? "h-10 w-10" : "h-32 w-32 sm:h-40 sm:w-40",
           ].join(" ")}
         >
+          {/*
+           * Two stacked images — beige + black — opacity-toggled.
+           *
+           * In light mode:
+           *   • Over hero photo (onParchment=false) → beige visible
+           *   • On parchment (onParchment=true)     → black visible
+           *
+           * In dark mode (`.dark` on <html>):
+           *   • Always beige — black on dark page bg would be invisible.
+           *   • The `dark:opacity-100` / `dark:opacity-0` overrides
+           *     win against the onParchment-driven defaults because
+           *     they appear later in the class string.
+           */}
           <Image
             src="/images/logo/beige-logo.png"
             alt=""
@@ -66,6 +79,7 @@ export default function NavBrand() {
             className={[
               "absolute inset-0 object-contain transition-opacity duration-300 ease-out",
               onParchment ? "opacity-0" : "opacity-100",
+              "dark:opacity-100",
             ].join(" ")}
           />
           <Image
@@ -78,6 +92,7 @@ export default function NavBrand() {
             className={[
               "absolute inset-0 object-contain transition-opacity duration-300 ease-out",
               onParchment ? "opacity-100" : "opacity-0",
+              "dark:opacity-0",
             ].join(" ")}
           />
         </span>

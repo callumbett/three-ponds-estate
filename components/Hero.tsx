@@ -75,10 +75,14 @@ export default function Hero() {
           quality={85}
           className="object-cover"
         />
-        {/* Gradient floor for legibility — heavier toward the bottom where the copy sits */}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/15 to-charcoal/85" />
-        {/* Soft radial vignette under the copy block to ground light text on bright photo regions */}
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.45),transparent_65%)]" />
+        {/* Gentle dimming — only at the bottom where text sits.
+            Reduced intensity so the photo stays vivid (was hazy
+            under the previous heavier gradient). */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/55" />
+        {/* Subtle vignette under the copy block — corner-anchored,
+            short fade, much lighter than before so the photo's
+            colour remains the dominant impression. */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.30),transparent_60%)]" />
       </motion.div>
 
       {/* Hero copy */}

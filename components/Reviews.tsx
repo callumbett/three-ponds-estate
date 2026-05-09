@@ -30,7 +30,7 @@ const platforms: Platform[] = [
     scale: "/ 5",
     reviewCount: 113,
     href: "https://www.google.com/maps/place/Three+Ponds+Estate/@-34.4240369,147.5172122,17z/data=!4m9!3m8!1s0x6b190f1eb6a813fb:0x684a709a0169c2cb!5m2!4m1!1i2!8m2!3d-34.4240369!4d147.5197925!16s%2Fg%2F11kjg1t5lz",
-    logoSrc: "/images/reviews/G%20logo.png",
+    logoSrc: "/images/reviews/google-logo-icon-gsuite-hd-701751694791470gzbayltphh.png",
     logoAlt: "Google",
   },
   {

@@ -23,16 +23,16 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Editorial image */}
+      {/* Editorial image — circle treatment matching the homepage Story block */}
       <section className="bg-parchment">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
           <MotionReveal>
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm">
+            <div className="relative mx-auto aspect-square w-full max-w-xl overflow-hidden rounded-full sm:max-w-2xl">
               <Image
                 src="/images/story/Bett77.jpg"
                 alt="Three Ponds Estate at the close of day"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 768px) 600px, 100vw"
                 quality={85}
                 className="object-cover"
               />
@@ -70,34 +70,6 @@ export default function StoryPage() {
                 and build for guests who want the same.
               </p>
             </div>
-          </MotionReveal>
-        </div>
-      </section>
-
-      {/* Two-column: materials & sustainability */}
-      <section className="bg-parchment-deep py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 sm:px-10 md:grid-cols-2">
-          <MotionReveal>
-            <SectionEyebrow>Materials</SectionEyebrow>
-            <h3 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
-              Pale timber, matte stone, soft linen.
-            </h3>
-            <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
-              The interior palette stays close to the land outside. We chose
-              materials that age slowly, repair easily, and feel right under bare
-              feet at six in the morning.
-            </p>
-          </MotionReveal>
-          <MotionReveal delay={0.1}>
-            <SectionEyebrow>The land</SectionEyebrow>
-            <h3 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
-              Three ponds, an open paddock, a long sky.
-            </h3>
-            <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
-              The pods are sited to keep the land uninterrupted: each is small,
-              detached, and quietly placed. Walk from your deck to a pond, to
-              the fire pit, or out to the cycling track that fronts the road.
-            </p>
           </MotionReveal>
         </div>
       </section>

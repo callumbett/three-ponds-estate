@@ -5,89 +5,102 @@ import MotionReveal from "@/components/MotionReveal";
 export const metadata: Metadata = {
   title: "Explore the Region",
   description:
-    "What's on the doorstep at Three Ponds Estate: the Temora Aviation Museum, Lake Centenary, the Canola Trail, the Temora pool and Temora town.",
+    "Things to do near Three Ponds Estate, Temora NSW — the Aviation Museum, Lake Centenary, the Canola Trail, Bundawarrah Centre, Diamonds & Dust Café, Coolamon Cheese Co, Junee Licorice & Chocolate Factory and more.",
 };
 
 type Place = {
-  chapter: string;
   eyebrow: string;
   title: string;
-  standfirst: string;
   body: string;
   bodyLink?: { href: string; label: string };
   image: string;
   alt: string;
-  layout?: "image-right" | "image-left" | "full-bleed";
 };
 
 const places: Place[] = [
   {
-    chapter: "01",
     eyebrow: "500 m away",
     title: "Temora Aviation Museum",
-    standfirst:
-      "One of the world's finest collections of flying warbirds — quietly, just across the road.",
     body:
-      "Two of Australia's flying Spitfires. The only flying Lockheed Hudson on the planet. The oldest flying Tiger Moth in the country. Three full-motion simulators (Spitfire, Mustang, Kittyhawk) and the Guardhouse Café for breakfast and lunch.",
+      "One of the world's finest collections of flying warbirds — Spitfires, the only flying Hudson, the oldest Tiger Moth in Australia. Three full-motion simulators and the Guardhouse Café.",
     image: "/images/explore/aviation-museum.JPG",
     alt: "The Temora Aviation Museum",
-    layout: "full-bleed",
   },
   {
-    chapter: "02",
     eyebrow: "1.8 km north",
     title: "Lake Centenary",
-    standfirst:
-      "A 2.7 km lake loop, picnic lawns, and the thunder of V8 Superboats across multiple weekends a year.",
     body:
-      "Walking, swimming, fishing, kayaking. The dedicated Canola Walk starts here. The V8 Superboat Championships return on a published calendar — the rest of the year it's still and quiet again by Sunday afternoon.",
+      "A 2.7 km lake loop, picnic lawns, swimming, fishing — and the V8 Superboat Championships across multiple weekends each year.",
     bodyLink: {
       href: "https://www.v8superboats.com.au/calendar/",
-      label: "See the V8 Superboats calendar",
+      label: "V8 Superboats calendar",
     },
     image: "/images/explore/lake-centenary.jpg",
     alt: "Lake Centenary, Temora",
-    layout: "image-left",
   },
   {
-    chapter: "03",
     eyebrow: "August – October",
     title: "The Canola Trail",
-    standfirst:
-      "When spring lands, Yellow Bloom Road stops being a metaphor.",
     body:
-      "The country around Temora turns gold for two months a year. Walk it from your front gate, drive it for the whole afternoon, photograph it from the deck. Hot-air balloon flights run during the bloom — sunrise lifts, gold underneath.",
+      "When spring lands, Yellow Bloom Road stops being a metaphor. Hot-air balloon flights run during the bloom — sunrise lifts, gold underneath.",
     image: "/images/explore/hot-air-ballon.jpg",
     alt: "A hot-air balloon over the canola fields near Temora",
-    layout: "full-bleed",
   },
   {
-    chapter: "04",
+    eyebrow: "In town",
+    title: "Bundawarrah Centre",
+    body:
+      "Three acres of Australiana — the NSW Ambulance Museum, Sir Donald Bradman's cottage, and Willo's Wiradjuri Keeping Place. Quiet, unhurried, quietly extraordinary.",
+    bodyLink: {
+      href: "https://www.airbnb.com.au/things-to-do/places/t-g-ChIJZ5yTcyMPGWsRJP1vKQQ9ZzQ",
+      label: "Find on Airbnb",
+    },
+    image: "/images/explore/bundawarrah-centre.jpg",
+    alt: "Bundawarrah Centre, Temora Rural Museum",
+  },
+  {
+    eyebrow: "In town",
+    title: "Diamonds & Dust Café",
+    body:
+      "A locally-loved kitchen for breakfast and lunch. Heritage room, warm welcome, the kind of place where you stay longer than you planned.",
+    image: "/images/explore/diamonds-and-dust.jpg",
+    alt: "Diamonds & Dust Café, Temora",
+  },
+  {
+    eyebrow: "37 km west",
+    title: "Coolamon Cheese Co",
+    body:
+      "Award-winning farmhouse cheeses, made on-site. Sample the line, take a wheel home, lunch on the deck. Worth the short drive any season.",
+    image: "/images/explore/coolamon-cheese.jpg",
+    alt: "Coolamon Cheese Co",
+  },
+  {
+    eyebrow: "65 km east",
+    title: "Junee Licorice & Chocolate Factory",
+    body:
+      "Australia's only certified-organic licorice and chocolate maker. Tour the factory, taste the line, leave with the best gift you've brought back from the Riverina.",
+    image: "/images/explore/junee-licorice.jpg",
+    alt: "Junee Licorice & Chocolate Factory",
+  },
+  {
     eyebrow: "In town",
     title: "Temora Pool",
-    standfirst:
-      "Lap lanes, grassed banks, and the unhurried country-summer ritual.",
     body:
-      "A short drive from the estate, in the heart of Temora. Open through the warmer months. Pack a picnic, claim a patch of grass.",
+      "Lap lanes, grassed banks, and the unhurried country-summer ritual. A short drive from the estate.",
     image: "/images/explore/temora-pool.JPG",
     alt: "Temora Pool",
-    layout: "image-right",
   },
   {
-    chapter: "05",
     eyebrow: "3 minutes by car",
     title: "Temora town",
-    standfirst:
-      "Heritage main street, country pubs, and the cafés we send guests to.",
     body:
-      "What locals call the friendliest town in the state. The Guardhouse Café at the museum stays open daily, and there are a few good independent kitchens worth the short drive in.",
+      "Heritage main street, country pubs, and the cafés we send guests to. The friendliest town in the state, locals say.",
     image: "/images/explore/temora-1.webp",
     alt: "Temora town",
-    layout: "image-left",
   },
 ];
 
-const Arrow = ({ className = "" }: { className?: string }) => (
+const Arrow = () => (
   <svg
     width="14"
     height="14"
@@ -96,49 +109,21 @@ const Arrow = ({ className = "" }: { className?: string }) => (
     stroke="currentColor"
     strokeWidth="1.5"
     aria-hidden="true"
-    className={className}
+    className="ml-1"
   >
-    <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M5 12h14M13 6l6 6-6 6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
-
-/** Editorial standfirst-and-body block, used by every layout variant. */
-function PlaceCopy({ place }: { place: Place }) {
-  return (
-    <>
-      <div className="flex items-center gap-4">
-        <span className="font-serif text-5xl text-corten leading-none sm:text-6xl">
-          {place.chapter}
-        </span>
-        <span className="metadata">{place.eyebrow}</span>
-      </div>
-      <h2 className="mt-6 font-serif text-4xl leading-[1.05] tracking-[-0.015em] sm:text-5xl">
-        {place.title}
-      </h2>
-      <p className="mt-5 font-serif italic text-lg leading-snug text-charcoal-soft sm:text-xl">
-        {place.standfirst}
-      </p>
-      <p className="prose-body mt-6">{place.body}</p>
-      {place.bodyLink ? (
-        <a
-          href={place.bodyLink.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-corten transition-all hover:gap-3"
-        >
-          {place.bodyLink.label}
-          <Arrow />
-        </a>
-      ) : null}
-    </>
-  );
-}
 
 export default function ExplorePage() {
   return (
     <>
-      {/* Page masthead — Hero-language editorial intro */}
-      <section className="bg-parchment pt-48 pb-20 sm:pt-60 sm:pb-28">
+      {/* Page masthead */}
+      <section className="bg-parchment pt-48 pb-16 sm:pt-60 sm:pb-24">
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
           <MotionReveal>
             <p className="metadata">The Region · Riverina · NSW</p>
@@ -150,79 +135,57 @@ export default function ExplorePage() {
               What&apos;s on<br />the doorstep.
             </h1>
             <p className="mt-6 max-w-xl font-serif italic text-lg leading-snug text-charcoal-soft sm:text-xl">
-              The Riverina is a slower country. Five places we&apos;d point a
-              guest to first — starting across the road and working outward.
+              The Riverina is a slower country. A handful of places we&apos;d
+              point a guest to — starting across the road and working outward.
             </p>
           </MotionReveal>
         </div>
       </section>
 
-      {/* The five chapters */}
+      {/* Tile grid — uniformly sized cards so the section reads as a
+          curated guide rather than alternating editorial spreads. */}
       <section className="bg-parchment pb-32">
-        <div className="mx-auto max-w-7xl space-y-32 px-6 sm:px-10 sm:space-y-40">
-          {places.map((place) => {
-            const layout = place.layout ?? "image-right";
-
-            if (layout === "full-bleed") {
-              // Full-width image followed by centered editorial copy below.
-              return (
-                <MotionReveal key={place.title}>
-                  <article>
-                    <div className="relative -mx-6 aspect-[16/9] overflow-hidden bg-parchment-deep sm:-mx-10 md:mx-0 md:rounded-sm">
-                      <Image
-                        src={place.image}
-                        alt={place.alt}
-                        fill
-                        sizes="(min-width: 1280px) 1280px, 100vw"
-                        quality={85}
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="mx-auto mt-12 max-w-2xl">
-                      <PlaceCopy place={place} />
-                    </div>
-                  </article>
-                </MotionReveal>
-              );
-            }
-
-            const reverse = layout === "image-left";
-            return (
-              <MotionReveal key={place.title}>
-                <article className="grid items-center gap-12 md:grid-cols-12 md:gap-16">
-                  <div
-                    className={[
-                      "md:col-span-7",
-                      reverse ? "md:order-2" : "",
-                    ].join(" ")}
-                  >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-parchment-deep">
-                      <Image
-                        src={place.image}
-                        alt={place.alt}
-                        fill
-                        sizes="(min-width: 768px) 60vw, 100vw"
-                        quality={85}
-                        className="object-cover"
-                      />
-                    </div>
+        <div className="mx-auto max-w-7xl px-6 sm:px-10">
+          <div className="grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+            {places.map((place, i) => (
+              <MotionReveal key={place.title} delay={i * 0.04}>
+                <article className="group flex flex-col">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-parchment-deep">
+                    <Image
+                      src={place.image}
+                      alt={place.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      quality={85}
+                      className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                    />
                   </div>
-                  <div
-                    className={[
-                      "md:col-span-5",
-                      reverse ? "md:order-1" : "",
-                    ].join(" ")}
-                  >
-                    <PlaceCopy place={place} />
-                  </div>
+                  <p className="metadata mt-5 text-corten">{place.eyebrow}</p>
+                  <h2 className="mt-3 font-serif text-2xl leading-tight tracking-[-0.01em] text-charcoal sm:text-[1.65rem]">
+                    {place.title}
+                  </h2>
+                  <p className="mt-3 text-base leading-relaxed text-charcoal-soft">
+                    {place.body}
+                  </p>
+                  {place.bodyLink ? (
+                    <a
+                      href={place.bodyLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-corten transition-all hover:gap-2"
+                    >
+                      {place.bodyLink.label}
+                      <Arrow />
+                    </a>
+                  ) : null}
                 </article>
               </MotionReveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Quiet closing — a soft CTA back to the estate */}
+      {/* Quiet closing */}
       <section className="bg-parchment-deep py-24 sm:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center sm:px-10">
           <MotionReveal>

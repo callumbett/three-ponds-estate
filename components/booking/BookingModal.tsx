@@ -92,14 +92,16 @@ export default function BookingModal() {
             <motion.div
               /*
                * Mobile: fill the dynamic viewport (`100dvh` — handles
-               * iOS Safari's collapsing address bar) so the SiteMinder
-               * date picker has room to expand without running off
-               * the bottom edge.
+               * iOS Safari's collapsing address bar).
                *
-               * Desktop: keeps the rounded max-w-6xl card so the embed
-               * clears SiteMinder's 1024px desktop-view threshold.
+               * Desktop: width snaps to the SiteMinder embed's natural
+               * size. Their booking content is ≈1024 px wide, so we
+               * cap at max-w-5xl (1024 px) instead of max-w-6xl
+               * (1152 px). Result: no large empty band on the right
+               * of the modal in dark mode where their iframe stops
+               * before our modal edge.
                */
-              className="relative flex w-full flex-col overflow-hidden bg-parchment shadow-2xl h-[100dvh] sm:h-auto sm:max-h-[min(92vh,880px)] sm:max-w-6xl sm:rounded-2xl"
+              className="relative flex w-full flex-col overflow-hidden bg-parchment shadow-2xl h-[100dvh] sm:h-auto sm:max-h-[92vh] sm:max-w-5xl sm:rounded-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.98 }}

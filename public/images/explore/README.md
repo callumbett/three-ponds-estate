@@ -1,15 +1,27 @@
 # Explore — region imagery
 
-Four photos for the `/explore` page, one per regional point of interest.
+Photos for the `/explore` page tile grid. Each tile is one regional point of interest.
 
 ## Files expected (exact filenames)
 
-| Filename | Where it appears | Suggested subject |
+| Filename | Tile | Status |
 |---|---|---|
-| `aviation-museum.jpg` | Top section of `/explore` | Vintage warbird aircraft on a sunlit hangar floor — or the museum exterior |
-| `lake-centenary.jpg` | Second section | A still inland lake at golden hour, or a runner on the loop track |
-| `bundawarrah-centre.jpg` | Third section | A soft archival interior, OR Sir Donald Bradman's cottage exterior, OR display cases at the Ambulance Museum |
-| `canola-trail.jpg` | Fourth section | A whole field of canola in bloom — ideally late spring, blue sky |
+| `aviation-museum.JPG` | Temora Aviation Museum | ✅ uploaded |
+| `lake-centenary.jpg` | Lake Centenary | ✅ uploaded |
+| `hot-air-ballon.jpg` | The Canola Trail | ✅ uploaded |
+| `bundawarrah-centre.jpg` | Bundawarrah Centre · Temora Rural Museum | ⚠️ needs upload |
+| `diamonds-and-dust.jpg` | Diamonds & Dust Café | ⚠️ needs upload |
+| `coolamon-cheese.jpg` | Coolamon Cheese Co | ⚠️ needs upload |
+| `junee-licorice.jpg` | Junee Licorice & Chocolate Factory | ⚠️ needs upload |
+| `temora-pool.JPG` | Temora Pool | ✅ uploaded |
+| `temora-1.webp` | Temora town | ✅ uploaded |
+
+## Suggested subjects for the four new tiles
+
+- **Bundawarrah Centre** — a soft archival interior, or Sir Donald Bradman's cottage exterior, or display cases at the Ambulance Museum.
+- **Diamonds & Dust Café** — heritage building exterior, or a warm interior with a coffee setup.
+- **Coolamon Cheese Co** — wheels of cheese on a wooden counter, or the dairy exterior.
+- **Junee Licorice & Chocolate Factory** — historic flour-mill building, or chocolate / licorice production close-up.
 
 ## Specs
 
