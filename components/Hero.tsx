@@ -41,15 +41,6 @@ const lineVariants = {
   },
 };
 
-const ruleVariants = {
-  hidden: { opacity: 0, scaleX: 0 },
-  visible: {
-    opacity: 1,
-    scaleX: 1,
-    transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -105,39 +96,21 @@ export default function Hero() {
           animate={reduce ? false : "visible"}
           className="max-w-3xl"
         >
-          {/* 1 · Kicker — location metadata */}
+          {/*
+           * Visually-hidden H1 — kicker and headline are removed from
+           * the visible Hero per the new direction (let the photo do
+           * the heavy lifting), but we keep an H1 for SEO and screen
+           * readers. Pulls double duty as the canonical page title
+           * for the homepage.
+           */}
+          <h1 className="sr-only">
+            Three Ponds Estate — boutique accommodation in Temora, NSW
+          </h1>
+
+          {/* Italic standfirst — now the visible primary copy */}
           <motion.p
             variants={lineVariants}
-            className="metadata text-parchment/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]"
-          >
-            Temora · Riverina · NSW
-          </motion.p>
-
-          {/* 2 · Hairline rule — draws in from the left */}
-          <motion.span
-            aria-hidden
-            variants={ruleVariants}
-            style={{ transformOrigin: "left center" }}
-            className="mt-5 mb-6 block h-px w-12 bg-parchment/75 [box-shadow:0_1px_6px_rgba(0,0,0,0.4)]"
-          />
-
-          {/* 3 · Headline — Fraunces, fluid clamp size, tight leading.
-                Mobile: 2 lines (the second br is hidden) so the copy
-                takes less vertical space; desktop keeps 3 lines. */}
-          <motion.h1
-            variants={lineVariants}
-            className="text-parchment text-[clamp(2.25rem,5.5vw,5rem)] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]"
-          >
-            Three Ponds Estate<br />
-            <span className="text-parchment/85">— a quiet acreage,</span>{" "}
-            <br className="hidden sm:block" />
-            <span className="text-parchment/85">three considered pods.</span>
-          </motion.h1>
-
-          {/* 4 · Italic standfirst — wider measure, Fraunces italic */}
-          <motion.p
-            variants={lineVariants}
-            className="mt-6 max-w-[42ch] font-serif italic text-lg leading-[1.55] text-parchment/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] sm:text-xl"
+            className="max-w-[42ch] font-serif italic text-lg leading-[1.55] text-parchment/95 [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] sm:text-2xl"
           >
             Three Ponds Estate is a boutique architectural sanctuary set
             against the open country of the New South Wales Riverina —

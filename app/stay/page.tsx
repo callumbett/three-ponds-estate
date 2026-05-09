@@ -20,7 +20,7 @@ export default function StayPage() {
           <MotionReveal className="max-w-3xl">
             <SectionEyebrow>The Pods</SectionEyebrow>
             <h1 className="mt-5 font-serif text-5xl leading-tight sm:text-7xl">
-              Three considered rooms,<br />
+              Three considered pods,<br />
               one quiet acreage.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-charcoal-soft">
