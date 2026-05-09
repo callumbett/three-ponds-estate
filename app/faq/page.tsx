@@ -164,49 +164,80 @@ export default function FAQPage() {
 
       <section className="bg-parchment pb-32">
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
-          {faqs.map((group, gi) => (
-            <MotionReveal key={group.group} delay={gi * 0.05}>
-              <div className="mt-16 first:mt-0">
-                <h2 className="font-serif text-2xl text-charcoal sm:text-3xl">
-                  {group.group}
-                </h2>
+          {faqs.map((group, gi) => {
+            const groupNumber = String(gi + 1).padStart(2, "0");
+            const total = String(faqs.length).padStart(2, "0");
 
-                <div className="mt-8 space-y-2">
-                  {group.items.map((item, i) => (
-                    <details
-                      key={i}
-                      className="group border-t border-line py-7 last:border-b"
-                    >
-                      <summary className="flex cursor-pointer items-start justify-between gap-6 list-none [&::-webkit-details-marker]:hidden">
-                        <h3 className="font-serif text-lg leading-snug text-charcoal transition-colors duration-150 group-hover:text-corten sm:text-xl">
-                          {item.q}
-                        </h3>
-                        <span
-                          aria-hidden
-                          className="mt-1 shrink-0 text-charcoal-soft/60 transition-transform duration-300 ease-out group-open:rotate-45"
+            return (
+              <MotionReveal key={group.group} delay={gi * 0.05}>
+                <div className="mt-24 first:mt-0">
+                  {/* Chapter kicker — corten metadata + corten hairline,
+                      gives each group a clear editorial header that
+                      lifts off the parchment. */}
+                  <div className="flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="block h-px w-8 bg-corten"
+                    />
+                    <p className="metadata text-corten">
+                      {groupNumber} / {total}
+                    </p>
+                  </div>
+                  <h2 className="mt-4 font-serif text-3xl leading-[1.1] tracking-[-0.015em] text-charcoal sm:text-4xl">
+                    {group.group}
+                  </h2>
+
+                  <div className="mt-10">
+                    {group.items.map((item, i) => {
+                      const itemNumber = String(i + 1).padStart(2, "0");
+                      return (
+                        <details
+                          key={i}
+                          className="group border-t border-line py-7 transition-colors duration-200 ease-out last:border-b open:bg-parchment-deep/30"
                         >
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                          >
-                            <path
-                              d="M12 5v14M5 12h14"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </span>
-                      </summary>
-                      <p className="prose-body mt-4">{item.a}</p>
-                    </details>
-                  ))}
+                          <summary className="flex cursor-pointer items-start justify-between gap-6 list-none [&::-webkit-details-marker]:hidden">
+                            {/* Numbered question — corten chapter mark
+                                pulls the eye to each row. */}
+                            <span className="flex flex-1 items-baseline gap-4 sm:gap-5">
+                              <span className="metadata shrink-0 pt-1 text-corten">
+                                {itemNumber}
+                              </span>
+                              <h3 className="font-serif text-lg leading-snug text-charcoal transition-colors duration-150 group-hover:text-corten sm:text-xl">
+                                {item.q}
+                              </h3>
+                            </span>
+                            <span
+                              aria-hidden
+                              className="mt-1 shrink-0 text-charcoal-soft/60 transition-transform duration-300 ease-out group-open:rotate-45"
+                            >
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                              >
+                                <path
+                                  d="M12 5v14M5 12h14"
+                                  strokeLinecap="round"
+                                />
+                              </svg>
+                            </span>
+                          </summary>
+                          {/* Indent the answer so it aligns under the
+                              question text, not under the corten number. */}
+                          <p className="prose-body mt-4 pl-9 sm:pl-10">
+                            {item.a}
+                          </p>
+                        </details>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            </MotionReveal>
-          ))}
+              </MotionReveal>
+            );
+          })}
 
           {/* CTA — back to booking */}
           <MotionReveal>

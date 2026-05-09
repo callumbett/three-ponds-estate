@@ -2,50 +2,8 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, type MouseEvent } from "react";
+import { reInitSiteMinder } from "@/lib/siteminder";
 import { useBooking } from "./context";
-
-/**
- * Re-trigger SiteMinder's embed initialisation. Their `ibe.min.js`
- * scans the DOM for elements with class="ibe" once on page load —
- * but our embed div only mounts when the user clicks Book Now, so
- * the original scan misses it. This function asks the loaded script
- * to re-run that scan against whatever's now in the DOM.
- *
- * Tries known global API patterns in order; falls back to re-injecting
- * the script tag, which will run a fresh scan on load. Whichever path
- * hits first wins.
- */
-function reInitSiteMinder() {
-  if (typeof window === "undefined") return;
-  const w = window as unknown as {
-    IBE?: { init?: () => void; refresh?: () => void };
-    SiteMinder?: { init?: () => void };
-  };
-
-  try {
-    if (typeof w.IBE?.init === "function") {
-      w.IBE.init();
-      return;
-    }
-    if (typeof w.IBE?.refresh === "function") {
-      w.IBE.refresh();
-      return;
-    }
-    if (typeof w.SiteMinder?.init === "function") {
-      w.SiteMinder.init();
-      return;
-    }
-  } catch {
-    /* fall through to script re-injection */
-  }
-
-  // Last resort: re-inject the script. Loading it again triggers a
-  // fresh DOM scan inside the library's bootstrap code.
-  const script = document.createElement("script");
-  script.src = "https://widget.siteminder.com/ibe.min.js";
-  script.async = true;
-  document.body.appendChild(script);
-}
 
 /**
  * The single booking dialog for the entire site.

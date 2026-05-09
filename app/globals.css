@@ -147,14 +147,18 @@
 }
 
 /* ----------  Branded scrollbar  ----------
-   Replace the default browser scrollbar with a slim corten thumb on a
-   transparent track. Acts as a constant scroll-progress indicator on
-   the right edge — corten where the thumb is, page content visible
-   through the rest. Native, no JS, no layout shift. */
+   Slim corten thumb on a parchment track. Track set to parchment
+   (matching the page background) rather than `transparent` because
+   desktop browsers render the gutter with a fallback system colour
+   when the track is transparent — that's the "white rail" effect
+   we want to avoid. Parchment track blends with the page so the
+   visitor only sees the corten thumb sliding over the page colours.
+   Mobile browsers overlay the scrollbar so this rule is harmless
+   there. */
 
 /* Modern (Firefox + standard) — slim track, corten thumb */
 html {
-  scrollbar-color: var(--color-corten) transparent;
+  scrollbar-color: var(--color-corten) var(--color-parchment);
   scrollbar-width: thin;
 }
 
@@ -164,7 +168,7 @@ html::-webkit-scrollbar {
   height: 8px;
 }
 html::-webkit-scrollbar-track {
-  background: transparent;
+  background-color: var(--color-parchment);
 }
 html::-webkit-scrollbar-thumb {
   background-color: var(--color-corten);

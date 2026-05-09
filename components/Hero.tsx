@@ -92,7 +92,11 @@ export default function Hero() {
 
       {/* Hero copy */}
       <motion.div
-        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-24 sm:px-10 sm:pb-32"
+        // Top safety padding (`pt-44 sm:pt-52`) ensures the copy block
+        // never extends above the masthead even on short viewports —
+        // the kicker can't get crammed against the logo any more.
+        // Bottom padding tightened on mobile for room.
+        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pt-44 pb-20 sm:px-10 sm:pt-52 sm:pb-32"
         style={{ y: copyY, opacity: copyOpacity }}
       >
         <motion.div
@@ -117,14 +121,16 @@ export default function Hero() {
             className="mt-5 mb-6 block h-px w-12 bg-parchment/75 [box-shadow:0_1px_6px_rgba(0,0,0,0.4)]"
           />
 
-          {/* 3 · Headline — Fraunces, fluid clamp size, tight leading */}
+          {/* 3 · Headline — Fraunces, fluid clamp size, tight leading.
+                Mobile: 2 lines (the second br is hidden) so the copy
+                takes less vertical space; desktop keeps 3 lines. */}
           <motion.h1
             variants={lineVariants}
-            className="text-parchment text-[clamp(2.5rem,5.8vw,5rem)] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]"
+            className="text-parchment text-[clamp(2.25rem,5.5vw,5rem)] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]"
           >
             Three Ponds Estate<br />
-            <span className="text-parchment/85">— a quiet acreage,</span>
-            <br />
+            <span className="text-parchment/85">— a quiet acreage,</span>{" "}
+            <br className="hidden sm:block" />
             <span className="text-parchment/85">three considered pods.</span>
           </motion.h1>
 
