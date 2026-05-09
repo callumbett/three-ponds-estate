@@ -145,3 +145,31 @@
   background: var(--color-corten);
   color: var(--color-parchment);
 }
+
+/* ----------  Branded scrollbar  ----------
+   Replace the default browser scrollbar with a slim corten thumb on a
+   transparent track. Acts as a constant scroll-progress indicator on
+   the right edge — corten where the thumb is, page content visible
+   through the rest. Native, no JS, no layout shift. */
+
+/* Modern (Firefox + standard) — slim track, corten thumb */
+html {
+  scrollbar-color: var(--color-corten) transparent;
+  scrollbar-width: thin;
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--color-corten);
+  border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-corten-deep);
+}

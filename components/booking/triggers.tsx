@@ -50,12 +50,15 @@ const Arrow = ({ className = "" }: { className?: string }) => (
 );
 
 /**
- * The over-photo "reservation pill". Parchment fill (the building
- * material of the brand) reads cleanly against any photo. Charcoal
- * label, corten arrow — corten still appears as an accent so the
- * booking action keeps its brand cue, but the pill itself doesn't fight
- * a sunset photo for legibility. Used by both the masthead and the
- * Hero so the two primary CTAs are identical.
+ * The over-photo "reservation pill". Parchment fill, charcoal label,
+ * corten arrow — same colour palette as before, but with a **shiny
+ * sheen** that sweeps across on hover (cream gradient at +12° skew,
+ * translates from off-screen-left to off-screen-right over 700 ms).
+ * Adapted from a 21st.dev shimmer pattern; brand-appropriate version
+ * uses parchment-on-parchment rather than the original's dark purple.
+ *
+ * Used by the masthead, Hero CTA, and sticky mobile pill so the
+ * primary booking action looks identical everywhere.
  */
 export function BookingNavTrigger({
   label = "Book Now",
@@ -70,13 +73,38 @@ export function BookingNavTrigger({
       onClick={open}
       className={[
         triggerBase,
+        // Layered structure: relative + overflow-hidden so the sheen
+        // can slide across without spilling out of the rounded shape.
+        "relative isolate overflow-hidden",
         "bg-parchment px-6 py-2.5 text-charcoal hover:bg-parchment-deep",
         "shadow-md shadow-charcoal/20 ring-1 ring-charcoal/5",
         className,
       ].join(" ")}
     >
-      {label}
-      <Arrow className="text-corten" />
+      {/*
+       * Sheen layer — a pale cream highlight at +12° skew. Lives off
+       * the left edge by default (-translate-x-full); on hover it
+       * translates fully across to the right edge over 700 ms, like
+       * a brushed-light reflection passing the surface.
+       */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -translate-x-full skew-x-[12deg] bg-gradient-to-r from-transparent via-white/55 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-full"
+      />
+      {/*
+       * Subtle inner highlight along the top edge — gives the pill a
+       * sense of being "lit from above" rather than flat parchment.
+       * Always visible, doesn't animate.
+       */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_0_rgba(0,0,0,0.04)]"
+      />
+
+      <span className="relative z-10 inline-flex items-center">
+        {label}
+        <Arrow className="text-corten" />
+      </span>
     </button>
   );
 }

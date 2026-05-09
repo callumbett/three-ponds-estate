@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import StickyBookNow from "@/components/StickyBookNow";
 import { Booking } from "@/components/booking";
 import "./globals.css";
@@ -51,7 +52,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-parchment text-charcoal">
         <Booking.Provider>
           <Nav />
-          <main className="relative flex-1">{children}</main>
+          <main className="relative flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <StickyBookNow />
           <Booking.Modal />

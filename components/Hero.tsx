@@ -76,7 +76,7 @@ export default function Hero() {
         style={{ y: imgY, scale: imgScale }}
       >
         <Image
-          src="/images/hero/hero-2.jpg"
+          src="/images/hero/hero-2-reduced.jpg"
           alt="Three Ponds Estate"
           fill
           priority
