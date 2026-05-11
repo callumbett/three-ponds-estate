@@ -171,14 +171,25 @@ export default function BookingModal() {
               </button>
 
               {/*
-               * overscroll-contain stops the diagonal-scroll jitter
-               * on iOS Safari: when the user reaches the top/bottom
-               * of the embed's scroll area, the parent page no
-               * longer tries to scroll too (scroll-chaining is what
-               * was making the dialog jump around on fast/angled
-               * swipes).
+               * Scroll behaviour on the embed container:
+               *  • overflow-y-auto      — vertical scroll allowed
+               *  • overflow-x-hidden    — kills horizontal drag, which
+               *                           was letting iOS users pull
+               *                           the SiteMinder content
+               *                           sideways with one finger
+               *                           (the form labels & header
+               *                           clipped off the left edge).
+               *  • overscroll-contain   — stops scroll-chaining so the
+               *                           parent page no longer bounces
+               *                           on diagonal/fast swipes.
+               *  • touch-pan-y          — explicit hint to iOS Safari
+               *                           that only vertical pan
+               *                           gestures should be honoured
+               *                           on this container; horizontal
+               *                           drags are rejected at the
+               *                           gesture-recogniser layer.
                */}
-              <div className="flex flex-1 flex-col overflow-auto overscroll-contain bg-parchment">
+              <div className="flex flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-contain touch-pan-y bg-parchment">
                 {useEmbed ? (
                   // Mode 1 · SiteMinder inline embed widget.
                   // The SiteMinder JS (loaded in app/layout.tsx) scans for
