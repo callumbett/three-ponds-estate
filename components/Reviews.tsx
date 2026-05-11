@@ -91,8 +91,8 @@ export default function Reviews() {
         <div className="max-w-2xl">
           <SectionEyebrow>Reviews</SectionEyebrow>
           <h2 className="mt-5 font-serif text-4xl leading-tight text-charcoal sm:text-5xl">
-            113 five-star reviews on Google,<br />
-            a consistent five everywhere else.
+            1,894 guests hosted & counting,<br />
+            an uncompromising standard maintained.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-soft">
             Quietly accumulated across Google, Airbnb, and Booking.com.
