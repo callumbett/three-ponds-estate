@@ -1,6 +1,6 @@
 "use client";
 
-import { useBooking } from "./context";
+import { useBooking, type BookingFilter } from "./context";
 
 /**
  * Four explicit triggers — one per editorial context.
@@ -24,6 +24,12 @@ import { useBooking } from "./context";
 type TriggerProps = {
   label?: string;
   className?: string;
+  /**
+   * Optional pre-filter — passed to `open(filter)` so the modal can
+   * open already scoped to a specific pod (room type). When omitted,
+   * the modal opens unfiltered and the user sees all three pods.
+   */
+  filter?: BookingFilter;
 };
 
 // 150ms hover transition per Bencium MOTION-SPEC §"Hover state".
@@ -63,6 +69,7 @@ const Arrow = ({ className = "" }: { className?: string }) => (
 export function BookingNavTrigger({
   label = "Book Now",
   className = "",
+  filter,
 }: TriggerProps) {
   const {
     actions: { open },
@@ -70,7 +77,7 @@ export function BookingNavTrigger({
   return (
     <button
       type="button"
-      onClick={open}
+      onClick={() => open(filter)}
       className={[
         triggerBase,
         // Layered structure: relative + overflow-hidden so the sheen
@@ -112,6 +119,7 @@ export function BookingNavTrigger({
 export function BookingPrimaryTrigger({
   label = "Book your stay",
   className = "",
+  filter,
 }: TriggerProps) {
   const {
     actions: { open },
@@ -119,7 +127,7 @@ export function BookingPrimaryTrigger({
   return (
     <button
       type="button"
-      onClick={open}
+      onClick={() => open(filter)}
       className={[
         triggerBase,
         "bg-corten px-6 py-2.5 text-parchment shadow-sm hover:bg-corten-deep",
@@ -135,6 +143,7 @@ export function BookingPrimaryTrigger({
 export function BookingQuietTrigger({
   label = "Book Now",
   className = "",
+  filter,
 }: TriggerProps) {
   const {
     actions: { open },
@@ -142,7 +151,7 @@ export function BookingQuietTrigger({
   return (
     <button
       type="button"
-      onClick={open}
+      onClick={() => open(filter)}
       className={[
         triggerBase,
         "border border-corten/60 px-6 py-2.5 text-corten hover:bg-corten hover:text-parchment",
@@ -158,6 +167,7 @@ export function BookingQuietTrigger({
 export function BookingMobileTrigger({
   label = "Book your stay",
   className = "",
+  filter,
 }: TriggerProps) {
   const {
     actions: { open },
@@ -165,7 +175,7 @@ export function BookingMobileTrigger({
   return (
     <button
       type="button"
-      onClick={open}
+      onClick={() => open(filter)}
       className={[
         triggerBase,
         "w-full bg-corten px-6 py-3 text-parchment hover:bg-corten-deep",
