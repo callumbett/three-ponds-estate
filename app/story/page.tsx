@@ -32,7 +32,7 @@ export default function StoryPage() {
                 src="/images/story/Bett77.jpg"
                 alt="Three Ponds Estate at the close of day"
                 fill
-                sizes="(min-width: 768px) 600px, 100vw"
+                sizes="(min-width: 600px) 400px, 100vw"
                 quality={85}
                 className="object-cover"
               />
