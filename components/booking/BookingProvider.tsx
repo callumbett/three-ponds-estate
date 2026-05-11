@@ -7,7 +7,11 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { BookingContext, type BookingContextValue } from "./context";
+import {
+  BookingContext,
+  type BookingContextValue,
+  type BookingFilter,
+} from "./context";
 
 type Props = { children: ReactNode };
 
@@ -26,12 +30,18 @@ type Props = { children: ReactNode };
 export default function BookingProvider({ children }: Props) {
   const [open, setOpen] = useState(false);
   const [primed, setPrimed] = useState(false);
+  const [filter, setFilter] = useState<BookingFilter | null>(null);
   const url = process.env.NEXT_PUBLIC_LITTLE_HOTELIER_URL ?? "";
   const channelcode = process.env.NEXT_PUBLIC_LH_CHANNELCODE ?? "";
   const rawRegion = process.env.NEXT_PUBLIC_LH_REGION ?? "apac";
   const region = rawRegion === "emea" ? "emea" : "apac";
 
-  const openModal = useCallback(() => setOpen(true), []);
+  const openModal = useCallback((nextFilter?: BookingFilter) => {
+    // Reset filter on each open — generic "Book Now" buttons clear any
+    // previous pod-specific scope; pod-page buttons set their own.
+    setFilter(nextFilter ?? null);
+    setOpen(true);
+  }, []);
   const closeModal = useCallback(() => setOpen(false), []);
 
   // Lock background scroll while the modal is open.
@@ -73,11 +83,11 @@ export default function BookingProvider({ children }: Props) {
 
   const value = useMemo<BookingContextValue>(
     () => ({
-      state: { open, primed },
+      state: { open, primed, filter },
       actions: { open: openModal, close: closeModal },
       meta: { url, channelcode, region },
     }),
-    [open, primed, openModal, closeModal, url, channelcode, region],
+    [open, primed, filter, openModal, closeModal, url, channelcode, region],
   );
 
   return <BookingContext value={value}>{children}</BookingContext>;

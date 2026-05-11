@@ -1,0 +1,17 @@
+2026-05-09 13:53 | feat: dark-mode logo, less-hazy hero, archway stay cards, circle story image, explore tile grid, modal snap
+2026-05-09 13:21 | feat: light/dark mode with curtain transition; remove Hero kicker + headline; rename /stay heading; strip FAQ numbering
+2026-05-09 13:14 | chore: remove Hero kicker + headline; rename /stay heading to pods; strip FAQ numbering
+2026-05-09 11:59 | feat: /book page, availability search on Hero, FAQ chapter numbering; fix logo overlap, scrollbar, section order
+2026-05-09 11:23 | fix: full-screen booking modal on mobile so SiteMinder embed has viewport room
+2026-05-09 11:02 | fix: re-trigger SiteMinder init when booking modal opens (SPA timing)
+2026-05-09 10:49 | feat: SiteMinder integration ready (channel code wired, domain whitelisted)
+2026-05-08 15:17 | feat: SiteMinder inline embed integration (awaiting channel code + whitelist)
+2026-05-08 13:25 | feat: sticky mobile Book Now, FAQ page, photo lightbox; housekeeping; Google logo swap
+2026-05-08 12:34 | feat: wire Vercel Speed Insights
+2026-04-27 16:55 | fix: correct StatsStrip distances (500 m to museum, 3 mins to town)
+2026-04-27 16:50 | feat: type utilities applied (.prose-body, .metadata); pricing, all-east aspect, V8 calendar link, legal pages, square map; fix Uphaz orientation in /story
+2026-04-26 17:52 | feat: editorial Hero masthead, full local imagery, reviews aggregator, real contact details
+2026-04-24 16:41 | feat: wire local hero, favicon, and logo brand mark in nav
+2026-04-24 05:04 | feat: initial high-end build for Three Ponds Estate
+2026-04-24 13:37 | initial commit — Three Ponds Estate
+2026-04-24 13:18 | Initial commit from Create Next App

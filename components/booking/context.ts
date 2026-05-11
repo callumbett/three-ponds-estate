@@ -7,9 +7,29 @@ import { createContext, use } from "react";
  * composition-patterns/rules/state-context-interface.md — generic enough
  * that the provider is the only place that knows *how* state is managed.
  */
+/**
+ * Optional pre-filter applied when the booking modal opens — used so
+ * that the "Book {pod.name}" button on a pod detail page opens the
+ * SiteMinder embed scoped to *that* pod's room type rather than
+ * showing all three. Reflected on the embed div as
+ * `data-query-room_type={roomTypeId}` per the SiteMinder widget API.
+ */
+export type BookingFilter = {
+  roomTypeId?: number;
+};
+
 export type BookingContextValue = {
-  state: { open: boolean; primed: boolean };
-  actions: { open: () => void; close: () => void };
+  state: {
+    open: boolean;
+    primed: boolean;
+    /** Active pre-filter, or null when opened generically. */
+    filter: BookingFilter | null;
+  };
+  actions: {
+    /** Pass an optional filter to open the modal pre-scoped. */
+    open: (filter?: BookingFilter) => void;
+    close: () => void;
+  };
   meta: {
     /**
      * Legacy iframe URL. Falls back to placeholder when neither
