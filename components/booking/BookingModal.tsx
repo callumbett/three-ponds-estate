@@ -108,7 +108,15 @@ export default function BookingModal() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e: MouseEvent) => e.stopPropagation()}
             >
-              <header className="flex shrink-0 items-center justify-between border-b border-line px-6 py-4">
+              {/*
+               * Header bar — desktop only. Hidden on mobile so the
+               * SiteMinder embed gets the full viewport height (the
+               * ~75 px we'd otherwise spend on title + close was
+               * pushing their "Find Availability" CTA below the fold
+               * and clipping the bottom of their cookie banner).
+               * Replaced on mobile by the floating ✕ button below.
+               */}
+              <header className="hidden shrink-0 items-center justify-between border-b border-line px-6 py-4 sm:flex">
                 <div>
                   <p className="eyebrow">Book your stay</p>
                   <h2 className="mt-1 font-serif text-xl text-charcoal">
@@ -135,7 +143,42 @@ export default function BookingModal() {
                 </button>
               </header>
 
-              <div className="flex flex-1 flex-col overflow-auto bg-parchment">
+              {/*
+               * Mobile-only floating close button — sits above the
+               * SiteMinder embed in the top-right so the user can
+               * dismiss the dialog without us claiming any vertical
+               * real estate for a header strip. Parchment chip with
+               * a soft shadow so it stays legible whatever the
+               * widget paints behind it.
+               */}
+              <button
+                type="button"
+                onClick={close}
+                aria-label="Close booking dialog"
+                className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-parchment/95 text-charcoal shadow-md ring-1 ring-charcoal/10 backdrop-blur-sm transition-colors duration-150 ease-out hover:bg-parchment focus-visible:outline focus-visible:outline-1 focus-visible:outline-corten focus-visible:outline-offset-2 sm:hidden"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  aria-hidden="true"
+                >
+                  <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
+                </svg>
+              </button>
+
+              {/*
+               * overscroll-contain stops the diagonal-scroll jitter
+               * on iOS Safari: when the user reaches the top/bottom
+               * of the embed's scroll area, the parent page no
+               * longer tries to scroll too (scroll-chaining is what
+               * was making the dialog jump around on fast/angled
+               * swipes).
+               */}
+              <div className="flex flex-1 flex-col overflow-auto overscroll-contain bg-parchment">
                 {useEmbed ? (
                   // Mode 1 · SiteMinder inline embed widget.
                   // The SiteMinder JS (loaded in app/layout.tsx) scans for
