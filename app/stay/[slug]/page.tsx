@@ -81,7 +81,10 @@ export default async function PodDetailPage({
             </h2>
             <p className="prose-body mt-8">{pod.detail}</p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
-              <Booking.PrimaryTrigger label={`Book ${pod.name}`} />
+              <Booking.PrimaryTrigger
+                label={`Book ${pod.name}`}
+                filter={{ roomTypeId: pod.roomTypeId }}
+              />
               <p className="metadata">
                 From AU${pod.fromAud} <span className="text-charcoal-soft/70">/ night</span>
               </p>

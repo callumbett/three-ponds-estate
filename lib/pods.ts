@@ -17,6 +17,14 @@ export type Pod = {
   gallery: { src: string; alt: string }[];
   // Pricing is indicative until the Little Hotelier feed is wired in.
   fromAud: number;
+  /**
+   * SiteMinder room-type ID for this pod. Used by the booking modal
+   * to open the embed widget pre-filtered to just this pod's room
+   * type — passed through to the SiteMinder embed as
+   * `data-query-room_type={roomTypeId}`. Provided by SiteMinder
+   * support per their reservation back office.
+   */
+  roomTypeId: number;
 };
 
 export const pods: Pod[] = [
@@ -61,6 +69,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-ophir/DSC01827.jpg", alt: "The Ophir — wider view" },
     ],
     fromAud: 230,
+    roomTypeId: 109125,
   },
   {
     slug: "the-felix",
@@ -104,6 +113,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-felix/DSC01867.jpg", alt: "The Felix — wider view" },
     ],
     fromAud: 290,
+    roomTypeId: 109124,
   },
   {
     slug: "the-uphaz",
@@ -147,6 +157,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-uphaz/DSC01692.jpg", alt: "The Uphaz interior" },
     ],
     fromAud: 290,
+    roomTypeId: 109123,
   },
 ];
 

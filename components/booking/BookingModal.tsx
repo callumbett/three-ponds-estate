@@ -22,7 +22,7 @@ import { useBooking } from "./context";
  */
 export default function BookingModal() {
   const {
-    state: { open, primed },
+    state: { open, primed, filter },
     actions: { close },
     meta: { url, channelcode, region },
   } = useBooking();
@@ -31,6 +31,12 @@ export default function BookingModal() {
 
   // When the modal opens with a SiteMinder embed div freshly in the
   // DOM, kick the SiteMinder script to scan for it.
+  //
+  // `filter?.roomTypeId` is in the deps array because each time the
+  // modal opens with a different filter, the embed div gets a new
+  // `key` (see below) which forces React to re-mount it. SiteMinder
+  // reads `data-query-room_type` at scan time, not after the fact,
+  // so we need a fresh mount for the filter to actually take effect.
   useEffect(() => {
     if (!open || !useEmbed) return;
     // 100 ms wait so motion's enter animation has painted the div
@@ -38,7 +44,7 @@ export default function BookingModal() {
     // miss the not-yet-mounted node.
     const t = window.setTimeout(reInitSiteMinder, 100);
     return () => window.clearTimeout(t);
-  }, [open, useEmbed]);
+  }, [open, useEmbed, filter?.roomTypeId]);
 
   // Preconnect / dns-prefetch on the underlying booking host so the
   // first request feels instant once the user has interacted with the
@@ -196,14 +202,28 @@ export default function BookingModal() {
                   // class="ibe" and replaces this div with the live engine.
                   // `data-use_parent` lets the iframe size to our flex-1
                   // container instead of demanding a fixed minimum height.
+                  //
+                  // `data-query-room_type` (added conditionally) is the
+                  // SiteMinder API for pre-filtering the widget to one
+                  // room type — set when the user clicked a pod-specific
+                  // "Book the Felix" button. Omitted on generic opens
+                  // (Book Now in the nav) so all three pods show.
+                  //
+                  // The `key` includes the room-type ID so a fresh
+                  // open with a different filter forces React to
+                  // re-mount the div — SiteMinder reads the data attrs
+                  // at scan time, not reactively.
                   <div
-                    key={`ibe-${open}`}
+                    key={`ibe-${open}-${filter?.roomTypeId ?? "all"}`}
                     className="ibe flex-1 min-h-[420px]"
                     data-region={region}
                     data-channelcode={channelcode}
                     data-widget="embed"
                     data-mobile_fullscreen="false"
                     data-use_parent="true"
+                    {...(filter?.roomTypeId
+                      ? { "data-query-room_type": filter.roomTypeId }
+                      : {})}
                   />
                 ) : url ? (
                   // Mode 2 · Legacy iframe.
