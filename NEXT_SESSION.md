@@ -197,11 +197,15 @@ which threads are closed.
   When the footer enters the viewport, the pill fades out the same
   way it does when the booking modal opens — so the dark-mode toggle
   in the footer is reachable on mobile.
-- **Pods (Felix):** "barn" removed from `intro`; "matte stone" and
-  "800 gsm Turkish cotton in the bathroom" removed from `detail`.
-  `styleNote: "Scandi barn"`, `spec: "Modern Scandinavian barn"`, and
-  the FAQ "Scandi-barn-style" mention were left untouched (narrow
-  reading of the instruction — broaden if asked).
+- **Pods (Felix + Uphaz) — full "barn" sweep:** "barn" removed from
+  Felix `intro`, both pods' `styleNote` ("Scandi barn" → "Scandinavian"),
+  both pods' `spec` "Style" line ("Modern Scandinavian barn" →
+  "Modern Scandinavian"), the site meta description in `app/layout.tsx`
+  ("Scandi-barn pods" → "Scandinavian-style pods"), the FAQ
+  ("Scandi-barn-style" → "Scandi-style"), and the per-pod image
+  README files. Also removed "matte stone" and "800 gsm Turkish
+  cotton in the bathroom" from Felix `detail`. No "barn" reference
+  remains anywhere in source.
 - **Terms & Conditions:** full replacement with the new 11-section
   document Callum provided. Subsection headings (2.1, 2.2, etc.)
   rendered as `<h3>` for readability.
@@ -218,7 +222,9 @@ which threads are closed.
   pets reduced to a flat "no"; events reduced to "email us"; canola
   season tightened to August–September; "across multiple weekends
   each year" removed from the Lake Centenary line for consistency
-  with the Explore page edit.
+  with the Explore page edit. Page intro sentence "Mark or Gillian
+  will reply, usually within the hour during the day." also
+  removed (matches the Contact page change).
 - **Stay page:** Materials / The Land closing block removed.
 - **Story page:** image footprint reduced ~40% (see open thread #7
   above for the copy follow-up).

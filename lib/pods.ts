@@ -77,7 +77,7 @@ export const pods: Pod[] = [
     tagline: "Two bedrooms · east + north decks, sunrise to sunset",
     bedrooms: 2,
     sleeps: 4,
-    styleNote: "Scandi barn",
+    styleNote: "Scandinavian",
     intro:
       "A two-bedroom pod in the Scandinavian register — restrained palette, generous proportions, and a quiet that settles over you the moment you arrive.",
     detail:
@@ -86,7 +86,7 @@ export const pods: Pod[] = [
       { label: "Configuration", value: "2 bedrooms · 1 bathroom" },
       { label: "Sleeps", value: "4 guests" },
       { label: "Aspect", value: "East-facing deck (sunrise) · north-facing deck (sunset)" },
-      { label: "Style", value: "Modern Scandinavian barn" },
+      { label: "Style", value: "Modern Scandinavian" },
       { label: "Linen", value: "800 gsm Turkish cotton towels" },
     ],
     amenities: [
@@ -121,7 +121,7 @@ export const pods: Pod[] = [
     tagline: "Two bedrooms · east + north decks, sunrise to sunset",
     bedrooms: 2,
     sleeps: 4,
-    styleNote: "Scandi barn",
+    styleNote: "Scandinavian",
     intro:
       "Sister to The Felix and shaped by the same architectural language — two decks, two aspects, the long Riverina day held from sunrise to sunset.",
     detail:
@@ -130,7 +130,7 @@ export const pods: Pod[] = [
       { label: "Configuration", value: "2 bedrooms · 1 bathroom" },
       { label: "Sleeps", value: "4 guests" },
       { label: "Aspect", value: "East-facing deck (sunrise) · north-facing deck (sunset)" },
-      { label: "Style", value: "Modern Scandinavian barn" },
+      { label: "Style", value: "Modern Scandinavian" },
       { label: "Linen", value: "800 gsm Turkish cotton towels" },
     ],
     amenities: [

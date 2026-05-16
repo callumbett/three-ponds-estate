@@ -1,6 +1,6 @@
 # The Uphaz — image drop
 
-Two-bedroom Scandi-barn pod, sister to The Felix — west-facing for sunset.
+Two-bedroom Scandinavian-style pod, sister to The Felix — west-facing for sunset.
 
 ## Files expected (exact filenames)
 

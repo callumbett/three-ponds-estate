@@ -143,8 +143,7 @@ export default function FAQPage() {
               >
                 0403 433 300
               </a>
-              . Mark or Gillian will reply, usually within the hour during the
-              day.
+              .
             </p>
           </MotionReveal>
         </div>

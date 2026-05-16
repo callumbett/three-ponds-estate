@@ -1,12 +1,12 @@
 # The Felix — image drop
 
-Two-bedroom Scandi-barn pod, sister to The Uphaz.
+Two-bedroom Scandinavian-style pod, sister to The Uphaz.
 
 ## Files expected (exact filenames)
 
 | Filename | Where it appears | Suggested subject |
 |---|---|---|
-| `cover.jpg` | • Card on `/stay` listing (5:4 crop) <br>• Full-bleed hero on `/stay/the-felix` | Vaulted living volume showing the Scandi barn lines — pale timber, soft linen, matte stone |
+| `cover.jpg` | • Card on `/stay` listing (5:4 crop) <br>• Full-bleed hero on `/stay/the-felix` | Vaulted living volume in the Scandinavian register — pale timber, soft linen |
 | `gallery-01.jpg` | First image in `/stay/the-felix` gallery | Vaulted living room in pale timber and white linen |
 | `gallery-02.jpg` | Second gallery image | A quiet queen bedroom with soft natural light |
 | `gallery-03.jpg` | Third gallery image | Stone-topped kitchen island, Scandinavian stools |
