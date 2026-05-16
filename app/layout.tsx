@@ -9,17 +9,35 @@ import StickyBookNow from "@/components/StickyBookNow";
 import { Booking } from "@/components/booking";
 import "./globals.css";
 
+/**
+ * Fraunces — editorial serif, used by every Hero standfirst and every
+ * section H2 across the site.
+ *
+ * Tuning notes (CLS):
+ *   - `axes` removed: previously requested `SOFT`, `WONK`, and `opsz`,
+ *     none of which the CSS actually references via
+ *     `font-variation-settings`. They were inflating the font file
+ *     without any visual benefit. Trimming them shrinks the preload
+ *     so it's more likely to complete before first paint on slow
+ *     networks — and a font that's already loaded at paint time
+ *     doesn't trigger the swap-induced reflow that drives CLS.
+ *   - Explicit `fallback` chain tightens next/font's auto-computed
+ *     size-adjust metrics so the Georgia/Cormorant Garamond fallback
+ *     renders at proportions closer to Fraunces. Less width drift
+ *     when (if) the swap does happen, so the reflow is smaller.
+ */
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
+  fallback: ["Cormorant Garamond", "Georgia", "serif"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  fallback: ["system-ui", "-apple-system", "Segoe UI", "Helvetica", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {

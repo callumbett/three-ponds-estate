@@ -104,10 +104,22 @@ the embed widget *also* reads recognised query parameters from the
 **parent page URL** (page 10). We now push `?room_type=<id>` onto the
 page URL via `history.replaceState` when the modal opens with a filter,
 and restore on close. This is a no-history, no-navigation change that
-exercises the second input path the doc calls out, in case the
-data-attribute path isn't honoured for our embed version. If this
-also fails to filter the display, the issue is conclusively on
-SiteMinder's side.
+exercises the second input path the doc calls out.
+
+**Result (May 16 2026):** display still shows all three pods. Both
+input paths the integration doc describes — the `data-query-room_type`
+attribute on the embed div, and the `room_type` query param on the
+parent page URL — are now being supplied, and the widget is ignoring
+both for display-filtering purposes. The issue is conclusively on
+SiteMinder's side. We've done everything our integration spec asks
+of us. **Sit tight for the support reply.** When it lands, it's a
+small change either to the attribute name or to the room-type IDs.
+
+**Worth checking ourselves once, in a fresh browser tab:**
+`https://book-directonline.com/properties/threepondsestate?room_type=109124`.
+If their standalone booking engine also fails to filter at that URL,
+the back-office room-type IDs are suspect; that's a quick thing to
+mention in the support thread.
 
 **When SiteMinder replies:** if the right parameter is different (e.g.
 `data-only_room_type`), it's a one-line change in
@@ -137,6 +149,41 @@ instructions previously provided. Until then, site lives at
 ### 5. SEO — LodgingBusiness JSON-LD + H1 keyword strengthening
 
 Deferred until the domain is live. Not urgent.
+
+### 5a. Core Web Vitals — CLS work (May 16 2026)
+
+Vercel Speed Insights showed CLS = 0.11 at P75 (just over the 0.10
+"good" threshold). Investigated and shipped two surgical changes; we
+should re-check Speed Insights in 24–48 h to see the new P75.
+
+- **Fraunces font config** (`app/layout.tsx`): dropped the unused
+  `SOFT`, `WONK`, and `opsz` variable-font axes. Nothing in the CSS
+  ever referenced them via `font-variation-settings`, so they were
+  inflating the preload for zero visual benefit. Smaller file →
+  preload more reliably finishes before first paint → fewer
+  font-swap reflows. Also added explicit `fallback` chains to both
+  Fraunces and Inter so next/font's auto-computed size-adjust
+  metrics are tighter — when a swap does happen, the reflow is
+  smaller.
+- **NavBrand collapse on restored scroll** (`components/nav-parts/Provider.tsx`):
+  removed the synchronous `onScroll()` call from the mount effect.
+  Previously, back-button navigation or a hard refresh to a deep-
+  scrolled position fired `setScrolled(true)` during hydration,
+  collapsing the logo from `h-32/h-40` → `h-10` without any recent
+  user input. Chrome counted that size animation as a CLS event.
+  Now the logo only collapses on actual scroll, which is
+  CLS-excluded. Minor visual cost: on back-nav the masthead may
+  look full-size briefly until the user scrolls.
+
+### 5b. Housekeeping — stale `.next/types/` duplicates
+
+`tsc --noEmit` reports duplicate-identifier errors in
+`.next/types/cache-life.d 2.ts`, `routes.d 3.ts`, etc. Those filenames
+with " 2.ts" / " 3.ts" suffixes look like macOS Finder / cloud-sync
+duplicates of the generated `.next/types/` files. They're not in
+source and they don't affect the Vercel build (Vercel rebuilds
+`.next/` from scratch). Local cleanup is `rm -rf .next` from the
+host Terminal next time you're in there.
 
 ### 6. Housekeeping
 

@@ -39,9 +39,25 @@ export default function NavProvider({ children }: { children: ReactNode }) {
   const hasHeroPhoto =
     pathname === "/" || HERO_PHOTO_PATHNAME_RE.test(pathname);
 
+  /*
+   * CLS note: previously this effect also ran `onScroll()` synchronously
+   * on mount to set `scrolled` from `window.scrollY`. On back-button
+   * navigation or hard refresh, the browser restores a non-zero scroll
+   * position — so that initial read flipped `scrolled` to true *without
+   * any recent user input*, which collapsed the Nav logo from
+   * h-32/h-40 → h-10 in the same tick as hydration. Chrome counts that
+   * size animation as a layout shift (it isn't excluded — no recent
+   * input event within 500 ms), and it was contributing to P75 CLS.
+   *
+   * Fix: only update `scrolled` from actual scroll events. The logo
+   * stays at its full size on first paint, then collapses the first
+   * time the user scrolls (a user-initiated transition, CLS-excluded).
+   * On back-nav to a deep-scrolled position the masthead may look
+   * marginally over-sized for a moment, but the visual cost is small
+   * and the CLS win is real.
+   */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
