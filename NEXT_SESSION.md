@@ -56,7 +56,7 @@ always quote paths containing them, e.g. `"app/stay/[slug]/page.tsx"`.
 - Editorial hero, stats strip, three-pod section, reviews aggregator,
   story, CTA on homepage.
 - `/stay`, `/stay/[slug]`, `/explore`, `/story`, `/contact`, `/faq`,
-  `/privacy`, `/cookies`.
+  `/privacy`, `/terms`.
 - Light/dark mode toggle with curtain transition and FOUC prevention.
 - SiteMinder embed integration — opens cleanly, books go through.
 - Mobile booking modal: no header bar, floating ✕ close button,
@@ -236,6 +236,25 @@ which threads are closed.
   removed.
 - **Contact page:** "Mark or Gillian will reply, usually within the
   hour…" paragraph removed; meta description softened to match.
+
+### 8a. Follow-up fixes — May 16 2026
+
+- **Cookie Policy retired.** `/app/cookies/` directory deleted, and
+  the "Cookie Policy" link removed from `components/Footer.tsx`, the
+  Terms contact section, and the Privacy contact section. References
+  to cookies as a *technology* (in the Privacy body's data-collection
+  section) were intentionally kept — that content still applies.
+- **Terms / Privacy render bug fixed.** The new long-form legal
+  pages were rendering blank under the title because the outer
+  `MotionReveal` around the article body uses
+  `whileInView` with `viewport={{ amount: 0.2 }}` — i.e. 20% of the
+  wrapped element must be in the viewport before the reveal fires.
+  The new articles are tall enough that the maximum visible portion
+  at any scroll position is below that threshold, so the reveal
+  never triggered and `opacity` stayed at 0. Removed the outer
+  MotionReveal on both pages — the article body now renders
+  immediately. The page-intro MotionReveal at the top still works
+  because that section is short enough to clear the threshold.
 
 ### 9. Housekeeping — stale `.next/types/` duplicates
 

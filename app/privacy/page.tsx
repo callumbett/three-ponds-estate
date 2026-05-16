@@ -46,8 +46,16 @@ export default function PrivacyPage() {
 
       <section className="bg-parchment pb-32">
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
-          <MotionReveal>
-            <article>
+          {/*
+           * No outer MotionReveal around the article body — the article
+           * is much taller than the viewport, and MotionReveal's
+           * `viewport={{ amount: 0.2 }}` requirement (20% of the wrapped
+           * element must be in view) can never be met for a multi-page
+           * legal document. The result is a stuck `opacity: 0` and a
+           * blank page after the title. The intro section above keeps
+           * its own MotionReveal — that one's short enough to trigger.
+           */}
+          <article>
               {/* 1. Introduction */}
               <div className={SECTION_CLASS}>
                 <h2 className={H_CLASS}>1 · Introduction</h2>
@@ -316,16 +324,11 @@ export default function PrivacyPage() {
                   . See also our{" "}
                   <Link href="/terms" className="text-corten hover:underline">
                     Terms &amp; Conditions
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/cookies" className="text-corten hover:underline">
-                    Cookie Policy
                   </Link>
                   .
                 </p>
               </div>
-            </article>
-          </MotionReveal>
+          </article>
         </div>
       </section>
     </>

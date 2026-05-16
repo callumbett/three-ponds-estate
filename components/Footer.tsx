@@ -106,14 +106,6 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/cookies"
-                  className="transition-colors duration-150 hover:text-corten"
-                >
-                  Cookie Policy
-                </Link>
-              </li>
             </ul>
             <ThemeToggle />
           </div>

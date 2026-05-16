@@ -44,8 +44,16 @@ export default function TermsPage() {
 
       <section className="bg-parchment pb-32">
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
-          <MotionReveal>
-            <article className="prose-body">
+          {/*
+           * No outer MotionReveal around the article body — the article
+           * is much taller than the viewport, and MotionReveal's
+           * `viewport={{ amount: 0.2 }}` requirement (20% of the wrapped
+           * element must be in view) can never be met for a multi-page
+           * legal document. The result is a stuck `opacity: 0` and a
+           * blank page after the title. The intro section above keeps
+           * its own MotionReveal — that one's short enough to trigger.
+           */}
+          <article className="prose-body">
               {/* 1. Definitions */}
               <div className={SECTION_CLASS}>
                 <h2 className={H_CLASS}>1 · Definitions</h2>
@@ -365,16 +373,11 @@ export default function TermsPage() {
                   . See also our{" "}
                   <Link href="/privacy" className="text-corten hover:underline">
                     Privacy Policy
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/cookies" className="text-corten hover:underline">
-                    Cookie Policy
                   </Link>
                   .
                 </p>
               </div>
-            </article>
-          </MotionReveal>
+          </article>
         </div>
       </section>
     </>
