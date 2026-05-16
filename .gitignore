@@ -39,6 +39,12 @@ yarn-error.log*
 # cowork / claude session
 .claude
 
+# reference repos (kept locally, not tracked)
+/temp_anthropic
+/temp_bencium
+/temp_vercel
+/temp_b
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
