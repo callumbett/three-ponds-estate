@@ -175,7 +175,63 @@ should re-check Speed Insights in 24–48 h to see the new P75.
   CLS-excluded. Minor visual cost: on back-nav the masthead may
   look full-size briefly until the user scrolls.
 
-### 5b. Housekeeping — stale `.next/types/` duplicates
+### 7. Story page — copy update needed
+
+The image on `/story` has been reduced ~40% (max-w-xl/2xl → max-w-[350px]/[400px])
+per the May 16 2026 design adjustment, but the **long-form story text
+below the image still needs updating**. Callum to provide replacement
+copy at a later session. Until then the original four-paragraph piece
+stays in place.
+
+### 8. Content sweep — May 16 2026 (shipped)
+
+Snapshot of the changes made in this batch so future sessions know
+which threads are closed.
+
+- **Homepage:** Story section removed (`components/Story.tsx` kept as
+  an orphan import). `Booking.PrimaryTrigger` + `Booking.MobileTrigger`
+  default labels changed from "Book your stay" → "Book Now" so the
+  CTA reads uniformly across the site. `CTA.tsx` now explicitly
+  passes `label="Book Now"`.
+- **StickyBookNow:** added an `IntersectionObserver` on `<footer>`.
+  When the footer enters the viewport, the pill fades out the same
+  way it does when the booking modal opens — so the dark-mode toggle
+  in the footer is reachable on mobile.
+- **Pods (Felix):** "barn" removed from `intro`; "matte stone" and
+  "800 gsm Turkish cotton in the bathroom" removed from `detail`.
+  `styleNote: "Scandi barn"`, `spec: "Modern Scandinavian barn"`, and
+  the FAQ "Scandi-barn-style" mention were left untouched (narrow
+  reading of the instruction — broaden if asked).
+- **Terms & Conditions:** full replacement with the new 11-section
+  document Callum provided. Subsection headings (2.1, 2.2, etc.)
+  rendered as `<h3>` for readability.
+- **Privacy Policy:** full replacement with the new 10-section
+  document. Bulleted lists used where the source content was
+  list-shaped.
+- **FAQ:** check-in / check-out combined; late-checkout language
+  removed; "private" dropped from parking; bathroom Q removed;
+  breakfast Q removed; Scandi-barn-style → Scandi-style with the
+  couples-can-still-book-the-bigger-pod nuance; "800 gsm" dropped
+  from the linen Q for consistency with the Felix copy change;
+  Aviation Museum private-flight line added; Sydney drive hyphens
+  smoothed; cancellation policy aligned with the new 5-day rule;
+  pets reduced to a flat "no"; events reduced to "email us"; canola
+  season tightened to August–September; "across multiple weekends
+  each year" removed from the Lake Centenary line for consistency
+  with the Explore page edit.
+- **Stay page:** Materials / The Land closing block removed.
+- **Story page:** image footprint reduced ~40% (see open thread #7
+  above for the copy follow-up).
+- **Explore page:** Aviation Museum site link added; Bundawarrah
+  Airbnb link removed; Junee licorice body rewritten + relocated
+  ("56 km south · 35–40 min"); Coolamon eyebrow corrected to "63 km
+  southwest · 40–45 min"; Canola Trail season tightened to
+  August–September; Lake Centenary "across multiple weekends" line
+  removed.
+- **Contact page:** "Mark or Gillian will reply, usually within the
+  hour…" paragraph removed; meta description softened to match.
+
+### 9. Housekeeping — stale `.next/types/` duplicates
 
 `tsc --noEmit` reports duplicate-identifier errors in
 `.next/types/cache-life.d 2.ts`, `routes.d 3.ts`, etc. Those filenames

@@ -79,9 +79,9 @@ export const pods: Pod[] = [
     sleeps: 4,
     styleNote: "Scandi barn",
     intro:
-      "A two-bedroom barn pod in the Scandinavian register — restrained palette, generous proportions, and a quiet that settles over you the moment you arrive.",
+      "A two-bedroom pod in the Scandinavian register — restrained palette, generous proportions, and a quiet that settles over you the moment you arrive.",
     detail:
-      "Two queen rooms sit either side of an open living and kitchen volume. The materials do the talking: pale timber, soft linen, matte stone. 800 gsm Turkish cotton in the bathroom, a fully equipped kitchen, and two decks — east for the sunrise and north for the long late-afternoon light that closes the day.",
+      "Two queen rooms sit either side of an open living and kitchen volume. The materials do the talking: pale timber, soft linen. A fully equipped kitchen, and two decks — east for the sunrise and north for the long late-afternoon light that closes the day.",
     spec: [
       { label: "Configuration", value: "2 bedrooms · 1 bathroom" },
       { label: "Sleeps", value: "4 guests" },

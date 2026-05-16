@@ -30,7 +30,7 @@ export default function CTA() {
             Same-day enquiries answered, usually within the hour.
           </p>
           <div className="mt-10">
-            <Booking.PrimaryTrigger label="Book your stay" />
+            <Booking.PrimaryTrigger label="Book Now" />
           </div>
         </MotionReveal>
       </div>

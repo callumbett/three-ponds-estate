@@ -25,6 +25,7 @@ import { Booking, useBooking } from "./booking";
  */
 export default function StickyBookNow() {
   const [visible, setVisible] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
   const reduceMotion = useReducedMotion() ?? false;
 
   // Read modal open state so we can hide ourselves while it's open.
@@ -43,7 +44,23 @@ export default function StickyBookNow() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const shown = visible && !modalOpen;
+  // Hide the pill when the footer comes into view — the footer contains
+  // the dark-mode toggle bottom-right on mobile, and a fixed pill in
+  // the same corner makes that toggle unreachable. The IntersectionObserver
+  // watches for the footer entering the viewport (any portion). When it
+  // does, the pill fades out the same way it does when the modal opens.
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setFooterInView(entry.isIntersecting),
+      { rootMargin: "0px" },
+    );
+    obs.observe(footer);
+    return () => obs.disconnect();
+  }, []);
+
+  const shown = visible && !modalOpen && !footerInView;
 
   return (
     <motion.div

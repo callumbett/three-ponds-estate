@@ -23,6 +23,10 @@ const places: Place[] = [
     title: "Temora Aviation Museum",
     body:
       "One of the world's finest collections of flying warbirds — Spitfires, the only flying Hudson, the oldest Tiger Moth in Australia. Three full-motion simulators and the Guardhouse Café.",
+    bodyLink: {
+      href: "https://www.aviationmuseum.com.au/",
+      label: "Visit their site",
+    },
     image: "/images/explore/aviation-museum.JPG",
     alt: "The Temora Aviation Museum",
   },
@@ -30,7 +34,7 @@ const places: Place[] = [
     eyebrow: "1.8 km north",
     title: "Lake Centenary",
     body:
-      "A 2.7 km lake loop, picnic lawns, swimming, fishing — and the V8 Superboat Championships across multiple weekends each year.",
+      "A 2.7 km lake loop, picnic lawns, swimming, fishing — and the V8 Superboat Championships.",
     bodyLink: {
       href: "https://www.v8superboats.com.au/calendar/",
       label: "V8 Superboats calendar",
@@ -39,7 +43,7 @@ const places: Place[] = [
     alt: "Lake Centenary, Temora",
   },
   {
-    eyebrow: "August – October",
+    eyebrow: "August – September",
     title: "The Canola Trail",
     body:
       "When spring lands, Yellow Bloom Road stops being a metaphor. Hot-air balloon flights run during the bloom — sunrise lifts, gold underneath.",
@@ -51,10 +55,6 @@ const places: Place[] = [
     title: "Bundawarrah Centre",
     body:
       "Three acres of Australiana — the NSW Ambulance Museum, Sir Donald Bradman's cottage, and Willo's Wiradjuri Keeping Place. Quiet, unhurried, quietly extraordinary.",
-    bodyLink: {
-      href: "https://www.airbnb.com.au/things-to-do/places/t-g-ChIJZ5yTcyMPGWsRJP1vKQQ9ZzQ",
-      label: "Find on Airbnb",
-    },
     image: "/images/explore/bundawarrah-centre.jpg",
     alt: "Bundawarrah Centre, Temora Rural Museum",
   },
@@ -67,7 +67,7 @@ const places: Place[] = [
     alt: "Diamonds & Dust Café, Temora",
   },
   {
-    eyebrow: "37 km west",
+    eyebrow: "63 km southwest · 40–45 min",
     title: "Coolamon Cheese Co",
     body:
       "Award-winning farmhouse cheeses, made on-site. Sample the line, take a wheel home, lunch on the deck. Worth the short drive any season.",
@@ -75,10 +75,10 @@ const places: Place[] = [
     alt: "Coolamon Cheese Co",
   },
   {
-    eyebrow: "65 km east",
+    eyebrow: "56 km south · 35–40 min",
     title: "Junee Licorice & Chocolate Factory",
     body:
-      "Australia's only certified-organic licorice and chocolate maker. Tour the factory, taste the line, leave with the best gift you've brought back from the Riverina.",
+      "Australia's only certified-organic licorice and chocolate maker. Tour the historic factory, taste the range, and leave with the Riverina's best souvenir.",
     image: "/images/explore/junee-licorice.jpg",
     alt: "Junee Licorice & Chocolate Factory",
   },

@@ -117,7 +117,7 @@ export function BookingNavTrigger({
 }
 
 export function BookingPrimaryTrigger({
-  label = "Book your stay",
+  label = "Book Now",
   className = "",
   filter,
 }: TriggerProps) {
@@ -165,7 +165,7 @@ export function BookingQuietTrigger({
 }
 
 export function BookingMobileTrigger({
-  label = "Book your stay",
+  label = "Book Now",
   className = "",
   filter,
 }: TriggerProps) {

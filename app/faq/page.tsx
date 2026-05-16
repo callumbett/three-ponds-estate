@@ -20,23 +20,19 @@ const faqs: Group[] = [
     items: [
       {
         q: "Where exactly is Three Ponds Estate?",
-        a: "We're at 79 Airport Street, Temora NSW 2666 — 500 m from the Temora Aviation Museum and roughly three minutes by car from the heart of town. From Sydney, it's a four-and-a-half-hour drive (via Cowra and Young). From Canberra, around three and a half hours. Wagga Wagga's airport is the closest commercial option — about 75 minutes by road.",
+        a: "We're at 79 Airport Street, Temora NSW 2666 — 500 m from the Temora Aviation Museum and roughly three minutes by car from the heart of town. From Sydney, it's a four and a half hour drive. From Canberra, around three and a half hours. Wagga Wagga's airport is the closest commercial option — about 75 minutes by road. Or — if you're flying private — Temora airport is walking distance from the property.",
       },
       {
-        q: "What time can I check in?",
-        a: "Private check-in is from 2 pm. We send check-in instructions and the gate code by SMS the morning of arrival, so you can let yourself in whenever you're ready after 2 pm — no front-desk wait, no key collection.",
-      },
-      {
-        q: "And check-out?",
-        a: "By 10 am. Late check-out can sometimes be arranged depending on the next booking — just ask a day or two ahead.",
+        q: "What are the check-in and check-out times?",
+        a: "Check-in is from 2 pm, and check-out by 10 am. We send check-in instructions prior to arrival so you can let yourself in whenever you're ready after 2 pm — no front-desk wait, no key collection.",
       },
       {
         q: "Is there a no-Saturday-checkout policy?",
-        a: "Yes — we don't accept check-outs on Saturdays. Most stays are Friday-to-Sunday or Sunday-to-Friday, which lets us do a thorough mid-week reset.",
+        a: "Yes — we don't accept Saturday check-outs.",
       },
       {
         q: "Where do I park?",
-        a: "Each pod has its own private parking space directly out front. No shared lot, no walking with luggage.",
+        a: "Each pod has its own parking space directly out front. No shared lot, no walking with luggage.",
       },
     ],
   },
@@ -45,7 +41,7 @@ const faqs: Group[] = [
     items: [
       {
         q: "How are the three pods different?",
-        a: "All three open east for sunrise, and all three share the fire pit, BBQ, and the same wide horizon. The Ophir is a one-bedroom, sleeps two, Hamptons-minimal in feel — best for couples. The Felix and Uphaz are two-bedroom Scandi-barn-style pods, each sleeping four, with both an east-facing deck for the morning AND a north-facing deck for the long late-afternoon light.",
+        a: "All three open east for sunrise, and all three share the fire pit, BBQ, and the same wide horizon. The Ophir is a one-bedroom, sleeps two, Hamptons-minimal in feel. The Felix and Uphaz are two-bedroom Scandi-style pods, each sleeping four — well suited to anyone wanting a roomier feel, whether that's a family, friends, or a couple after more space. Both add a north-facing deck for the long late-afternoon light alongside the east-facing morning deck.",
       },
       {
         q: "Are the pods family-friendly?",
@@ -53,15 +49,11 @@ const faqs: Group[] = [
       },
       {
         q: "Are the pods accessible?",
-        a: "There are a small number of steps onto each deck, and the bathroom doors aren't wheelchair-width. If you have specific accessibility needs, please email us before booking and we'll be honest about what works and what doesn't.",
-      },
-      {
-        q: "What's the bathroom like?",
-        a: "Modern, full-height tiled, with 800 gsm Turkish cotton towels and quiet bath products from a local Australian maker.",
+        a: "There are a small number of steps onto each deck. If you have specific accessibility needs, please email us before booking and we'll be honest about what works and what doesn't.",
       },
       {
         q: "Is there a kitchen?",
-        a: "Each pod has a fully equipped kitchen — Smeg and Artusi appliances, full cookware, glassware, and the basics (oil, salt, pepper, condiments). Bring your own groceries; the IGA in town stocks everything you'd expect.",
+        a: "Each pod has a fully equipped kitchen — Smeg and Artusi appliances, full cookware, glassware, and the basics (oil, salt, pepper, condiments). Bring your own groceries; the IGA and Woolworths in town stock everything you'd expect.",
       },
     ],
   },
@@ -69,20 +61,16 @@ const faqs: Group[] = [
     group: "What's included",
     items: [
       {
-        q: "Is breakfast provided?",
-        a: "We don't run an in-house breakfast service, but we leave a small welcome basket on arrival — local sourdough, jam, and tea/coffee — to get the first morning started. After that, the kitchen is yours.",
-      },
-      {
         q: "Is there Wi-Fi?",
         a: "Yes, fast Wi-Fi in all three pods. Strong enough for a video meeting if you need to take one — though most guests come here to stop taking them.",
       },
       {
         q: "Linen and towels?",
-        a: "All linen, bath towels (800 gsm Turkish cotton), and a hair-dryer are provided. You don't need to bring any of that.",
+        a: "All linen, bath towels, and a hair-dryer are provided. You don't need to bring any of that.",
       },
       {
         q: "Heating and cooling?",
-        a: "Reverse-cycle climate control in every pod. Riverina summers can be hot and winters cool — both are well-handled.",
+        a: "Reverse-cycle climate control in the living area and bedrooms of every pod. Riverina summers can be hot and winters cool — both are well-handled.",
       },
     ],
   },
@@ -91,11 +79,11 @@ const faqs: Group[] = [
     items: [
       {
         q: "What's your cancellation policy?",
-        a: "Cancellations more than 14 days before check-in receive a full refund less any third-party payment fees. Within 14 days, the booking is non-refundable unless we can re-let the dates. See the Terms & Conditions for the full version.",
+        a: "Full refund for cancellations made five or more days before check-in. Non-refundable inside that window. See the Terms & Conditions for the full version.",
       },
       {
-        q: "Can I book directly to avoid OTA commission?",
-        a: "Yes — direct bookings via this site are the same rate (or better) than Airbnb / Booking.com without their commission. Use the Book Now button anywhere on the site, or email info@threepondsestate.com for help.",
+        q: "How can I get the cheapest rate?",
+        a: "Book direct. Our website is always the cheapest option over third parties like Airbnb. Use the Book Now button anywhere on the site, or email info@threepondsestate.com.",
       },
       {
         q: "Do you offer gift vouchers?",
@@ -103,11 +91,11 @@ const faqs: Group[] = [
       },
       {
         q: "Are pets allowed?",
-        a: "We're not currently set up for pets. If you'd like to bring one, please email us before booking — there are some exceptions for very well-trained dogs, by prior arrangement.",
+        a: "No — pets aren't permitted at the property.",
       },
       {
         q: "Are events or parties OK?",
-        a: "The pods are designed for quiet stays. Day visitors who aren't staying overnight need to be cleared with us in advance, and the property isn't suited to weddings, large gatherings, or parties.",
+        a: "The pods are designed for quiet stays. For events, please email info@threepondsestate.com.",
       },
     ],
   },
@@ -116,11 +104,11 @@ const faqs: Group[] = [
     items: [
       {
         q: "What's worth doing nearby?",
-        a: "The Temora Aviation Museum is 500 m away — one of the world's finest collections of flying warbirds. Lake Centenary is 1.8 km north for swimming, walking, fishing, and (across multiple weekends each year) the V8 Superboat Championships. The Canola Trail in spring is unforgettable. See our Explore page for the full list.",
+        a: "The Temora Aviation Museum is 500 m away — one of the world's finest collections of flying warbirds. Lake Centenary is 1.8 km north for swimming, walking, fishing, and the V8 Superboat Championships. The Canola Trail in spring is unforgettable. See our Explore page for the full list.",
       },
       {
         q: "When's the best time of year to visit?",
-        a: "Spring (August–October) is canola season — fields of yellow stretching to the horizon. Summer is long, warm evenings on the deck. Autumn is crisp and golden. Winter has the shortest days and the longest fires. Each has its own thing.",
+        a: "Spring (August–September) is canola season — fields of yellow stretching to the horizon. Summer is long, warm evenings on the deck. Autumn is crisp and golden. Winter has the shortest days and the longest fires. Each has its own thing.",
       },
       {
         q: "Is there phone signal?",

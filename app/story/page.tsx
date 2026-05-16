@@ -23,16 +23,19 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Editorial image — circle treatment matching the homepage Story block */}
+      {/* Editorial image — circle treatment matching the homepage Story block.
+          Sized at roughly 60% of the previous footprint (max-w-xl → 350 px,
+          max-w-2xl → 400 px) per a May 2026 design adjustment that wanted
+          the image to read as a more restrained visual moment in the page. */}
       <section className="bg-parchment">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
           <MotionReveal>
-            <div className="relative mx-auto aspect-square w-full max-w-xl overflow-hidden rounded-full sm:max-w-2xl">
+            <div className="relative mx-auto aspect-square w-full max-w-[350px] overflow-hidden rounded-full sm:max-w-[400px]">
               <Image
                 src="/images/story/Bett77.jpg"
                 alt="Three Ponds Estate at the close of day"
                 fill
-                sizes="(min-width: 600px) 400px, 100vw"
+                sizes="(min-width: 600px) 400px, 350px"
                 quality={85}
                 className="object-cover"
               />

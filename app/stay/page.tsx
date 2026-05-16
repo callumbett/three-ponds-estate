@@ -92,34 +92,6 @@ export default function StayPage() {
         </div>
       </section>
 
-      {/* Materials & The Land — moved here from /story so the build /
-          land philosophy reads alongside the pods themselves. */}
-      <section className="bg-parchment-deep py-24 sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 sm:px-10 md:grid-cols-2">
-          <MotionReveal>
-            <SectionEyebrow>Materials</SectionEyebrow>
-            <h3 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
-              Pale timber, matte stone, soft linen.
-            </h3>
-            <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
-              The interior palette stays close to the land outside. We chose
-              materials that age slowly, repair easily, and feel right under
-              bare feet at six in the morning.
-            </p>
-          </MotionReveal>
-          <MotionReveal delay={0.1}>
-            <SectionEyebrow>The land</SectionEyebrow>
-            <h3 className="mt-5 font-serif text-3xl leading-tight sm:text-4xl">
-              Three ponds, an open paddock, a long sky.
-            </h3>
-            <p className="mt-6 text-base leading-relaxed text-charcoal-soft">
-              The pods are sited to keep the land uninterrupted: each is small,
-              detached, and quietly placed. Walk from your deck to a pond, to
-              the fire pit, or out to the cycling track that fronts the road.
-            </p>
-          </MotionReveal>
-        </div>
-      </section>
     </>
   );
 }

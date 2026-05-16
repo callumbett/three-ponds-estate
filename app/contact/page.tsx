@@ -6,7 +6,7 @@ import MotionReveal from "@/components/MotionReveal";
 export const metadata: Metadata = {
   title: "Contact & Book",
   description:
-    "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry. Mark and Gillian usually reply within the hour.",
+    "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
 };
 
 export default function ContactPage() {
@@ -110,11 +110,6 @@ export default function ContactPage() {
               <h2 className="mt-4 font-serif text-3xl leading-[1.1] tracking-[-0.015em] sm:text-4xl">
                 Tell us a little<br />about your trip.
               </h2>
-              <p className="prose-body mt-5 max-w-md">
-                Mark or Gillian will reply, usually within the hour during
-                the day. If we&apos;re away for the morning we&apos;ll come
-                back to you in the afternoon — never longer than that.
-              </p>
               <div className="mt-10">
                 <EnquiryForm />
               </div>
