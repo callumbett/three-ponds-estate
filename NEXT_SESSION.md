@@ -35,20 +35,55 @@ domain `threepondsestate.com.au` is not yet pointed at Vercel.
 
 ## How code reaches production
 
+**Branch model (May 16 2026 onwards — Vercel Pro):**
+
+- `main` is the **staging** branch. Every push to `main` creates a
+  Vercel **preview deployment** with its own URL. Use this to test.
+- `production` is the **production** branch. Vercel only deploys to
+  the live site when commits land on `production`.
+- Vercel's "Production Branch" setting (Settings → Git → Production
+  Branch) is set to `production`, not `main`. Don't change it back
+  without thinking — that's what makes `main` safe to push to.
+
 All pushes happen from the **host Terminal**, not the Cowork sandbox.
 The sandbox has no pnpm network access and may have stale `.git/index.lock`
-files. Standard flow:
+files.
+
+**Standard flow — work and preview:**
 
 ```
 cd /Users/callumbett/Documents/three-ponds-estate
 rm -f .git/index.lock              # clear stale lock if needed
+git checkout main                  # ensure on staging branch
 git add <files>
 git commit -m "..."
-git push
+git push origin main               # → Vercel preview deployment
 ```
 
-Vercel auto-deploys from `main`. **zsh treats `[brackets]` as globs** —
-always quote paths containing them, e.g. `"app/stay/[slug]/page.tsx"`.
+Vercel posts the preview URL on the commit status in GitHub (and in
+the Vercel dashboard Deployments tab). Open it, confirm the change.
+
+**Promoting a preview to production:**
+
+Two equivalent options once you're happy with a preview:
+
+1. *Vercel dashboard:* find the preview deployment, three-dot menu →
+   **Promote to Production**. Fastest, no terminal involved.
+2. *Terminal — fast-forward `production` to `main`:*
+
+   ```
+   git checkout production
+   git pull
+   git merge --ff-only main
+   git push origin production       # → Vercel production deployment
+   git checkout main
+   ```
+
+   The `--ff-only` flag refuses anything other than a clean
+   fast-forward, which is exactly the contract you want.
+
+**zsh gotcha:** `[brackets]` are globs — always quote paths that
+contain them, e.g. `"app/stay/[slug]/page.tsx"`.
 
 ## Current Status (May 2026)
 
