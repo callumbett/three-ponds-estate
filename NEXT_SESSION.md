@@ -90,10 +90,29 @@ whether there's a different parameter to restrict the displayed rooms.
 - The Felix: 109124
 - The Uphaz: 109123
 
+**Reviewed against the SiteMinder integration PDF (May 16 2026):**
+The spec confirms our attribute, value type, and embed wiring are all
+exactly right per the doc. The doc is explicit that
+`data-query-room_type` on an `embed` widget should restrict the
+displayed inventory (and surface a "Show all rates" opt-out below the
+rates) — so either the embed running for our property doesn't honour
+that on this widget type, or there's something specific to our config
+we haven't found.
+
+**One additional path tried client-side (May 16 2026):** the doc says
+the embed widget *also* reads recognised query parameters from the
+**parent page URL** (page 10). We now push `?room_type=<id>` onto the
+page URL via `history.replaceState` when the modal opens with a filter,
+and restore on close. This is a no-history, no-navigation change that
+exercises the second input path the doc calls out, in case the
+data-attribute path isn't honoured for our embed version. If this
+also fails to filter the display, the issue is conclusively on
+SiteMinder's side.
+
 **When SiteMinder replies:** if the right parameter is different (e.g.
 `data-only_room_type`), it's a one-line change in
 `components/booking/BookingModal.tsx` — rename `"data-query-room_type"`
-to whatever they say.
+to whatever they say (and update the parent-URL push to match).
 
 ### 2. SiteMinder support — mobile horizontal drag
 
@@ -121,14 +140,24 @@ Deferred until the domain is live. Not urgent.
 
 ### 6. Housekeeping
 
-- `coolamon-cheese.jpg` in `public/images/explore/` may still be 23 MB
-  — needs resizing in macOS Preview to 2400 px long edge, 80% JPG
-  quality (target ~500 KB) before committing. **Check before next push.**
-- `temp_anthropic`, `temp_vercel`, `temp_bencium` directories are
-  reference repos that show up as broken submodules. Vercel warns on
-  every build but the warning doesn't fail the build. Cleanup is two
-  `git rm --cached` commands + a `.gitignore` entry. Deferred until
-  someone has time.
+- ~~`coolamon-cheese.jpg` resize~~ — **done** (520 KB, May 2026).
+- ~~`bundawarrah-centre.jpg` resize~~ — **done** (240 KB, May 2026).
+- ~~`lake-centenary.jpg` resize~~ — **done** (671 KB, May 2026 —
+  slightly over the 500 KB hero target, acceptable).
+- **Submodule cleanup — in flight (May 16 2026).** `.gitignore`
+  updated locally to ignore `/temp_anthropic`, `/temp_bencium`,
+  `/temp_vercel`, `/temp_b`. Still needs the following on the host:
+
+  ```
+  cd /Users/callumbett/Documents/three-ponds-estate
+  git rm --cached temp_anthropic temp_bencium temp_vercel
+  git add .gitignore
+  git commit -m "Remove orphan submodule pointers; ignore temp_ reference repos"
+  git push
+  ```
+
+  After this, Vercel's submodule warning should disappear. The folders
+  stay on disk — they're just no longer tracked.
 - Orphan files in the codebase (e.g. `components/Amenities.tsx` is no
   longer used on the homepage) — kept intentionally for now in case we
   bring them back.

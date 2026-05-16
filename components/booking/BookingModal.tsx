@@ -46,6 +46,38 @@ export default function BookingModal() {
     return () => window.clearTimeout(t);
   }, [open, useEmbed, filter?.roomTypeId]);
 
+  // Belt-and-braces room_type plumbing — per the SiteMinder Booking
+  // Engine Website Integration Guide (page 10):
+  //
+  //   "When the embedded version of the Booking Engine is loaded, it
+  //    looks for recognised query parameters in the URL of the parent
+  //    page containing the widget code."
+  //
+  // i.e. the embed widget reads query params from BOTH the element's
+  // `data-query-*` attributes AND the parent page URL. The data
+  // attribute alone hasn't been filtering the displayed inventory for
+  // us; pushing the param onto the parent URL exercises the second
+  // path the doc explicitly calls out. `replaceState` (not pushState)
+  // so the change is silent — no browser history entry, no Next.js
+  // navigation triggered. Restored on close so the user's URL bar
+  // stays clean.
+  useEffect(() => {
+    if (!open || !useEmbed) return;
+    if (typeof window === "undefined") return;
+    if (!filter?.roomTypeId) return;
+
+    const originalSearch = window.location.search;
+    const params = new URLSearchParams(originalSearch);
+    params.set("room_type", String(filter.roomTypeId));
+    const next = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
+    window.history.replaceState(null, "", next);
+
+    return () => {
+      const restored = `${window.location.pathname}${originalSearch}${window.location.hash}`;
+      window.history.replaceState(null, "", restored);
+    };
+  }, [open, useEmbed, filter?.roomTypeId]);
+
   // Preconnect / dns-prefetch on the underlying booking host so the
   // first request feels instant once the user has interacted with the
   // page. React 19 hoists <link> elements to <head>.
@@ -222,7 +254,7 @@ export default function BookingModal() {
                     data-mobile_fullscreen="false"
                     data-use_parent="true"
                     {...(filter?.roomTypeId
-                      ? { "data-query-room_type": filter.roomTypeId }
+                      ? { "data-query-room_type": String(filter.roomTypeId) }
                       : {})}
                   />
                 ) : url ? (
