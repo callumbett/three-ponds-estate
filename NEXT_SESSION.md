@@ -352,6 +352,24 @@ For any photo uploaded going forward:
 4. **23 MB images.** Resize before committing — git keeps every version
    of every file forever, even after replacement.
 
+## Guest-only PDFs (site maps)
+
+Per-pod site-layout PDFs live under `public/site-maps/` and are
+served as static assets:
+
+- `https://threepondsestate.com.au/site-maps/felix-site-layout.pdf`
+- `https://threepondsestate.com.au/site-maps/ophir-site-layout.pdf`
+- `https://threepondsestate.com.au/site-maps/uphaz-site-layout.pdf`
+
+They're linked from the pre-arrival check-in email template, not
+from the site itself. `public/robots.txt` adds `Disallow: /site-maps/`
+so they don't appear in Google's index. Anyone with the URL can
+still open the PDF — robots.txt isn't authentication. If a guest
+needs true gated access later, that's a separate piece of work.
+
+To add a new map: drop the PDF into `public/site-maps/` with the
+naming pattern `<pod-slug>-site-layout.pdf`, then commit + push.
+
 ## Quick Pointers
 
 - Pod data: `lib/pods.ts`

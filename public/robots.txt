@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+# Allow general crawling of the marketing site so the property gets
+# indexed for organic search, but keep the guest-only site-map PDFs
+# out of search results. They're still directly accessible by URL —
+# robots.txt only stops well-behaved crawlers from listing them.
+
+User-agent: *
+Allow: /
+
+# Guest pre-arrival PDFs (linked from check-in email, not navigable
+# from the site). Disallow so they don't appear in Google's index.
+Disallow: /site-maps/
