@@ -11,7 +11,7 @@ import CTA from "@/components/CTA";
  *   StatsStrip  — 3 / 1.8 km / 500 m / 3 mins
  *   PodSection  — three archways, the three pods
  *   Reviews     — Google / Airbnb / Booking.com aggregator
- *   CTA         — "The country is wide. Pick a pod." closing
+ *   CTA         — "The country is wide. Settle into your place within it." closing
  *
  * `components/Story.tsx` and `components/Amenities.tsx` are no longer
  * used on the homepage but are left in the codebase in case we want

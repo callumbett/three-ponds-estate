@@ -54,7 +54,7 @@ const places: Place[] = [
     eyebrow: "In town",
     title: "Bundawarrah Centre",
     body:
-      "Three acres of Australiana — the NSW Ambulance Museum, Sir Donald Bradman's cottage, and Willo's Wiradjuri Keeping Place. Quiet, unhurried, quietly extraordinary.",
+      "Three acres of Australiana — the NSW Ambulance Museum, Sir Donald Bradman's cottage, and Willo's Wiradjuri Keeping Place.",
     image: "/images/explore/bundawarrah-centre.jpg",
     alt: "Bundawarrah Centre, Temora Rural Museum",
   },
@@ -62,7 +62,7 @@ const places: Place[] = [
     eyebrow: "In town",
     title: "Diamonds & Dust Café",
     body:
-      "A locally-loved kitchen for breakfast and lunch. Heritage room, warm welcome, the kind of place where you stay longer than you planned.",
+      "Stunning jewellery for every expression. A locally-loved kitchen for breakfast and lunch. Heritage room, warm welcome, the kind of place where you stay longer than you planned.",
     image: "/images/explore/diamonds-and-dust.jpg",
     alt: "Diamonds & Dust Café, Temora",
   },
@@ -94,7 +94,7 @@ const places: Place[] = [
     eyebrow: "3 minutes by car",
     title: "Temora town",
     body:
-      "Heritage main street, country pubs, and the cafés we send guests to. The friendliest town in the state, locals say.",
+      "Heritage main street, country pubs, and the cafés we send guests to. The friendliest town in the state.",
     image: "/images/explore/temora-1.webp",
     alt: "Temora town",
   },

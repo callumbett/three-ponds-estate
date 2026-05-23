@@ -16,19 +16,28 @@ type Group = {
 
 const faqs: Group[] = [
   {
+    group: "Rates & longer stays",
+    items: [
+      {
+        q: "Do you discount longer stays?",
+        a: "If you'll be visiting for an extended period, please email info@threepondsestate.com with your check-in and check-out dates and the number of pods required, and we'll put together a specialised rate for you.",
+      },
+    ],
+  },
+  {
     group: "Getting here & checking in",
     items: [
       {
         q: "Where exactly is Three Ponds Estate?",
-        a: "We're at 79 Airport Street, Temora NSW 2666 — 500 m from the Temora Aviation Museum and roughly three minutes by car from the heart of town. From Sydney, it's a four and a half hour drive. From Canberra, around three and a half hours. Wagga Wagga's airport is the closest commercial option — about 75 minutes by road. Or — if you're flying private — Temora airport is walking distance from the property.",
+        a: "Three Ponds Estate is located at 79 Airport Street, Temora NSW 2666, just 500 m from the Temora Aviation Museum and a 3-minute drive from the town centre. We're 4.5 hours from Sydney and 2.5 hours from Canberra. The nearest commercial airport is Wagga Wagga, a 70-minute drive. Temora Airport is within walking distance for private arrivals.",
       },
       {
         q: "What are the check-in and check-out times?",
         a: "Check-in is from 2 pm, and check-out by 10 am. We send check-in instructions prior to arrival so you can let yourself in whenever you're ready after 2 pm — no front-desk wait, no key collection.",
       },
       {
-        q: "Is there a no-Saturday-checkout policy?",
-        a: "Yes — we don't accept Saturday check-outs.",
+        q: "I really want to stay but need a Saturday check-out. Would you consider?",
+        a: "While we don't allow Saturday check-outs via our website, we're always happy to consider. Please email info@threepondsestate.com with your check-in and check-out dates, as well as which pods you'd like to book, and we'll do our best to accommodate.",
       },
       {
         q: "Where do I park?",
@@ -41,7 +50,7 @@ const faqs: Group[] = [
     items: [
       {
         q: "How are the three pods different?",
-        a: "All three open east for sunrise, and all three share the fire pit, BBQ, and the same wide horizon. The Ophir is a one-bedroom, sleeps two, Hamptons-minimal in feel. The Felix and Uphaz are two-bedroom Scandi-style pods, each sleeping four — well suited to anyone wanting a roomier feel, whether that's a family, friends, or a couple after more space. Both add a north-facing deck for the long late-afternoon light alongside the east-facing morning deck.",
+        a: "All three open east for sunrise, and all three share the fire pit, BBQ, and the same wide horizon. The Ophir is a one-bedroom, sleeps two, Hamptons-minimal in feel. The Felix and Uphaz are two-bedroom Scandi-style pods, each sleeping four — well suited to anyone wanting a roomier feel, whether that's a family, friends, a couple after more space, or work colleagues. Both add a north-facing deck for the long late-afternoon light alongside the east-facing morning deck.",
       },
       {
         q: "Are the pods family-friendly?",
@@ -66,7 +75,7 @@ const faqs: Group[] = [
       },
       {
         q: "Linen and towels?",
-        a: "All linen, bath towels, and a hair-dryer are provided. You don't need to bring any of that.",
+        a: "All linen, bath towels and a hair dryer are provided.",
       },
       {
         q: "Heating and cooling?",
@@ -91,7 +100,7 @@ const faqs: Group[] = [
       },
       {
         q: "Are pets allowed?",
-        a: "No — pets aren't permitted at the property.",
+        a: "For a range of considerations, Three Ponds Estate maintains a strict no-pets policy.",
       },
       {
         q: "Are events or parties OK?",

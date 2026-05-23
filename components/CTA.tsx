@@ -23,7 +23,7 @@ export default function CTA() {
           <p className="eyebrow">Book direct</p>
           <h2 className="mt-5 font-serif text-4xl leading-tight sm:text-6xl">
             The country is wide.<br />
-            Pick a pod.
+            Settle into your place within it.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-soft">
             Direct rates from AU$230 a night. No check-out on Saturdays.

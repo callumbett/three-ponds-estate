@@ -38,7 +38,7 @@ export const pods: Pod[] = [
     intro:
       "A single, considered room of pale timber and clean line. The Ophir faces east — built for the kind of slow morning that begins with light spilling across the deck before anyone else is awake.",
     detail:
-      "Pared back without being austere. A plush queen, warm bedside lamps, an airy living area in natural materials, and a kitchen quietly equipped with Smeg and Artusi. The dining table opens straight onto the eastern deck, where the day arrives over open paddock.",
+      "Pared back without feeling austere. A plush queen, warm bedside lighting, an airy living space layered in natural materials, and a quietly equipped Artusi kitchen. The dining area opens directly onto the eastern deck, where the day arrives gently across open country.",
     spec: [
       { label: "Configuration", value: "1 bedroom · 1 bathroom" },
       { label: "Sleeps", value: "2 guests" },
@@ -81,7 +81,7 @@ export const pods: Pod[] = [
     intro:
       "A two-bedroom pod in the Scandinavian register — restrained palette, generous proportions, and a quiet that settles over you the moment you arrive.",
     detail:
-      "Two queen rooms sit either side of an open living and kitchen volume. The materials do the talking: pale timber, soft linen. A fully equipped kitchen, and two decks — east for the sunrise and north for the long late-afternoon light that closes the day.",
+      "Two queen rooms sit either side of an open living space and fully equipped kitchen featuring Smeg. Pale timber and soft linen create a calm, understated warmth throughout. Two decks invite the outdoors in — east for sunrise mornings, north for the long late-afternoon light that gently closes the day.",
     spec: [
       { label: "Configuration", value: "2 bedrooms · 1 bathroom" },
       { label: "Sleeps", value: "4 guests" },
@@ -125,7 +125,7 @@ export const pods: Pod[] = [
     intro:
       "Sister to The Felix and shaped by the same architectural language — two decks, two aspects, the long Riverina day held from sunrise to sunset.",
     detail:
-      "The Uphaz mirrors the Felix in plan and finish: two queen rooms, a single open living volume, the same restrained material palette. Two decks too — east for the morning, north for the late-afternoon light that closes the day in slow gold.",
+      "The Uphaz mirrors the Felix in both plan and finish: two queen bedrooms, a single open living space, with Smeg fitted kitchen and the same restrained material palette. Twin decks extend the experience outdoors — east-facing for the morning light, and north-facing for the slow golden glow that closes the day.",
     spec: [
       { label: "Configuration", value: "2 bedrooms · 1 bathroom" },
       { label: "Sleeps", value: "4 guests" },

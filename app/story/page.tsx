@@ -51,26 +51,60 @@ export default function StoryPage() {
             <p className="eyebrow">Mark &amp; Gillian</p>
             <div className="prose-body mt-8">
               <p>
-                For years, Mark and Gillian shared this land with friends and
-                family — the kind of unhurried hosting that doesn&apos;t need a
-                brochure. The three ponds at the back of the property gave the
-                place its name long before there was anything to book.
+                The story of Three Ponds Estate began with a shared love for
+                the land.
               </p>
               <p>
-                In the spring of 2020, Gillian decided it was time. The decision
-                was less about building a business and more about giving more
-                people the slow morning, the long horizon, the country at
-                closing time.
+                For Gil and Mark, growing up in the country wasn&apos;t just a
+                childhood memory — it was a way of life they were determined to
+                pass on. In 1993, that dream took root when they purchased
+                their 4.4-hectare property on Airport Street with its little
+                run-down miner&apos;s cottage, which quickly became a cosy home
+                and a place to welcome family and friends.
               </p>
               <p>
-                The three pods that followed share an architectural language —
-                pale timber, soft linen, restrained line. Each opens east to
-                hold the sunrise; The Felix and Uphaz add a second, north-facing
-                deck so the long late-afternoon light closes the day too.
+                Drawn to its sweeping rural vistas and the rare balance of
+                wide open spaces within reach of town, they transformed the
+                acreage into a family haven, filled with horses, children, and
+                the quiet rhythms of nature.
               </p>
               <p>
-                The brief was simple: leave the country exactly as you found it,
-                and build for guests who want the same.
+                For decades, Gil harboured a quiet ambition. Known for her love
+                of hosting, she envisioned extending the warmth she shared with
+                friends and family to travellers in search of a short-term
+                sanctuary.
+              </p>
+              <p>
+                She didn&apos;t just want to build accommodation; she wanted to
+                create a feeling — a place where the pace of life slows down
+                the moment you drive through the gates. After years of
+                dreaming, that vision gained traction in the spring of 2020,
+                when it became apparent it was the right timing.
+              </p>
+              <p>
+                Today, Three Ponds Estate is a destination of refined
+                simplicity. Offering three Scandinavian-inspired barn-style
+                pods:
+              </p>
+              <ul className="mt-5 list-disc space-y-1 pl-6 marker:text-corten/70">
+                <li>The Ophir</li>
+                <li>The Felix</li>
+                <li>The Uphaz</li>
+              </ul>
+              <p>
+                Thoughtfully designed to blend contemporary luxury with the
+                softly undulating rural landscape, each pod offers a private
+                haven for couples, families, and business guests alike.
+              </p>
+              <p>
+                The pods sit lightly on the country they love, their simple
+                forms grounded in natural materials and open space, where
+                changing light, wide skies, and the rhythm of the land define
+                the experience.
+              </p>
+              <p>
+                A stunning blend of tiny-home simplicity and subtle desert
+                luxe, echoed throughout the landscaping.
               </p>
             </div>
           </MotionReveal>
