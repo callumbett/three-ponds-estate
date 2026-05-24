@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import Nav from "@/components/Nav";
@@ -95,6 +96,7 @@ export default function RootLayout({
           <StickyBookNow />
           <Booking.Modal />
         </Booking.Provider>
+        <Analytics />
         <SpeedInsights />
         {/*
          * SiteMinder / TheBookingButton widget library. Loads after
