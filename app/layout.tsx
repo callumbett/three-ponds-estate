@@ -108,6 +108,18 @@ export default function RootLayout({
           src="https://widget.siteminder.com/ibe.min.js"
           strategy="afterInteractive"
         />
+
+        {/*
+         * Ahrefs Web Analytics — privacy-friendly traffic + keyword
+         * analytics, primarily used for SEO insight (alongside Google
+         * Analytics for behavioural data). Loaded afterInteractive so
+         * it doesn't compete with page render.
+         */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="L4F2tSHrsqodY/YJpg8TjQ"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
