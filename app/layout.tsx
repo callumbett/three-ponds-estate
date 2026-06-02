@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -172,6 +173,14 @@ export default function RootLayout({
         </Booking.Provider>
         <Analytics />
         <SpeedInsights />
+
+        {/*
+         * Google Analytics 4. Loaded via @next/third-parties which uses
+         * `next/script` with the optimal loading strategy under the
+         * hood — non-blocking, no impact on LCP/CLS. Property:
+         * threepondsestate.com (created 2026-06).
+         */}
+        <GoogleAnalytics gaId="G-8LCXR9LWH5" />
         {/*
          * SiteMinder / TheBookingButton widget library. Loads after
          * page interactivity so it doesn't block the LCP. It scans the
