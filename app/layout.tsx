@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import StickyBookNow from "@/components/StickyBookNow";
+import ClickTracker from "@/components/ClickTracker";
 import { Booking } from "@/components/booking";
 import "./globals.css";
 
@@ -195,6 +196,7 @@ gtag('config', 'G-8LCXR9LWH5');`,
           <Footer />
           <StickyBookNow />
           <Booking.Modal />
+          <ClickTracker />
         </Booking.Provider>
         <Analytics />
         <SpeedInsights />

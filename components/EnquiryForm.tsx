@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type FormState = "idle" | "submitting" | "sent" | "error";
 
@@ -10,10 +11,16 @@ export default function EnquiryForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("submitting");
+    const form = e.target as HTMLFormElement;
+    // Capture the pod choice (if any) before reset so we can attach it
+    // to the GA4 conversion event below — gives us per-pod enquiry data.
+    const podSelect = form.elements.namedItem("pod") as HTMLSelectElement | null;
+    const podChoice = podSelect?.value || "no_preference";
     // No backend wired yet — pretend-await so the UI feels real for design review.
     await new Promise((r) => setTimeout(r, 700));
     setState("sent");
-    (e.target as HTMLFormElement).reset();
+    trackEvent("contact_submit", { pod_choice: podChoice });
+    form.reset();
   }
 
   if (state === "sent") {

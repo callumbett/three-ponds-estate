@@ -12,6 +12,7 @@ import {
   type BookingContextValue,
   type BookingFilter,
 } from "./context";
+import { trackEvent } from "@/lib/analytics";
 
 type Props = { children: ReactNode };
 
@@ -41,6 +42,12 @@ export default function BookingProvider({ children }: Props) {
     // previous pod-specific scope; pod-page buttons set their own.
     setFilter(nextFilter ?? null);
     setOpen(true);
+    // GA4 conversion event. Captures every Book Now click on the site —
+    // hero, nav, sticky mobile, pod page, FAQ CTA, footer CTA — because
+    // they all funnel through this single action.
+    trackEvent("book_now_click", {
+      pod_filter: nextFilter?.roomTypeId ?? "any",
+    });
   }, []);
   const closeModal = useCallback(() => setOpen(false), []);
 
