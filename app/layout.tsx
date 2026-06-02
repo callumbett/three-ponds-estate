@@ -42,7 +42,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://threepondsestate.com.au"),
+  metadataBase: new URL("https://threepondsestate.com"),
   title: {
     default: "Three Ponds Estate — Boutique Architectural Sanctuary, Temora NSW",
     template: "%s · Three Ponds Estate",
@@ -83,6 +83,80 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('tpe-theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+
+        {/*
+         * LodgingBusiness JSON-LD structured data.
+         *
+         * Tells Google explicitly that Three Ponds Estate is
+         * accommodation in Temora NSW with three rentable units. This
+         * unlocks rich-result eligibility in search (knowledge panel,
+         * map results, structured snippets) and is the single biggest
+         * on-page SEO investment for a hospitality brand.
+         *
+         * Schema reference: https://schema.org/LodgingBusiness
+         * Tested against: https://search.google.com/test/rich-results
+         */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LodgingBusiness",
+              "@id": "https://threepondsestate.com/#lodging",
+              name: "Three Ponds Estate",
+              description:
+                "Boutique architectural sanctuary in Temora, NSW. Three Scandinavian-style pods set against the open Riverina country, 500 m from the Temora Aviation Museum and three minutes from town.",
+              url: "https://threepondsestate.com",
+              telephone: "+61403433300",
+              email: "info@threepondsestate.com",
+              image: [
+                "https://threepondsestate.com/images/pods/the-ophir/DSC01766.jpg",
+                "https://threepondsestate.com/images/pods/the-felix/DSC01805.jpg",
+                "https://threepondsestate.com/images/pods/the-uphaz/DSC01832.jpg",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "79 Airport Street",
+                addressLocality: "Temora",
+                addressRegion: "NSW",
+                postalCode: "2666",
+                addressCountry: "AU",
+              },
+              priceRange: "$$",
+              numberOfRooms: 3,
+              petsAllowed: false,
+              checkinTime: "14:00",
+              checkoutTime: "10:00",
+              amenityFeature: [
+                {
+                  "@type": "LocationFeatureSpecification",
+                  name: "Free Wi-Fi",
+                  value: true,
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  name: "Free parking",
+                  value: true,
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  name: "Fire pit",
+                  value: true,
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  name: "BBQ",
+                  value: true,
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  name: "Reverse-cycle climate control",
+                  value: true,
+                },
+              ],
+            }),
           }}
         />
       </head>

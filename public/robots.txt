@@ -10,3 +10,7 @@ Allow: /
 # Guest pre-arrival PDFs (linked from check-in email, not navigable
 # from the site). Disallow so they don't appear in Google's index.
 Disallow: /site-maps/
+
+# Sitemap location — helps Google, Bing, etc. discover the full
+# page list immediately on first crawl.
+Sitemap: https://threepondsestate.com/sitemap.xml
