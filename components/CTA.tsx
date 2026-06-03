@@ -9,7 +9,7 @@ export default function CTA() {
       <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
         <Image
           src="/images/cta/DSC01776.jpg"
-          alt=""
+          alt="The open Riverina countryside viewed from Three Ponds Estate, Temora NSW"
           fill
           sizes="50vw"
           quality={85}

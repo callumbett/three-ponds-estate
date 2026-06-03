@@ -50,6 +50,11 @@ export default function Footer() {
                 Contact &amp; Book
               </Link>
             </li>
+            <li>
+              <Link href="/book" className="transition-colors duration-150 hover:text-corten">
+                Book direct
+              </Link>
+            </li>
           </ul>
         </div>
 
