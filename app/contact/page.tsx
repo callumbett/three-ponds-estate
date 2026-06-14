@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { Booking } from "@/components/booking";
-import EnquiryForm from "@/components/EnquiryForm";
 import MotionReveal from "@/components/MotionReveal";
 
 export const metadata: Metadata = {
   title: "Contact & Book",
   description:
     "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "https://threepondsestate.com/contact",
+    title: "Contact & Book · Three Ponds Estate",
+    description:
+      "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
+  },
 };
 
 export default function ContactPage() {
@@ -103,16 +109,42 @@ export default function ContactPage() {
             </div>
           </MotionReveal>
 
-          {/* Or send a note */}
+          {/* Or reach us directly */}
           <MotionReveal delay={0.1} className="lg:col-span-7">
             <div className="border-t border-line pt-10">
-              <p className="metadata">02 · Or send a note</p>
+              <p className="metadata">02 · Or reach us directly</p>
               <h2 className="mt-4 font-serif text-3xl leading-[1.1] tracking-[-0.015em] sm:text-4xl">
-                Tell us a little<br />about your trip.
+                Prefer to talk it<br />through first?
               </h2>
-              <div className="mt-10">
-                <EnquiryForm />
-              </div>
+              <p className="prose-body mt-5 max-w-md">
+                Tell us about your trip — your dates, which pod, and anything
+                you&apos;d like to know. We read every message and reply
+                personally, usually within a day.
+              </p>
+              <dl className="mt-10 space-y-8">
+                <div>
+                  <dt className="metadata">Email</dt>
+                  <dd className="mt-3 text-lg">
+                    <a
+                      href="mailto:info@threepondsestate.com"
+                      className="text-charcoal transition-colors duration-150 hover:text-corten"
+                    >
+                      info@threepondsestate.com
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="metadata">Phone</dt>
+                  <dd className="mt-3 text-lg">
+                    <a
+                      href="tel:+61403433300"
+                      className="text-charcoal transition-colors duration-150 hover:text-corten"
+                    >
+                      0403 433 300
+                    </a>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </MotionReveal>
         </div>

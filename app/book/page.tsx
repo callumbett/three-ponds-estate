@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: "Book your stay",
   description:
     "Choose your dates and book directly. Live availability for all three pods at Three Ponds Estate, Temora NSW.",
+  alternates: { canonical: "/book" },
+  openGraph: {
+    url: "https://threepondsestate.com/book",
+    title: "Book your stay · Three Ponds Estate",
+    description:
+      "Choose your dates and book directly. Live availability for all three pods at Three Ponds Estate, Temora NSW.",
+  },
 };
 
 export default function BookPage() {

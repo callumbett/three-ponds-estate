@@ -4,8 +4,16 @@ import MotionReveal from "@/components/MotionReveal";
 
 export const metadata: Metadata = {
   title: "Explore the Region",
+  // Trimmed from 212 chars to 140 chars — under the 155-char display limit.
   description:
-    "Things to do near Three Ponds Estate, Temora NSW — the Aviation Museum, Lake Centenary, the Canola Trail, Bundawarrah Centre, Diamonds & Dust Café, Coolamon Cheese Co, Junee Licorice & Chocolate Factory and more.",
+    "Things to do near Three Ponds Estate, Temora NSW — Aviation Museum, Lake Centenary, Canola Trail, Coolamon Cheese Co, Junee Licorice Factory and more.",
+  alternates: { canonical: "/explore" },
+  openGraph: {
+    url: "https://threepondsestate.com/explore",
+    title: "Explore the Region · Three Ponds Estate",
+    description:
+      "Things to do near Three Ponds Estate, Temora NSW — Aviation Museum, Lake Centenary, Canola Trail, Coolamon Cheese Co, Junee Licorice Factory and more.",
+  },
 };
 
 type Place = {

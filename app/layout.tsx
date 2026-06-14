@@ -45,17 +45,35 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://threepondsestate.com"),
   title: {
-    default: "Three Ponds Estate — Boutique Architectural Sanctuary, Temora NSW",
+    // Shortened to ~31 chars so Google reliably displays it verbatim.
+    // The previous title ("— Boutique Architectural Sanctuary…") was
+    // considered promotional and was being rewritten in the SERP.
+    default: "Three Ponds Estate | Temora NSW",
     template: "%s · Three Ponds Estate",
   },
   description:
-    "Three Scandinavian-style pods set against the open Riverina country, 500 m from the Temora Aviation Museum and three minutes from town. A quiet, considered stay shaped by Mark and Gillian.",
+    // Trimmed from 188 chars to 120 chars — under the 155-char display limit.
+    "Three Scandinavian-style pods in the open Riverina country, 500 m from Temora Aviation Museum. A quiet, considered stay.",
   openGraph: {
     title: "Three Ponds Estate",
     description:
       "Boutique architectural sanctuary in Temora, NSW. Three pods, three vantages, one quiet acreage.",
     type: "website",
     locale: "en_AU",
+    // Explicit image object bypasses Next.js's auto-detection of
+    // app/opengraph-image.jpg, which was generating a URL with an
+    // internal caching query string that Vercel's dpl= param then
+    // doubled — producing "?opengraph-image.xxx?dpl=…" which fails
+    // Open Graph validation. Serving the file directly as a static
+    // asset avoids any query-string mutation.
+    images: [
+      {
+        url: "https://threepondsestate.com/opengraph-image.jpg",
+        width: 945,
+        height: 630,
+        alt: "Three Ponds Estate — boutique pod accommodation in Temora, NSW",
+      },
+    ],
   },
 };
 

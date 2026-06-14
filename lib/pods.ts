@@ -10,6 +10,12 @@ export type Pod = {
   sleeps: number;
   styleNote: string;
   intro: string;
+  /**
+   * Short meta description for the pod's /stay/[slug] page.
+   * Must be under 155 characters. If omitted, `intro` is used as
+   * a fallback (but intro can exceed the limit for some pods).
+   */
+  metaDescription?: string;
   detail: string;
   spec: { label: string; value: string }[];
   amenities: string[];
@@ -37,6 +43,10 @@ export const pods: Pod[] = [
     styleNote: "Hamptons-minimal",
     intro:
       "A single, considered room of pale timber and clean line. The Ophir faces east — built for the kind of slow morning that begins with light spilling across the deck before anyone else is awake.",
+    // intro is 191 chars — over the 155-char meta description limit.
+    // This shorter version (142 chars) is used for the <meta description> only.
+    metaDescription:
+      "One considered room of pale timber and clean line. The Ophir faces east — a slow morning, light across the deck, before anyone else is awake.",
     detail:
       "Pared back without feeling austere. A plush queen, warm bedside lighting, an airy living space layered in natural materials, and a quietly equipped Artusi kitchen. The dining area opens directly onto the eastern deck, where the day arrives gently across open country.",
     spec: [
@@ -61,11 +71,11 @@ export const pods: Pod[] = [
       alt: "The Ophir — establishing view of the pod and its setting",
     },
     gallery: [
-      { src: "/images/pods/the-ophir/DSC01522.jpg", alt: "The Ophir interior" },
-      { src: "/images/pods/the-ophir/DSC01534.jpg", alt: "The Ophir interior" },
-      { src: "/images/pods/the-ophir/DSC01541.jpg", alt: "The Ophir interior" },
-      { src: "/images/pods/the-ophir/DSC01503.jpg", alt: "The Ophir interior" },
-      { src: "/images/pods/the-ophir/DSC01510.jpg", alt: "The Ophir interior" },
+      { src: "/images/pods/the-ophir/DSC01522.jpg", alt: "The Ophir bedroom" },
+      { src: "/images/pods/the-ophir/DSC01534.jpg", alt: "The Ophir bathroom" },
+      { src: "/images/pods/the-ophir/DSC01541.jpg", alt: "The Ophir dining room and kitchen" },
+      { src: "/images/pods/the-ophir/DSC01503.jpg", alt: "The Ophir lounge and dining room" },
+      { src: "/images/pods/the-ophir/DSC01510.jpg", alt: "The Ophir lounge room with smart TV" },
       { src: "/images/pods/the-ophir/DSC01827.jpg", alt: "The Ophir — wider view" },
     ],
     fromAud: 230,
@@ -105,11 +115,11 @@ export const pods: Pod[] = [
       alt: "The Felix — establishing view of the pod and its setting",
     },
     gallery: [
-      { src: "/images/pods/the-felix/DSC01658.jpg", alt: "The Felix interior" },
-      { src: "/images/pods/the-felix/DSC01671.jpg", alt: "The Felix interior" },
-      { src: "/images/pods/the-felix/DSC01643.jpg", alt: "The Felix interior" },
-      { src: "/images/pods/the-felix/DSC01631.jpg", alt: "The Felix interior" },
-      { src: "/images/pods/the-felix/DSC01625.jpg", alt: "The Felix interior" },
+      { src: "/images/pods/the-felix/DSC01658.jpg", alt: "The Felix bedroom one" },
+      { src: "/images/pods/the-felix/DSC01671.jpg", alt: "The Felix bathroom" },
+      { src: "/images/pods/the-felix/DSC01643.jpg", alt: "The Felix kitchen with Artusi cooktop" },
+      { src: "/images/pods/the-felix/DSC01631.jpg", alt: "The Felix lounge and dining room with smart TV" },
+      { src: "/images/pods/the-felix/DSC01625.jpg", alt: "The Felix bedroom two" },
       { src: "/images/pods/the-felix/DSC01867.jpg", alt: "The Felix — wider view" },
     ],
     fromAud: 290,
@@ -149,12 +159,12 @@ export const pods: Pod[] = [
       alt: "The Uphaz — establishing view of the pod and its setting",
     },
     gallery: [
-      { src: "/images/pods/the-uphaz/DSC01739.jpg", alt: "The Uphaz interior" },
-      { src: "/images/pods/the-uphaz/DSC01754.jpg", alt: "The Uphaz interior" },
-      { src: "/images/pods/the-uphaz/DSC01702.jpg", alt: "The Uphaz interior" },
-      { src: "/images/pods/the-uphaz/DSC01715.jpg", alt: "The Uphaz interior" },
-      { src: "/images/pods/the-uphaz/DSC01708.jpg", alt: "The Uphaz interior" },
-      { src: "/images/pods/the-uphaz/DSC01692.jpg", alt: "The Uphaz interior" },
+      { src: "/images/pods/the-uphaz/DSC01739.jpg", alt: "The Uphaz bedroom one" },
+      { src: "/images/pods/the-uphaz/DSC01754.jpg", alt: "The Uphaz bathroom" },
+      { src: "/images/pods/the-uphaz/DSC01702.jpg", alt: "The Uphaz dining and lounge room" },
+      { src: "/images/pods/the-uphaz/DSC01715.jpg", alt: "The Uphaz lounge room with smart TV" },
+      { src: "/images/pods/the-uphaz/DSC01708.jpg", alt: "The Uphaz bedroom two" },
+      { src: "/images/pods/the-uphaz/DSC01692.jpg", alt: "The Uphaz deck with sunset view" },
     ],
     fromAud: 290,
     roomTypeId: 109123,

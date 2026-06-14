@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   title: "Stay — The Pods",
   description:
     "Three pods at Three Ponds Estate: The Ophir, The Felix, and The Uphaz. Boutique architectural sanctuary in Temora, NSW.",
+  alternates: { canonical: "/stay" },
+  openGraph: {
+    url: "https://threepondsestate.com/stay",
+    title: "Stay — The Pods · Three Ponds Estate",
+    description:
+      "Three pods at Three Ponds Estate: The Ophir, The Felix, and The Uphaz. Boutique architectural sanctuary in Temora, NSW.",
+  },
 };
 
 export default function StayPage() {

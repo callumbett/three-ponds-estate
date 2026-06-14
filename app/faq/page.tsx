@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: "Frequently Asked",
   description:
     "Common questions about staying at Three Ponds Estate — check-in, parking, pets, breakfast, the surrounding region and more.",
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    url: "https://threepondsestate.com/faq",
+    title: "Frequently Asked · Three Ponds Estate",
+    description:
+      "Common questions about staying at Three Ponds Estate — check-in, parking, pets, breakfast, the surrounding region and more.",
+  },
 };
 
 type Group = {

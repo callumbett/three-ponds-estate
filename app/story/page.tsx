@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: "Our Story",
   description:
     "Three Ponds Estate began with a quiet act of stewardship. Mark and Gillian built three pods on the open Riverina country they had long hosted on.",
+  alternates: { canonical: "/story" },
+  openGraph: {
+    url: "https://threepondsestate.com/story",
+    title: "Our Story · Three Ponds Estate",
+    description:
+      "Three Ponds Estate began with a quiet act of stewardship. Mark and Gillian built three pods on the open Riverina country they had long hosted on.",
+  },
 };
 
 export default function StoryPage() {

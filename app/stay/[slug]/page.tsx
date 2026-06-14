@@ -20,9 +20,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const pod = podBySlug(slug);
   if (!pod) return { title: "Not found" };
+  // Use pod.metaDescription if set (The Ophir's intro exceeds 155 chars);
+  // otherwise fall back to pod.intro (The Felix and Uphaz are within limit).
+  const description = pod.metaDescription ?? pod.intro;
   return {
     title: pod.name,
-    description: pod.intro,
+    description,
+    alternates: { canonical: `/stay/${pod.slug}` },
+    openGraph: {
+      url: `https://threepondsestate.com/stay/${pod.slug}`,
+      title: `${pod.name} · Three Ponds Estate`,
+      description,
+    },
   };
 }
 

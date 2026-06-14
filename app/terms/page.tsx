@@ -5,8 +5,16 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
+  // Expanded from 92 chars to 154 chars — previously too short for SERP display.
   description:
-    "Booking, cancellation, occupancy, and stay-related terms for Three Ponds Estate, Temora NSW.",
+    "Booking terms for Three Ponds Estate, Temora NSW — cancellations, security bond, occupancy limits, check-in and check-out, quiet hours, and guest conduct.",
+  alternates: { canonical: "/terms" },
+  openGraph: {
+    url: "https://threepondsestate.com/terms",
+    title: "Terms & Conditions · Three Ponds Estate",
+    description:
+      "Booking terms for Three Ponds Estate, Temora NSW — cancellations, security bond, occupancy limits, check-in and check-out, quiet hours, and guest conduct.",
+  },
 };
 
 const SECTION_CLASS = "mt-12 first:mt-0";
