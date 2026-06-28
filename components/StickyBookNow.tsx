@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
-import { Booking, useBooking } from "./booking";
+import { Booking } from "./booking";
 
 /**
  * Sticky mobile-only Book Now pill.
@@ -19,19 +19,12 @@ import { Booking, useBooking } from "./booking";
  * Performance / motion:
  *   - Animates `opacity` + `transform` only (GPU-friendly, per
  *     Bencium MOTION-SPEC §"Performance Rules").
- *   - Hidden entirely while the booking modal is open (otherwise the
- *     pill sits on top of the dialog backdrop, which looks broken).
  *   - Honours `useReducedMotion()`.
  */
 export default function StickyBookNow() {
   const [visible, setVisible] = useState(false);
   const [footerInView, setFooterInView] = useState(false);
   const reduceMotion = useReducedMotion() ?? false;
-
-  // Read modal open state so we can hide ourselves while it's open.
-  const {
-    state: { open: modalOpen },
-  } = useBooking();
 
   useEffect(() => {
     const onScroll = () => {
@@ -60,7 +53,7 @@ export default function StickyBookNow() {
     return () => obs.disconnect();
   }, []);
 
-  const shown = visible && !modalOpen && !footerInView;
+  const shown = visible && !footerInView;
 
   return (
     <motion.div

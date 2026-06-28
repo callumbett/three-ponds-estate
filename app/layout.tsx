@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import StickyBookNow from "@/components/StickyBookNow";
 import ClickTracker from "@/components/ClickTracker";
-import { Booking } from "@/components/booking";
 import "./globals.css";
 
 /**
@@ -206,29 +205,15 @@ gtag('config', 'G-8LCXR9LWH5');`,
         />
       </head>
       <body className="min-h-full flex flex-col bg-parchment text-charcoal">
-        <Booking.Provider>
-          <Nav />
-          <main className="relative flex-1">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
-          <StickyBookNow />
-          <Booking.Modal />
-          <ClickTracker />
-        </Booking.Provider>
+        <Nav />
+        <main className="relative flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
+        <Footer />
+        <StickyBookNow />
+        <ClickTracker />
         <Analytics />
         <SpeedInsights />
-        {/*
-         * SiteMinder / TheBookingButton widget library. Loads after
-         * page interactivity so it doesn't block the LCP. It scans the
-         * DOM for any element with class="ibe" and replaces the
-         * placeholder div with the live booking engine.
-         */}
-        <Script
-          src="https://widget.siteminder.com/ibe.min.js"
-          strategy="afterInteractive"
-        />
-
         {/*
          * Ahrefs Web Analytics — privacy-friendly traffic + keyword
          * analytics, primarily used for SEO insight (alongside Google

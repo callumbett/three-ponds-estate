@@ -214,3 +214,33 @@ html::-webkit-scrollbar-thumb {
 html::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-corten-deep);
 }
+
+/* ----------  Lodgify booking widgets  ----------
+   The `--ldg-*` custom properties below are Lodgify's own theming API,
+   read by their Search Box / Booking box scripts at runtime — they are
+   NOT our design tokens. Values mirror the brand palette (parchment +
+   charcoal) so the widgets match the site. Kept here, in one place,
+   rather than inline in the component so they're easy to retune.
+
+   Note: the widget renders light in both colour modes. If we later want
+   a dark-mode treatment, add `.dark { --ldg-* … }` overrides here. */
+:root {
+  --ldg-psb-background: #ffffff;
+  --ldg-psb-border-radius: 0.42em;
+  --ldg-psb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
+  --ldg-psb-padding: 14px;
+  --ldg-psb-input-background: #ffffff;
+  --ldg-psb-button-border-radius: 3.58em;
+  --ldg-psb-color-primary: #f6f2e8;
+  --ldg-psb-color-primary-lighter: #fbf9f4;
+  --ldg-psb-color-primary-darker: #7b7974;
+  --ldg-psb-color-primary-contrast: #333333;
+  --ldg-semantic-color-primary: #f6f2e8;
+  --ldg-semantic-color-primary-lighter: #fbf9f4;
+  --ldg-semantic-color-primary-darker: #7b7974;
+  --ldg-semantic-color-primary-contrast: #333333;
+  --ldg-component-modal-z-index: 999;
+}
+#lodgify-search-bar {
+  width: 100%;
+}

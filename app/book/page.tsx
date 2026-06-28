@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import BookEmbed from "@/components/BookEmbed";
+import LodgifySearchBar from "@/components/LodgifySearchBar";
 import MotionReveal from "@/components/MotionReveal";
 
 export const metadata: Metadata = {
@@ -38,15 +38,12 @@ export default function BookPage() {
         </div>
       </section>
 
-      {/* Full-width embedded booking engine */}
+      {/* Lodgify Search Box — pick dates / guests, then continue into the
+          seamless booking flow on the booking subdomain. */}
       <section className="bg-parchment pb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-10">
+        <div className="mx-auto max-w-4xl px-4 sm:px-10">
           <MotionReveal>
-            <div className="overflow-hidden rounded-sm border border-line bg-parchment shadow-sm">
-              {/* min-h ensures the engine has a sensible default before
-                  iFrameSizer reports back from inside */}
-              <BookEmbed className="block min-h-[720px] w-full" />
-            </div>
+            <LodgifySearchBar className="w-full" />
           </MotionReveal>
         </div>
       </section>

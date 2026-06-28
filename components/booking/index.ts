@@ -1,5 +1,3 @@
-import BookingProvider from "./BookingProvider";
-import BookingModal from "./BookingModal";
 import {
   BookingMobileTrigger,
   BookingNavTrigger,
@@ -8,34 +6,33 @@ import {
 } from "./triggers";
 
 /**
- * The Booking compound — mount the Provider once at the root, then drop
- * explicit triggers anywhere on the page. Every trigger opens the same
- * single modal.
+ * The Booking compound — drop explicit triggers anywhere on the page.
+ * Every trigger navigates to the dedicated /book page, where the Lodgify
+ * Search Box lives, and fires the `book_now_click` GA4 event on click.
+ *
+ * (There is no longer a Provider or Modal: the previous SiteMinder
+ * inline-modal engine has been retired in favour of Lodgify's hosted
+ * booking flow, so triggers are now simple links and need no shared
+ * client state.)
  *
  * @example
- *   // app/layout.tsx
- *   <Booking.Provider>
- *     {children}
- *     <Booking.Modal />
- *   </Booking.Provider>
- *
- *   // components/Hero.tsx & components/Nav.tsx — the over-photo CTAs
+ *   // components/Nav.tsx & components/Hero.tsx — the over-photo CTAs
  *   <Booking.NavTrigger />
  *
  *   // components/Nav.tsx (mobile drawer)
  *   <Booking.MobileTrigger />
  *
  *   // app/stay/[slug]/page.tsx
- *   <Booking.PrimaryTrigger label={`Book ${pod.name}`} />
+ *   <Booking.PrimaryTrigger
+ *     label={`Book ${pod.name}`}
+ *     filter={{ roomTypeId: pod.roomTypeId }}
+ *   />
  */
 export const Booking = {
-  Provider: BookingProvider,
-  Modal: BookingModal,
   NavTrigger: BookingNavTrigger,
   PrimaryTrigger: BookingPrimaryTrigger,
   QuietTrigger: BookingQuietTrigger,
   MobileTrigger: BookingMobileTrigger,
 };
 
-export { useBooking } from "./context";
-export type { BookingContextValue } from "./context";
+export type { BookingFilter } from "./triggers";

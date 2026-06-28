@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
+import LodgifySearchBar from "@/components/LodgifySearchBar";
 import StatsStrip from "@/components/StatsStrip";
 import PodSection from "@/components/PodSection";
 import Reviews from "@/components/Reviews";
@@ -34,6 +35,15 @@ export default function Home() {
   return (
     <>
       <Hero />
+      {/* Lodgify Search Box — first interaction after the masthead photo.
+          Sits as its own band directly below the hero; can be shifted to
+          overlap the hero base later if we want it floating over the photo. */}
+      <section className="bg-parchment px-6 pt-14 pb-4 sm:px-10">
+        <div className="mx-auto max-w-4xl">
+          <p className="eyebrow mb-4">Check availability</p>
+          <LodgifySearchBar className="w-full" />
+        </div>
+      </section>
       <StatsStrip />
       <PodSection />
       <Reviews />

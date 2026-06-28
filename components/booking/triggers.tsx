@@ -1,9 +1,10 @@
 "use client";
 
-import { useBooking, type BookingFilter } from "./context";
+import Link from "next/link";
+import { trackEvent } from "@/lib/analytics";
 
 /**
- * Four explicit triggers — one per editorial context.
+ * Four explicit booking triggers — one per editorial context.
  * No `variant` prop, no boolean flags. Each component renders exactly one
  * well-defined visual treatment. Per composition-patterns:
  *   - architecture-avoid-boolean-props
@@ -18,19 +19,37 @@ import { useBooking, type BookingFilter } from "./context";
  *  QuietTrigger   — kept for backwards-compat / quiet contexts.
  *  MobileTrigger  — mobile drawer; full-width solid.
  *
- * All four open the same single modal mounted in `app/layout.tsx`.
+ * All four navigate to the dedicated /book page, where the Lodgify Search
+ * Box lives. (Previously they opened a SiteMinder modal; that engine has
+ * been retired in favour of Lodgify.) Each fires the `book_now_click` GA4
+ * event on click — the single on-site booking-intent signal that Google
+ * Ads attributes spend against — carrying the pod's room-type id when the
+ * button is pod-specific.
  */
+
+/**
+ * Optional pod scope — passed by the "Book {pod.name}" button on a pod
+ * detail page so the analytics event records which pod drove the click.
+ */
+export type BookingFilter = {
+  roomTypeId?: number;
+};
 
 type TriggerProps = {
   label?: string;
   className?: string;
-  /**
-   * Optional pre-filter — passed to `open(filter)` so the modal can
-   * open already scoped to a specific pod (room type). When omitted,
-   * the modal opens unfiltered and the user sees all three pods.
-   */
   filter?: BookingFilter;
 };
+
+/** Destination for every booking trigger. */
+const BOOK_HREF = "/book";
+
+/** Fire the booking-intent event; navigation is handled by <Link>. */
+function trackBookClick(filter?: BookingFilter) {
+  trackEvent("book_now_click", {
+    pod_filter: filter?.roomTypeId ?? "any",
+  });
+}
 
 // 150ms hover transition per Bencium MOTION-SPEC §"Hover state".
 const triggerBase =
@@ -57,27 +76,23 @@ const Arrow = ({ className = "" }: { className?: string }) => (
 
 /**
  * The over-photo "reservation pill". Parchment fill, charcoal label,
- * corten arrow — same colour palette as before, but with a **shiny
- * sheen** that sweeps across on hover (cream gradient at +12° skew,
- * translates from off-screen-left to off-screen-right over 700 ms).
- * Adapted from a 21st.dev shimmer pattern; brand-appropriate version
- * uses parchment-on-parchment rather than the original's dark purple.
+ * corten arrow — with a **shiny sheen** that sweeps across on hover
+ * (cream gradient at +12° skew, translates from off-screen-left to
+ * off-screen-right over 700 ms). Adapted from a 21st.dev shimmer pattern;
+ * brand-appropriate version uses parchment-on-parchment.
  *
- * Used by the masthead, Hero CTA, and sticky mobile pill so the
- * primary booking action looks identical everywhere.
+ * Used by the masthead, Hero CTA, and sticky mobile pill so the primary
+ * booking action looks identical everywhere.
  */
 export function BookingNavTrigger({
   label = "Book Now",
   className = "",
   filter,
 }: TriggerProps) {
-  const {
-    actions: { open },
-  } = useBooking();
   return (
-    <button
-      type="button"
-      onClick={() => open(filter)}
+    <Link
+      href={BOOK_HREF}
+      onClick={() => trackBookClick(filter)}
       className={[
         triggerBase,
         // Layered structure: relative + overflow-hidden so the sheen
@@ -89,10 +104,10 @@ export function BookingNavTrigger({
       ].join(" ")}
     >
       {/*
-       * Sheen layer — a pale cream highlight at +12° skew. Lives off
-       * the left edge by default (-translate-x-full); on hover it
-       * translates fully across to the right edge over 700 ms, like
-       * a brushed-light reflection passing the surface.
+       * Sheen layer — a pale cream highlight at +12° skew. Lives off the
+       * left edge by default (-translate-x-full); on hover it translates
+       * fully across to the right edge over 700 ms, like a brushed-light
+       * reflection passing the surface.
        */}
       <span
         aria-hidden
@@ -112,7 +127,7 @@ export function BookingNavTrigger({
         {label}
         <Arrow className="text-corten" />
       </span>
-    </button>
+    </Link>
   );
 }
 
@@ -121,13 +136,10 @@ export function BookingPrimaryTrigger({
   className = "",
   filter,
 }: TriggerProps) {
-  const {
-    actions: { open },
-  } = useBooking();
   return (
-    <button
-      type="button"
-      onClick={() => open(filter)}
+    <Link
+      href={BOOK_HREF}
+      onClick={() => trackBookClick(filter)}
       className={[
         triggerBase,
         "bg-corten px-6 py-2.5 text-parchment shadow-sm hover:bg-corten-deep",
@@ -136,7 +148,7 @@ export function BookingPrimaryTrigger({
     >
       {label}
       <Arrow />
-    </button>
+    </Link>
   );
 }
 
@@ -145,13 +157,10 @@ export function BookingQuietTrigger({
   className = "",
   filter,
 }: TriggerProps) {
-  const {
-    actions: { open },
-  } = useBooking();
   return (
-    <button
-      type="button"
-      onClick={() => open(filter)}
+    <Link
+      href={BOOK_HREF}
+      onClick={() => trackBookClick(filter)}
       className={[
         triggerBase,
         "border border-corten/60 px-6 py-2.5 text-corten hover:bg-corten hover:text-parchment",
@@ -160,7 +169,7 @@ export function BookingQuietTrigger({
     >
       {label}
       <Arrow />
-    </button>
+    </Link>
   );
 }
 
@@ -169,13 +178,10 @@ export function BookingMobileTrigger({
   className = "",
   filter,
 }: TriggerProps) {
-  const {
-    actions: { open },
-  } = useBooking();
   return (
-    <button
-      type="button"
-      onClick={() => open(filter)}
+    <Link
+      href={BOOK_HREF}
+      onClick={() => trackBookClick(filter)}
       className={[
         triggerBase,
         "w-full bg-corten px-6 py-3 text-parchment hover:bg-corten-deep",
@@ -184,6 +190,6 @@ export function BookingMobileTrigger({
     >
       {label}
       <Arrow />
-    </button>
+    </Link>
   );
 }
