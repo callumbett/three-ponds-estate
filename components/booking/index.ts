@@ -22,11 +22,11 @@ import {
  *   // components/Nav.tsx (mobile drawer)
  *   <Booking.MobileTrigger />
  *
- *   // app/stay/[slug]/page.tsx
- *   <Booking.PrimaryTrigger
- *     label={`Book ${pod.name}`}
- *     filter={{ roomTypeId: pod.roomTypeId }}
- *   />
+ *   // CTA section / contact page
+ *   <Booking.PrimaryTrigger label="Book Now" />
+ *
+ *   (Pod pages now book via the inline <LodgifyBookingBox />, not a
+ *   trigger — see app/stay/[slug]/page.tsx.)
  */
 export const Booking = {
   NavTrigger: BookingNavTrigger,

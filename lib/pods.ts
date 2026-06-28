@@ -24,13 +24,12 @@ export type Pod = {
   // Pricing is indicative until the Little Hotelier feed is wired in.
   fromAud: number;
   /**
-   * SiteMinder room-type ID for this pod. Used by the booking modal
-   * to open the embed widget pre-filtered to just this pod's room
-   * type — passed through to the SiteMinder embed as
-   * `data-query-room_type={roomTypeId}`. Provided by SiteMinder
-   * support per their reservation back office.
+   * Lodgify rental ID for this pod. Drives the per-pod Booking box on
+   * the /stay/[slug] page — passed to the widget as
+   * `data-rental-id={lodgifyRentalId}`. Taken from Lodgify → Website
+   * Builder → External Widgets → Booking box (per rental).
    */
-  roomTypeId: number;
+  lodgifyRentalId: number;
 };
 
 export const pods: Pod[] = [
@@ -79,7 +78,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-ophir/DSC01827.jpg", alt: "The Ophir — wider view" },
     ],
     fromAud: 230,
-    roomTypeId: 109125,
+    lodgifyRentalId: 467484,
   },
   {
     slug: "the-felix",
@@ -123,7 +122,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-felix/DSC01867.jpg", alt: "The Felix — wider view" },
     ],
     fromAud: 290,
-    roomTypeId: 109124,
+    lodgifyRentalId: 467488,
   },
   {
     slug: "the-uphaz",
@@ -167,7 +166,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-uphaz/DSC01692.jpg", alt: "The Uphaz deck with sunset view" },
     ],
     fromAud: 290,
-    roomTypeId: 109123,
+    lodgifyRentalId: 467487,
   },
 ];
 

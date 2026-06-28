@@ -244,3 +244,26 @@ html::-webkit-scrollbar-thumb:hover {
 #lodgify-search-bar {
   width: 100%;
 }
+
+/* Booking box (per-pod calendar + price) theming — Lodgify's `--ldg-bnb-*`
+   API, same brand palette as the Search Box, plus calendar-cell colours. */
+:root {
+  --ldg-bnb-background: #ffffff;
+  --ldg-bnb-border-radius: 0.42em;
+  --ldg-bnb-box-shadow: 0px 24px 54px 0px rgba(0, 0, 0, 0.1);
+  --ldg-bnb-padding: 14px;
+  --ldg-bnb-input-background: #ffffff;
+  --ldg-bnb-button-border-radius: 3.58em;
+  --ldg-bnb-color-primary: #f6f2e8;
+  --ldg-bnb-color-primary-lighter: #fbf9f4;
+  --ldg-bnb-color-primary-darker: #7b7974;
+  --ldg-bnb-color-primary-contrast: #333333;
+  --ldg-component-calendar-cell-selection-bg-color: #f6f2e8;
+  --ldg-component-calendar-cell-selection-color: #333333;
+  --ldg-component-calendar-cell-selected-bg-color: #fbf9f4;
+  --ldg-component-calendar-cell-selected-color: #333333;
+  --ldg-bnb-font-family: inherit;
+}
+#lodgify-book-now-box {
+  width: 100%;
+}

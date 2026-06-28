@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Booking } from "@/components/booking";
+import LodgifyBookingBox from "@/components/LodgifyBookingBox";
 import MotionReveal from "@/components/MotionReveal";
 import PodGallery from "@/components/PodGallery";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -89,19 +89,18 @@ export default async function PodDetailPage({
               {pod.intro}
             </h2>
             <p className="prose-body mt-8">{pod.detail}</p>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              <Booking.PrimaryTrigger
-                label={`Book ${pod.name}`}
-                filter={{ roomTypeId: pod.roomTypeId }}
-              />
-              <p className="metadata">
-                From AU${pod.fromAud} <span className="text-charcoal-soft/70">/ night</span>
-              </p>
-            </div>
           </MotionReveal>
 
           <MotionReveal delay={0.1} className="md:col-span-5">
-            <dl className="border-t border-line">
+            {/* Per-pod Booking box — live calendar + price, straight to
+                the Lodgify checkout for this rental. Replaces the old
+                "Book {pod}" button that opened the SiteMinder modal. */}
+            <LodgifyBookingBox
+              rentalId={pod.lodgifyRentalId}
+              className="w-full"
+            />
+
+            <dl className="mt-12 border-t border-line">
               {pod.spec.map((s) => (
                 <div
                   key={s.label}

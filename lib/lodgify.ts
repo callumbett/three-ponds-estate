@@ -22,9 +22,16 @@
 
 export const LODGIFY_WEBSITE_ID = "425875";
 
+/** Lodgify account slug — used by the Booking box (`data-slug`). */
+export const LODGIFY_SLUG = "threepondsestate";
+
 export const LODGIFY_SEARCH_PAGE_URL =
   "https://book.threepondsestate.com/en/all-properties";
 
-/** Loader script that scans for `#lodgify-search-bar` and renders the bar. */
+/** Loader script that scans for `#lodgify-search-bar` and renders the Search Box. */
 export const LODGIFY_SEARCH_BAR_LOADER =
   "https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js";
+
+/** Loader script that scans for `#lodgify-book-now-box` and renders the Booking box. */
+export const LODGIFY_BOOK_NOW_BOX_LOADER =
+  "https://app.lodgify.com/book-now-box/stable/renderBookNowBox.js";
