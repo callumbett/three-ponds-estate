@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { useCallback, useEffect, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, type MouseEvent } from "react";
 
 export type LightboxImage = { src: string; alt: string };
 
@@ -34,6 +34,7 @@ type Props = {
 export default function Lightbox({ images, index, onClose, onChange }: Props) {
   const reduceMotion = useReducedMotion() ?? false;
   const open = index >= 0 && index < images.length;
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const goPrev = useCallback(() => {
     if (images.length === 0) return;
@@ -45,7 +46,8 @@ export default function Lightbox({ images, index, onClose, onChange }: Props) {
     onChange((index + 1) % images.length);
   }, [images.length, index, onChange]);
 
-  // Esc / arrow-key bindings.
+  // Esc / arrow-key bindings + Tab focus trap (dialog pattern: focus
+  // must not escape into the page behind the modal while it's open).
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -59,11 +61,45 @@ export default function Lightbox({ images, index, onClose, onChange }: Props) {
         case "ArrowRight":
           goNext();
           break;
+        case "Tab": {
+          const root = containerRef.current;
+          if (!root) return;
+          const focusables = root.querySelectorAll<HTMLElement>(
+            'button, [href], [tabindex]:not([tabindex="-1"])',
+          );
+          if (focusables.length === 0) {
+            e.preventDefault();
+            return;
+          }
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          const active = document.activeElement;
+          if (e.shiftKey && (active === first || active === root)) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && active === last) {
+            e.preventDefault();
+            first.focus();
+          }
+          break;
+        }
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose, goPrev, goNext]);
+
+  // Focus management: move focus into the dialog on open, restore it to
+  // the trigger (gallery thumbnail) on close so keyboard users don't get
+  // dropped back at the top of the page.
+  useEffect(() => {
+    if (!open) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    containerRef.current?.focus();
+    return () => {
+      previouslyFocused?.focus?.();
+    };
+  }, [open]);
 
   // Body scroll-lock while open.
   useEffect(() => {
@@ -86,10 +122,12 @@ export default function Lightbox({ images, index, onClose, onChange }: Props) {
     <AnimatePresence>
       <motion.div
         key="lightbox"
+        ref={containerRef}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-label={`Image ${index + 1} of ${images.length}: ${current.alt}`}
-        className="fixed inset-0 z-[70] flex items-center justify-center bg-charcoal/95"
+        className="fixed inset-0 z-[70] flex items-center justify-center bg-charcoal/95 outline-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}

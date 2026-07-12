@@ -5,13 +5,13 @@ import MotionReveal from "@/components/MotionReveal";
 export const metadata: Metadata = {
   title: "Contact & Book",
   description:
-    "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
+    "Book Three Ponds Estate directly with live availability, or send a quiet enquiry to Mark and Gillian.",
   alternates: { canonical: "/contact" },
   openGraph: {
     url: "https://threepondsestate.com/contact",
     title: "Contact & Book · Three Ponds Estate",
     description:
-      "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
+      "Book Three Ponds Estate directly with live availability, or send a quiet enquiry to Mark and Gillian.",
   },
 };
 

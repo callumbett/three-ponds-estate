@@ -6,6 +6,7 @@ import {
   LODGIFY_SLUG,
   LODGIFY_BOOK_NOW_BOX_LOADER,
 } from "@/lib/lodgify";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Lodgify "Booking box" — a per-rental calendar with live pricing and a
@@ -33,6 +34,13 @@ type Props = {
   className?: string;
 };
 
+/**
+ * Label given to Lodgify via `data-book-button-label` below. Kept as a
+ * constant so the analytics click-matcher and the widget config can't
+ * drift apart.
+ */
+const BOOK_BUTTON_LABEL = "Book Now";
+
 export default function LodgifyBookingBox({ rentalId, className = "" }: Props) {
   useEffect(() => {
     const script = document.createElement("script");
@@ -44,8 +52,24 @@ export default function LodgifyBookingBox({ rentalId, className = "" }: Props) {
     };
   }, []);
 
+  /**
+   * GA4 `book_now_click` — the single on-site booking-intent signal
+   * (Google Ads attributes spend against it). Lodgify renders its own
+   * DOM inside the container, so we listen in the capture phase on the
+   * wrapper and match the widget's Book Now button by its configured
+   * label. Calendar cells and guest steppers are buttons too — the
+   * label check keeps them out of the event.
+   */
+  function handleClickCapture(event: React.MouseEvent<HTMLDivElement>) {
+    const target = event.target as HTMLElement | null;
+    const button = target?.closest("button");
+    if (button && button.textContent?.trim() === BOOK_BUTTON_LABEL) {
+      trackEvent("book_now_click", { pod_filter: rentalId });
+    }
+  }
+
   return (
-    <div className={className}>
+    <div className={className} onClickCapture={handleClickCapture}>
       <div
         id="lodgify-book-now-box"
         data-rental-id={String(rentalId)}
@@ -65,7 +89,7 @@ export default function LodgifyBookingBox({ rentalId, className = "" }: Props) {
         data-select-dates-to-see-price-label="Select dates to see total price"
         data-minimum-price-per-night-first-label="From"
         data-minimum-price-per-night-second-label="per night"
-        data-book-button-label="Book Now"
+        data-book-button-label={BOOK_BUTTON_LABEL}
         data-guests-breakdown-label="Guests"
         data-adults-label={'{"one":"adult","other":"adults"}'}
         data-adults-description={"Ages {minAge} or above"}
