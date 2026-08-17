@@ -28,7 +28,7 @@ const platforms: Platform[] = [
     name: "Google",
     rating: "5.0",
     scale: "/ 5",
-    reviewCount: 114,
+    reviewCount: 126,
     href: "https://www.google.com/maps/place/Three+Ponds+Estate/@-34.4240369,147.5172122,17z/data=!4m9!3m8!1s0x6b190f1eb6a813fb:0x684a709a0169c2cb!5m2!4m1!1i2!8m2!3d-34.4240369!4d147.5197925!16s%2Fg%2F11kjg1t5lz",
     logoSrc: "/images/reviews/google-logo-icon-gsuite-hd-701751694791470gzbayltphh.png",
     logoAlt: "Google",
@@ -37,7 +37,7 @@ const platforms: Platform[] = [
     name: "Airbnb",
     rating: "4.97",
     scale: "/ 5",
-    reviewCount: 140,
+    reviewCount: 151,
     href: "https://www.airbnb.com.au/users/profile/1470287728197379560",
     logoSrc: "/images/reviews/airbnb-2-logo-png-transparent.png",
     logoAlt: "Airbnb",
@@ -46,7 +46,7 @@ const platforms: Platform[] = [
     name: "Booking.com",
     rating: "9.6",
     scale: "/ 10",
-    reviewCount: 130,
+    reviewCount: 137,
     href: "https://www.booking.com/hotel/au/three-ponds-estate-temora.en-gb.html",
     logoSrc: "/images/reviews/booking.com-logo.png",
     logoAlt: "Booking.com",
@@ -91,7 +91,7 @@ export default function Reviews() {
         <div className="max-w-2xl">
           <SectionEyebrow>Reviews</SectionEyebrow>
           <h2 className="mt-5 font-serif text-4xl leading-tight text-charcoal sm:text-5xl">
-            1,894 guests hosted & counting,<br />
+            More than 2,000 guests hosted,<br />
             an uncompromising standard maintained.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-soft">
