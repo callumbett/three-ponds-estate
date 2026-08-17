@@ -65,6 +65,10 @@ export default function StickyBookNow() {
   return (
     <motion.div
       aria-hidden={!shown}
+      // `inert` removes the hidden pill's Link from the tab order —
+      // without it, keyboard users hit an invisible focus stop
+      // (aria-hidden content must not contain focusable elements).
+      inert={!shown}
       className="pointer-events-none fixed bottom-4 right-4 z-40 md:hidden"
       initial={false}
       animate={{
