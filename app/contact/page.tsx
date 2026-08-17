@@ -49,7 +49,8 @@ export default function ContactPage() {
                 Live availability for all three pods.
               </h2>
               <p className="prose-body mt-5">
-                Direct rates from <strong className="text-charcoal">AU$230 / night</strong>.
+                Direct rates from <strong className="text-charcoal">AU$239 / night</strong>,
+                with 5% off two-night stays and 10% off three or more.
                 No check-out on Saturdays. Best-rate guarantee versus
                 third-party channels.
               </p>

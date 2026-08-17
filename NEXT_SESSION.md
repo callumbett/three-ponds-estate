@@ -144,7 +144,8 @@ and descriptions for a Responsive Search Ad.**
   Architectural Pods, Riverina
   500m from Aviation Museum
   Three Ponds Estate
-  Direct Rates from AU$230
+  Direct Rates from AU$239
+  Stay 3 Nights, Save 10%
   Sunset Pods, Wide Country
   4.5hr from Sydney
   Scandinavian-style Pods
@@ -160,7 +161,7 @@ and descriptions for a Responsive Search Ad.**
 - 4 descriptions (max 90 chars each):
 
   ```
-  Three Scandi pods on 4.4 ha. 500m from the Aviation Museum. Direct rates from AU$230.
+  Three Scandi pods on 4.4 ha. 500m from the Aviation Museum. Direct rates from AU$239.
   Boutique architectural pods in Temora's Riverina country. Direct, no surcharges.
   Sunrise on the deck, sunset over open country. A slow stay 3 minutes from town.
   4.5 hours from Sydney, 2.5 from Canberra. Quiet pods, dramatic Riverina skies.

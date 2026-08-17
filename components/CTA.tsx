@@ -26,8 +26,9 @@ export default function CTA() {
             Settle into your place within it.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal-soft">
-            Direct rates from AU$230 a night. No check-out on Saturdays.
-            Same-day enquiries answered, usually within the hour.
+            Direct rates from AU$239 a night — stay two nights and save 5%,
+            three or more and save 10%. Same-day enquiries answered, usually
+            within the hour.
           </p>
           <div className="mt-10">
             <Booking.PrimaryTrigger label="Book Now" />

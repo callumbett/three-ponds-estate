@@ -31,8 +31,9 @@ export default function BookPage() {
               Choose your dates.
             </h1>
             <p className="mt-6 max-w-xl font-serif italic text-lg leading-snug text-charcoal-soft sm:text-xl">
-              Live availability for all three pods. Direct rates from
-              AU$230 / night. No check-out on Saturdays.
+              Live availability for all three pods. From AU$239 a night —
+              two-night stays save 5%, three or more save 10%. No check-out
+              on Saturdays.
             </p>
           </MotionReveal>
         </div>

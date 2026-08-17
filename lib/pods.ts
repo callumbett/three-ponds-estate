@@ -78,7 +78,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-ophir/DSC01510.jpg", alt: "The Ophir lounge room with smart TV" },
       { src: "/images/pods/the-ophir/DSC01827.jpg", alt: "The Ophir — wider view" },
     ],
-    fromAud: 230,
+    fromAud: 239,
     roomTypeId: 109125,
   },
   {
@@ -122,7 +122,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-felix/DSC01625.jpg", alt: "The Felix bedroom two" },
       { src: "/images/pods/the-felix/DSC01867.jpg", alt: "The Felix — wider view" },
     ],
-    fromAud: 290,
+    fromAud: 299,
     roomTypeId: 109124,
   },
   {
@@ -166,7 +166,7 @@ export const pods: Pod[] = [
       { src: "/images/pods/the-uphaz/DSC01708.jpg", alt: "The Uphaz bedroom two" },
       { src: "/images/pods/the-uphaz/DSC01692.jpg", alt: "The Uphaz deck with sunset view" },
     ],
-    fromAud: 290,
+    fromAud: 299,
     roomTypeId: 109123,
   },
 ];

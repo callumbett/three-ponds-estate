@@ -226,7 +226,9 @@ export default function FAQPage() {
                 Pick a pod, pick a weekend.
               </h2>
               <p className="mt-4 max-w-md text-base leading-relaxed text-charcoal-soft">
-                Direct rates from AU$230 / night. No check-out on Saturdays.
+                Direct rates from AU$239 a night. Longer stays save — 5%
+                over two nights, 10% over three or more. No check-out on
+                Saturdays.
               </p>
               <div className="mt-6">
                 <Link
