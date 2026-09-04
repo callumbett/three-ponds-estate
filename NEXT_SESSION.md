@@ -176,8 +176,8 @@ files), dark-mode corten contrast on small text (3.38:1), ThemeToggle
 
 **Next up, in rough priority order:**
 
-1. **Add SPF, DKIM and DMARC** in the Wix DNS panel — see § I. The domain
-   currently has none of the three. Highest-value open item.
+1. **Verify SPF and DMARC resolved** — added 4 Sep, not yet visible in
+   public DNS at end of session. See § I. DKIM is parked, not forgotten.
 2. Google Ads campaign — copy drafted in § A, now updated to $239 with a
    "Stay 3 Nights, Save 10%" headline (list is at 16, trim to 15).
 3. GA4 key events — § B (mark `contact_submit`, `tel_click`,
@@ -454,7 +454,25 @@ The A and CNAME sections were also read and are clean: apex and `www`
 both A records at `216.150.1.1`, no CNAMEs at all.
 
 **Added 4 Sep 2026 (in the Wix panel):** SPF at the apex and DMARC at
-`_dmarc`, values as below. DKIM still outstanding at time of writing.
+`_dmarc`, values as below. Both were entered and confirmed in the panel;
+they had not yet appeared in public DNS at end of session, which is
+normal 1-hour TTL caching, not a fault. **Verify them** with the dig
+commands below before assuming they are live.
+
+**DKIM — PARKED (4 Sep 2026).** Requires the Google Workspace admin
+console, and it is not established who holds super-admin on the domain.
+The Workspace subscription appears to have been bought through Wix as a
+reseller ("Business Email"), so the console is reachable either at
+admin.google.com signed in as `info@threepondsestate.com`, or via Wix
+dashboard → Business Email → Manage. **Do not create a new Workspace
+account for this domain** — a second one causes real problems.
+
+Not urgent. SPF carries most of the deliverability benefit and is done.
+DMARC at `p=none` is monitoring-only, so nothing depends on DKIM to
+function. Google already applies its own default DKIM signature to
+outgoing mail; it signs as Google's domain rather than ours, which only
+becomes limiting if DMARC is later tightened to `p=quarantine`. Revisit
+DKIM at that point.
 
 **TOP OPEN ITEM — add these three records in the Wix DNS panel.** Wix →
 Domains → Advanced → Edit DNS. Independent of the registrar question:
@@ -471,8 +489,16 @@ then click Start authentication. `p=none` on DMARC is deliberate —
 report-only, so it cannot bounce a real enquiry. Tighten to
 `p=quarantine` after a few clean weeks.
 
-Verify: send from `info@` to a Gmail, open the message, **Show
-original**, confirm SPF / DKIM / DMARC all PASS.
+Verify from Terminal (read-only):
+
+```
+dig TXT threepondsestate.com +short
+dig TXT _dmarc.threepondsestate.com +short
+```
+
+Then end-to-end: send from `info@` to a Gmail, open the message, **Show
+original**, confirm SPF and DMARC PASS. DKIM will show Google's own
+signing domain until a custom key is configured — expected, not a fault.
 
 **If the move is ever picked up:** `CLAUDE/DOMAIN_TRANSFER_RUNBOOK.md`
 has the full sequence. The governing rule is DNS first, registration
