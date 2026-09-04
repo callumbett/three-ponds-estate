@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import MotionReveal from "@/components/MotionReveal";
@@ -10,12 +11,12 @@ export const metadata: Metadata = {
   description:
     "Three pods at Three Ponds Estate: The Ophir, The Felix, and The Uphaz. Boutique architectural sanctuary in Temora, NSW.",
   alternates: { canonical: "/stay" },
-  openGraph: {
-    url: "https://threepondsestate.com/stay",
+  openGraph: buildOpenGraph({
+    path: "/stay",
     title: "Stay — The Pods · Three Ponds Estate",
     description:
       "Three pods at Three Ponds Estate: The Ophir, The Felix, and The Uphaz. Boutique architectural sanctuary in Temora, NSW.",
-  },
+  }),
 };
 
 export default function StayPage() {

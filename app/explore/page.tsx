@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import MotionReveal from "@/components/MotionReveal";
 
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
   description:
     "Things to do near Three Ponds Estate, Temora NSW — Aviation Museum, Lake Centenary, Canola Trail, Coolamon Cheese Co, Junee Licorice Factory and more.",
   alternates: { canonical: "/explore" },
-  openGraph: {
-    url: "https://threepondsestate.com/explore",
+  openGraph: buildOpenGraph({
+    path: "/explore",
     title: "Explore the Region · Three Ponds Estate",
     description:
       "Things to do near Three Ponds Estate, Temora NSW — Aviation Museum, Lake Centenary, Canola Trail, Coolamon Cheese Co, Junee Licorice Factory and more.",
-  },
+  }),
 };
 
 type Place = {

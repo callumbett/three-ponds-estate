@@ -60,6 +60,7 @@ export const metadata: Metadata = {
       "Boutique architectural sanctuary in Temora, NSW. Three pods, three vantages, one quiet acreage.",
     type: "website",
     locale: "en_AU",
+    siteName: "Three Ponds Estate",
     // Explicit image object bypasses Next.js's auto-detection of
     // app/opengraph-image.jpg, which was generating a URL with an
     // internal caching query string that Vercel's dpl= param then

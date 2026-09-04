@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import BookEmbed from "@/components/BookEmbed";
 import MotionReveal from "@/components/MotionReveal";
 
@@ -7,12 +8,12 @@ export const metadata: Metadata = {
   description:
     "Choose your dates and book directly. Live availability for all three pods at Three Ponds Estate, Temora NSW.",
   alternates: { canonical: "/book" },
-  openGraph: {
-    url: "https://threepondsestate.com/book",
+  openGraph: buildOpenGraph({
+    path: "/book",
     title: "Book your stay · Three Ponds Estate",
     description:
       "Choose your dates and book directly. Live availability for all three pods at Three Ponds Estate, Temora NSW.",
-  },
+  }),
 };
 
 export default function BookPage() {

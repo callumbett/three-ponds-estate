@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import MotionReveal from "@/components/MotionReveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -9,12 +10,12 @@ export const metadata: Metadata = {
   description:
     "Booking terms for Three Ponds Estate, Temora NSW — cancellations, security bond, occupancy limits, check-in and check-out, quiet hours, and guest conduct.",
   alternates: { canonical: "/terms" },
-  openGraph: {
-    url: "https://threepondsestate.com/terms",
+  openGraph: buildOpenGraph({
+    path: "/terms",
     title: "Terms & Conditions · Three Ponds Estate",
     description:
       "Booking terms for Three Ponds Estate, Temora NSW — cancellations, security bond, occupancy limits, check-in and check-out, quiet hours, and guest conduct.",
-  },
+  }),
 };
 
 const SECTION_CLASS = "mt-12 first:mt-0";

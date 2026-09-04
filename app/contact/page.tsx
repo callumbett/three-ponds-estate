@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import { Booking } from "@/components/booking";
 import MotionReveal from "@/components/MotionReveal";
 
@@ -7,12 +8,12 @@ export const metadata: Metadata = {
   description:
     "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
   alternates: { canonical: "/contact" },
-  openGraph: {
-    url: "https://threepondsestate.com/contact",
+  openGraph: buildOpenGraph({
+    path: "/contact",
     title: "Contact & Book · Three Ponds Estate",
     description:
       "Book Three Ponds Estate directly via the Little Hotelier engine, or send a quiet enquiry to Mark and Gillian.",
-  },
+  }),
 };
 
 export default function ContactPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Hero from "@/components/Hero";
 import StatsStrip from "@/components/StatsStrip";
 import PodSection from "@/components/PodSection";
@@ -9,12 +10,12 @@ import CTA from "@/components/CTA";
 // for the homepage rather than inheriting the root-layout defaults.
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: {
-    url: "https://threepondsestate.com/",
+  openGraph: buildOpenGraph({
+    path: "/",
     title: "Three Ponds Estate | Temora NSW",
     description:
       "Three Scandinavian-style pods in the open Riverina country, 500 m from Temora Aviation Museum. A quiet, considered stay.",
-  },
+  }),
 };
 
 /**

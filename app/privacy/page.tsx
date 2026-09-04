@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import MotionReveal from "@/components/MotionReveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
   description:
     "How Three Ponds Estate collects, uses, discloses, and protects personal information from website visitors, guests, and enquiries.",
   alternates: { canonical: "/privacy" },
-  openGraph: {
-    url: "https://threepondsestate.com/privacy",
+  openGraph: buildOpenGraph({
+    path: "/privacy",
     title: "Privacy Policy · Three Ponds Estate",
     description:
       "How Three Ponds Estate collects, uses, discloses, and protects personal information from website visitors, guests, and enquiries.",
-  },
+  }),
 };
 
 const SECTION_CLASS = "mt-12 first:mt-0";

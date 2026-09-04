@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -27,11 +28,11 @@ export async function generateMetadata({
     title: pod.name,
     description,
     alternates: { canonical: `/stay/${pod.slug}` },
-    openGraph: {
-      url: `https://threepondsestate.com/stay/${pod.slug}`,
+    openGraph: buildOpenGraph({
+      path: `/stay/${pod.slug}`,
       title: `${pod.name} · Three Ponds Estate`,
       description,
-    },
+    }),
   };
 }
 

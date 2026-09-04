@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildOpenGraph } from "@/lib/seo";
 import Link from "next/link";
 import MotionReveal from "@/components/MotionReveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
   description:
     "Common questions about staying at Three Ponds Estate — check-in, parking, pets, breakfast, the surrounding region and more.",
   alternates: { canonical: "/faq" },
-  openGraph: {
-    url: "https://threepondsestate.com/faq",
+  openGraph: buildOpenGraph({
+    path: "/faq",
     title: "Frequently Asked · Three Ponds Estate",
     description:
       "Common questions about staying at Three Ponds Estate — check-in, parking, pets, breakfast, the surrounding region and more.",
-  },
+  }),
 };
 
 type Group = {

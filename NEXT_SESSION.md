@@ -124,6 +124,19 @@ pure dead weight. Not a visitor-facing emergency: the slideshow uses
 originals. The cost is repo bloat (`public/images/` is 109 MB of a
 111 MB `public/`), build time and transformation spend.
 
+**Ahrefs site audit — 4 Sep.** Daily report flagged four items. One was
+real: "Open Graph tags incomplete" on 12 URLs — every page on the site.
+Diagnosed and fixed the same session; see § C. The other three are
+noise and were deliberately closed as won't-fix: "3XX redirect" (3) is
+outbound links to external sites that redirect — there are no `http://`
+or trailing-slash internal links anywhere in the codebase; "HTTP to
+HTTPS redirect" (2) is Ahrefs seeding its crawl with the `http://`
+forms of the apex and `www`, which correctly redirect — that is the
+setup working; "Redirect chain" (1) is `http://www` → `https://www` →
+`https://apex`, inherent to running both a protocol upgrade and a
+www→apex canonical. Do not "fix" the last two; doing so would weaken a
+correct canonical setup.
+
 **Tooling note:** the Ahrefs MCP integration returns `Insufficient plan`
 for every keyword, SERP, Site Explorer and GSC endpoint. Treat Ahrefs as
 unavailable for research; Search Console is the data source.
@@ -309,16 +322,42 @@ User should also **unmark `purchase`** as a key event — it's a
 Lodgify-era artifact, not a real booking signal, and will pollute
 ad attribution if left on.
 
-### C. Facebook OG cache shows old white logo
+### C. Facebook OG preview — CAUSE CORRECTED 4 Sep 2026
 
-The deployed page has the correct `og:image` meta tag pointing at the
-new sunset pods image. Facebook still shows a cached white logo because
-it scraped the page before the OG image existed.
+**The earlier diagnosis in this section was wrong.** It said the
+deployed pages carried a correct `og:image` and Facebook was merely
+showing a stale cache, with the fix being a re-scrape. Re-scraping would
+have achieved nothing, because **no page on the site was serving an
+`og:image` at all.**
 
-**Fix (user):** Open `https://developers.facebook.com/tools/debug/`,
-paste `https://threepondsestate.com`, click **Debug**, then
-**Scrape Again**. Repeat for `/stay`. Other platforms (iMessage,
-WhatsApp) age their caches out automatically within 24–72 h.
+Cause: Next.js does not deep-merge metadata. Every page exported its own
+`openGraph` object (for a per-page `og:url`), which replaced the root
+layout's `openGraph` wholesale — silently discarding `images`, `type`
+and `locale`. Ahrefs caught it as "Open Graph tags incomplete" across
+all 12 URLs, which is every page on the site.
+
+Fixed 4 Sep 2026 by routing all 12 pages through `buildOpenGraph()` in
+`lib/seo.ts`, which supplies the shared image, type, locale and siteName
+by construction so a future page cannot omit them. `siteName` was also
+missing site-wide and is now set.
+
+**Order matters for the remaining user step.** The re-scrape only works
+once the fix is live in production:
+
+1. Promote to `production` and confirm the deploy finished.
+2. View source on the live homepage, search `og:image`, confirm it is
+   present and points at `/opengraph-image.jpg`.
+3. Only then: `https://developers.facebook.com/tools/debug/` → paste
+   `https://threepondsestate.com` → **Debug** → **Scrape Again**.
+   Repeat for `/stay` and each pod page.
+
+Other platforms (iMessage, WhatsApp, LinkedIn) age their caches out on
+their own within 24–72 h once the tags are correct.
+
+**Worth doing later:** the pod pages all share the generic sunset image.
+Giving each pod its own `og:image` would make a shared Felix link show
+the Felix pod. `buildOpenGraph()` would need an optional image override.
+Correctness first; this is a refinement.
 
 ### D. Link GA4 ↔ Google Ads
 
