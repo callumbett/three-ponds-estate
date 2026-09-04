@@ -1,8 +1,10 @@
 # Next Session — Three Ponds Estate
 
 > Living handoff doc. Read this first at the start of any new Cowork thread.
-> Last refreshed: **2 June 2026** — covers the analytics / SEO / ads
-> rollout and the DNS cutover from Wix→Lodgify to Vercel.
+> Last refreshed: **17 Aug 2026** — booking-engine reversal (Lodgify →
+> Little Hotelier retained), site review, pricing + reviews refresh,
+> and the Claude context setup. Earlier layers (analytics / SEO / ads
+> rollout, DNS cutover to Vercel) still described below and still true.
 
 ---
 
@@ -73,6 +75,66 @@ failure mode this session — pushing changes to `main`, confirming the
 preview works, and then forgetting to promote. The user has hit this
 ~6 times. If something looks like it's not live, **check that
 `production` is at the same commit as `main` before debugging.**
+
+## Session log — 17 Aug 2026 (most recent work)
+
+**Branch state at handover:** `production` = `2438fe8` (live). `main` =
+`254bd3c`, one commit ahead — docs only, no site impact, promote whenever.
+`lodgify-switchback` = `b6382fe`, parked, do not delete.
+
+**What shipped live this session** (promoted `d5dec33` → `2438fe8`, five
+commits): `/book` footer link + CTA alt text; SEO/security-header round;
+a11y (Lightbox focus trap + restore, StickyBookNow `inert` when hidden);
+pricing copy; review counts.
+
+**Decisions made:**
+
+1. **Lodgify switchback reversed.** Owner chose to stay on Little Hotelier
+   and fix widget issues as they arise. `main` restored; Lodgify build
+   parked on its branch. See § E.
+2. **Pricing presentation.** Base rates now Ophir AU$239, Felix/Uphaz
+   AU$299 (`lib/pods.ts`). Discounts: 5% off 2 nights, 10% off 3+.
+   Rule: anchor copy on the honest one-night "from" rate plus one
+   restrained savings line — never lead with the discounted number, no
+   decimals in copy. Applied in CTA, /book, /faq, /contact.
+3. **21-day advance-purchase promo declined** (owner agreed, removing it
+   from the LH back end). Reasons: cannibalises the new 2-night tier,
+   risks stacking to ~20% off, three overlapping rules muddies the copy,
+   and it would confound measurement of the ladder just launched.
+   Revisit after a season if bookings cluster last-minute — run it as an
+   LH-only rate plan / promo code, kept off the website.
+4. **Guest tally is now a floor claim** — "More than 2,000 guests hosted".
+   The old 1,894 figure came from Lodgify (June 2026) and can never be
+   refreshed from Little Hotelier. Only raise the floor when bookings
+   clearly support it.
+5. **Claude context setup.** `CLAUDE.md` rewritten to self-orient every
+   session (read this file first, deploy contract, zsh command-block
+   rules, sandbox limits). `CLAUDE/TPE_Marketing_Context.md` fact-checked
+   to Aug 2026. `CLAUDE/Claude_Project_Instructions.md` holds the setup
+   for an app-side Claude Project (marketing/copy only; code and repo
+   state stay in Cowork). Truth hierarchy: repo state → this file;
+   repo rules → `CLAUDE.md`; brand/business facts → marketing context.
+
+**Full site review:** `SITE_REVIEW_2026-07-13.md` (audited the Lodgify
+branch, with a reversal addendum marking which findings still apply).
+Engine-neutral items still open: oversized images in `public/`
+(28 MB and 23 MB files in `amenities/`, several unreferenced multi-MB
+files), dark-mode corten contrast on small text (3.38:1), ThemeToggle
+36×36 tap target and its pre-existing `react-hooks/refs` lint errors.
+
+**Next up, in rough priority order:**
+
+1. Chase the SiteMinder support ticket — the pod-filter parameter is the
+   blocking widget issue and is likely a one-line attribute rename. § E.
+2. Verify the LH back end shows $239/$299 with the discounts applied, so
+   widget and site copy agree (the "best-rate guarantee" line depends on it).
+3. Google Ads campaign — copy drafted in § A, now updated to $239 with a
+   "Stay 3 Nights, Save 10%" headline (list is at 16, trim to 15).
+4. SEO: homepage body copy to 400+ words, and add `aggregateRating` to the
+   LodgingBusiness JSON-LD for review stars in search results.
+5. Housekeeping: image cleanup, delete stale `FABLE_BRIEF.md`, § H list.
+
+---
 
 ## Current status (2 June 2026)
 
@@ -274,6 +336,28 @@ nothing breaks; tidy when convenient.
 ## Recent commits (most recent first)
 
 ```
+254bd3c docs: self-orienting CLAUDE.md, fact-checked marketing context,
+        Claude Project setup                        (main only, not promoted)
+2438fe8 reviews: refresh counts (Google 126, Airbnb 151, Booking.com 137)
+        + guests-hosted floor claim                 ← production is here
+f63a2c1 pricing: from AU$239/$299, add 5%/10% longer-stay savings copy
+        (commit message got zsh-mangled to "AU/299" — content is fine)
+918b369 a11y: lightbox focus trap + inert sticky pill (ported from the
+        parked Lodgify branch); docs: Little Hotelier retained
+ec0b151 SEO & site audit fixes: metadata, OG tags, canonicals, security
+        headers, image optimisation
+```
+
+Parked branch (do not delete, do not treat as current):
+
+```
+b6382fe review: pod-page book_now_click, lightbox focus trap, sticky-pill
+        inert, contact meta          (tip of lodgify-switchback)
+```
+
+Older history:
+
+```
 d5dec33 ga4: conversion events + OG image (1200x630 — re-encoded 146kb)
 bba9997 chore: bump packageManager to pnpm 11.5.1
 0b498b0 analytics: install Google Analytics 4 (@next/third-parties)
@@ -349,9 +433,13 @@ disallows `/site-maps/` so they don't show in search.
 
 ## Resuming a session
 
-In a new Cowork thread, paste:
+Connect the `three-ponds-estate` folder, then paste:
 
-> *Read `NEXT_SESSION.md` in `/Users/callumbett/Documents/three-ponds-estate/`,
-> then tell me where we left off and what's queued. I'm mid-build on a
-> Google Ads campaign (Responsive Search Ad copy already drafted in the
-> handover doc).*
+> *Read `NEXT_SESSION.md` and `CLAUDE.md` in the connected folder, then
+> tell me where we left off and what's queued. Give me git command blocks
+> to run myself — never push, and flag clearly whether a block is
+> preview-only or goes live.*
+
+`CLAUDE.md` is loaded automatically and already carries the standing rules
+(orientation, deploy contract, zsh command-block gotchas, sandbox limits),
+so the paste above is a nudge rather than a requirement.
