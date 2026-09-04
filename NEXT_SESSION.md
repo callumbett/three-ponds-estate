@@ -1,10 +1,12 @@
 # Next Session — Three Ponds Estate
 
 > Living handoff doc. Read this first at the start of any new Cowork thread.
-> Last refreshed: **17 Aug 2026** — booking-engine reversal (Lodgify →
-> Little Hotelier retained), site review, pricing + reviews refresh,
-> and the Claude context setup. Earlier layers (analytics / SEO / ads
-> rollout, DNS cutover to Vercel) still described below and still true.
+> Last refreshed: **4 Sep 2026** — domain/DNS review (staying at Wix for
+> now), email-authentication gap found, pod-filter issue accepted,
+> `aggregateRating` plan withdrawn. The 17 Aug layer (booking-engine
+> reversal, pricing, reviews, Claude context) and earlier layers
+> (analytics / SEO / ads rollout, hosting cutover to Vercel) still
+> described below and still true.
 
 ---
 
@@ -15,8 +17,10 @@ in Temora, NSW. **Live in production at `https://threepondsestate.com`**
 (apex canonical, `www.threepondsestate.com` 308-redirects to it).
 
 The `.com.au` variant was previously considered but the user committed
-to `.com` only (matches Google Workspace email host). DNS is at Wix
-(domain registrar) pointing the A and CNAME at Vercel.
+to `.com` only (matches Google Workspace email host). **Wix is both the registrar and the
+DNS host** (nameservers `ns6`/`ns7.wixdns.net`); the zone there points
+apex and `www` A records at Vercel. Hosting moved to Vercel; DNS did
+not. See § I.
 
 ## Stack & Conventions
 
@@ -76,7 +80,55 @@ preview works, and then forgetting to promote. The user has hit this
 ~6 times. If something looks like it's not live, **check that
 `production` is at the same commit as `main` before debugging.**
 
-## Session log — 17 Aug 2026 (most recent work)
+## Session log — 4 Sep 2026 (most recent work)
+
+No code changed. Docs only. Three decisions and one finding.
+
+**Decisions made:**
+
+1. **Domain and DNS stay at Wix for now.** A full move to Vercel (both
+   registrar and DNS) was scoped and written up, then deferred — the
+   owner chose to renew at Wix this cycle. Nothing is broken; the current
+   split (Wix = registrar + DNS, Vercel = hosting, Google = email) works
+   and needs no change. The runbook is written and parked at
+   `CLAUDE/DOMAIN_TRANSFER_RUNBOOK.md` for whenever it is picked up.
+   See § I for the standing risk this leaves in place.
+2. **Pod-filter issue accepted.** Booking widget continues to show all
+   three pods. Closed, not deferred. See § E.
+3. **`aggregateRating` withdrawn from the SEO plan.** It was queued on
+   17 Aug; it is against Google's guidelines and would not have worked.
+   Google: *"If the entity that's being reviewed controls the reviews
+   about itself, their pages that use LocalBusiness or any other type of
+   Organization structured data are ineligible for star review feature"*,
+   and *"Don't aggregate reviews or ratings from other websites."* The
+   review counts on the site come from Google, Airbnb and Booking.com, on
+   a page we control — both prohibitions apply. Do not re-add it.
+
+**Finding — email authentication is entirely absent.** `threepondsestate.com`
+has no SPF record, no DKIM key and no DMARC policy. Google Workspace is
+sending and receiving with none of the three. Practical effect: guest
+emails are more likely to be filtered as spam, and the domain is
+trivially spoofable. Unrelated to the domain question; it has been true
+all along. Fix is in § I and is the top open item.
+
+**Also confirmed:** Little Hotelier back end verified showing $239/$299
+with the discounts applied, so widget and site copy agree.
+
+**Image triage (§ H):** three files dominate `public/`. Two are live —
+`amenities/kitchen-bbq/DSC01847.jpg` (28.2 MB) and
+`amenities/acreage/DSC01857.jpg` (23.2 MB), both used by
+`AmenitiesSlideshow` on the homepage and pod pages. One,
+`pods/the-felix/DSC01677.jpg` (15.6 MB), is referenced nowhere and is
+pure dead weight. Not a visitor-facing emergency: the slideshow uses
+`next/image`, so visitors receive optimised derivatives, not the
+originals. The cost is repo bloat (`public/images/` is 109 MB of a
+111 MB `public/`), build time and transformation spend.
+
+**Tooling note:** the Ahrefs MCP integration returns `Insufficient plan`
+for every keyword, SERP, Site Explorer and GSC endpoint. Treat Ahrefs as
+unavailable for research; Search Console is the data source.
+
+## Session log — 17 Aug 2026
 
 **Branch state at handover:** `production` = `2438fe8` (live). `main` =
 `254bd3c`, one commit ahead — docs only, no site impact, promote whenever.
@@ -124,15 +176,17 @@ files), dark-mode corten contrast on small text (3.38:1), ThemeToggle
 
 **Next up, in rough priority order:**
 
-1. Chase the SiteMinder support ticket — the pod-filter parameter is the
-   blocking widget issue and is likely a one-line attribute rename. § E.
-2. Verify the LH back end shows $239/$299 with the discounts applied, so
-   widget and site copy agree (the "best-rate guarantee" line depends on it).
-3. Google Ads campaign — copy drafted in § A, now updated to $239 with a
+1. **Add SPF, DKIM and DMARC** in the Wix DNS panel — see § I. The domain
+   currently has none of the three. Highest-value open item.
+2. Google Ads campaign — copy drafted in § A, now updated to $239 with a
    "Stay 3 Nights, Save 10%" headline (list is at 16, trim to 15).
-4. SEO: homepage body copy to 400+ words, and add `aggregateRating` to the
-   LodgingBusiness JSON-LD for review stars in search results.
-5. Housekeeping: image cleanup, delete stale `FABLE_BRIEF.md`, § H list.
+3. GA4 key events — § B (mark `contact_submit`, `tel_click`,
+   `email_click`; unmark `purchase`).
+4. Facebook OG re-scrape — § C. Then link GA4 to Google Ads — § D.
+5. SEO: local-pack strategy, not organic blue links — see § J. Homepage
+   body copy to 400+ words is the on-site half.
+6. a11y: dark-mode corten contrast + ThemeToggle tap target — § H.
+7. Housekeeping: image cleanup, § H list.
 
 ---
 
@@ -289,11 +343,13 @@ decision flips again. Do NOT delete that branch casually.
 
 **Reopened Little Hotelier issues (support ticket stays open):**
 
-1. **Pod-specific filter** — `data-query-room_type` + parent-URL
-   `?room_type=` both supplied correctly; widget still shows all three
-   pods. Awaiting SiteMinder's reply with the correct parameter.
-   Room type IDs in `lib/pods.ts`: Ophir 109125, Felix 109124,
-   Uphaz 109123.
+1. **Pod-specific filter — ACCEPTED AS-IS (4 Sep 2026).** Owner decided
+   to continue with the widget showing all three pods. Do not reopen
+   this or spend further effort on it without being asked.
+   `data-query-room_type` + parent-URL `?room_type=` are both supplied
+   correctly; the widget ignores them. Room type IDs in `lib/pods.ts`:
+   Ophir 109125, Felix 109124, Uphaz 109123. The `pod_filter` param on
+   `book_now_click` still fires correctly and is worth keeping.
 2. **Mobile horizontal drag** inside their cross-origin iframe.
 3. **Two-tap Select / Book flow** on mobile.
 
@@ -329,9 +385,137 @@ nothing breaks; tidy when convenient.
   `claude/jovial-wozniak-825fcb` — both behind by many commits, delete
   with `git branch -D <name>`.
 - Lodgify cancellation — wait until 2 weeks of confidence, then cancel.
-- Wix plan downgrade to domain-only — same timing.
+- **Wix plan downgrade to domain-only — DANGER, read § I first.** The
+  live DNS zone (including the Google MX records) is hosted at Wix. Do
+  not downgrade or cancel anything at Wix until it is confirmed the DNS
+  zone survives it, or email stops arriving with no obvious cause.
+- **Delete the `_cf-custom-hostname` TXT record at the same time as
+  cancelling Lodgify** — the two are tied. See § I. Do not delete it
+  before then: if the engine decision ever flips back to Lodgify, that
+  record is part of their domain setup.
 - Vercel's Open Graph debugger may also need a `purge` if anyone is
   testing OG previews from inside Vercel.
+
+### I. Domain, DNS and email authentication
+
+**Current shape, stated plainly because it is easy to misremember:**
+
+| Layer | What it does | Who holds it |
+|---|---|---|
+| Registrar | Who the name is rented from | **Wix** |
+| DNS / nameservers | Answers "where does this domain live?" | **Wix** (`ns6`/`ns7.wixdns.net`) |
+| Web host | Where the site runs | **Vercel** |
+| Email | Mailbox for `info@threepondsestate.com` | **Google Workspace** |
+
+The May 2026 migration changed the **A records inside the Wix zone** to
+point at Vercel. It did not move the zone. Wix nameservers are still
+asked for every lookup, for the website and for mail routing alike.
+Verify any time with `dig NS threepondsestate.com +short`.
+
+**Standing risk:** the Google MX records live in the Wix zone. Anything
+that removes that zone takes down email as well as the site, and neither
+Vercel nor Google would be involved or able to help. This is why the Wix
+plan downgrade in § H is flagged as dangerous.
+
+**Live DNS as read on 4 Sep 2026:**
+
+```
+A     @                  216.150.1.1
+A     www                216.150.1.1
+MX    @                  10 aspmx.l.google.com
+MX    @                  20 alt1.aspmx.l.google.com
+MX    @                  30 alt2.aspmx.l.google.com
+MX    @                  40 alt3.aspmx.l.google.com
+MX    @                  50 alt4.aspmx.l.google.com
+TXT   @                  google-site-verification=-KtbBWRxgeedOOCXZWX3Tdum_r1RLPdXbSDPZEZSIrk
+TXT   @                  google-site-verification=rvDsCY92aF5IT31K9paWdfaFXnxAr9SzcTkJWA6PjEI
+```
+
+Both verification strings are load-bearing — one holds the Search
+Console **Domain property**. Never drop them from any future zone.
+
+The full Wix panel was read on 4 Sep 2026 and holds one record that
+public DNS lookups at the apex did not reveal:
+
+```
+TXT   _cf-custom-hostname   2ba410cd-7c3e-46bb-947c-bf44301fe201
+```
+
+This is a **Cloudflare for SaaS ownership-verification token** claiming
+the apex hostname. Almost certainly a leftover from the Lodgify build
+(Jun–Aug 2026) — Lodgify fronts customer domains through Cloudflare, and
+the timeline matches. It is **verification only and routes nothing**;
+Cloudflare-for-SaaS routing runs through a CNAME, and the CNAME section
+is empty, so the token is fully orphaned. No takeover risk, no effect on
+site or email. Leave it until Lodgify is cancelled, then remove both
+together — see § H.
+
+The A and CNAME sections were also read and are clean: apex and `www`
+both A records at `216.150.1.1`, no CNAMEs at all.
+
+**Added 4 Sep 2026 (in the Wix panel):** SPF at the apex and DMARC at
+`_dmarc`, values as below. DKIM still outstanding at time of writing.
+
+**TOP OPEN ITEM — add these three records in the Wix DNS panel.** Wix →
+Domains → Advanced → Edit DNS. Independent of the registrar question:
+
+```
+TXT   @                  v=spf1 include:_spf.google.com ~all
+TXT   google._domainkey  (generate in Google Admin, see below)
+TXT   _dmarc             v=DMARC1; p=none; rua=mailto:info@threepondsestate.com; fo=1
+```
+
+DKIM: admin.google.com → Apps → Google Workspace → Gmail → Authenticate
+email → 2048-bit → Generate new record. Add the TXT to Wix **first**,
+then click Start authentication. `p=none` on DMARC is deliberate —
+report-only, so it cannot bounce a real enquiry. Tighten to
+`p=quarantine` after a few clean weeks.
+
+Verify: send from `info@` to a Gmail, open the message, **Show
+original**, confirm SPF / DKIM / DMARC all PASS.
+
+**If the move is ever picked up:** `CLAUDE/DOMAIN_TRANSFER_RUNBOOK.md`
+has the full sequence. The governing rule is DNS first, registration
+second — transferring the registration while DNS still lives at Wix
+means Wix drops the zone on the way out and both site and email go dark.
+
+### J. SEO — the ranking problem, reframed
+
+Owner's report: searching "Temora accommodation" on Google returns no
+Three Ponds Estate anywhere in the listings.
+
+**Do not chase organic blue links for that query.** It is owned by
+Booking.com, TripAdvisor, Wotif and Stayz, with thousands of referring
+domains against our handful. Small-hospitality budget spent there is
+wasted.
+
+**Target the local pack instead** — the map results above the organic
+list, which is where a Temora searcher actually clicks. It is decided
+largely by Google Business Profile completeness, proximity and review
+volume/recency, not by site authority. The profile is already claimed,
+which is the hard part.
+
+**The site's supporting job**, in priority order:
+
+1. Homepage body copy to 400+ words. Currently roughly 150–200 words of
+   indexable prose across Hero / StatsStrip / PodSection / Reviews / CTA,
+   much of it review quotes and button labels. Too little for Google to
+   understand the page.
+2. No page targets how people actually search. `/stay`, `/explore` and
+   `/story` exist; nothing is built around "accommodation in Temora",
+   the Aviation Museum, or canola season.
+3. JSON-LD is missing `geo` coordinates and `hasMap`. Both are legitimate
+   and worth adding. `aggregateRating` is NOT — see the 4 Sep log.
+
+**Note on the ChatGPT recommendation.** That an LLM calls us "the best
+Temora accommodation" is not evidence of Google ranking — different
+retrieval system, different inputs. Pleasant, but it should not be read
+as a baseline.
+
+**Blocked on data.** Ahrefs is unusable (see 4 Sep log). Need Search
+Console query export — impressions and average position by query — to
+know whether the site is invisible or merely on page 3. Those are
+different problems with different fixes.
 
 ## Recent commits (most recent first)
 
